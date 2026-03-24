@@ -78,14 +78,14 @@ namespace HE_ST01_MotionControl.Motion.Axis.AxisGroup
        true
        );
 
-        // [SaveRemark]
-        // [TextBoxRemark("去拍照NG位1")]
-        // public ThreeAixsPosMsgILineZMov cameraNG1 = new ThreeAixsPosMsgILineZMov(() => Cur,
-        // () => Cur.Aix_1.GetCmdPos(true),
-        // () => Cur.Aix_2.GetCmdPos(true),
-        // () => Cur.Aix_Z.GetCmdPos(true),
-        // true
-        // );
+        [SaveRemark]
+        [TextBoxRemark("待删除点")]
+        public ThreeAixsPosMsgILineZMov cameraNG1 = new ThreeAixsPosMsgILineZMov(() => Cur,
+        () => Cur.Aix_1.GetCmdPos(true),
+        () => Cur.Aix_2.GetCmdPos(true),
+        () => Cur.Aix_Z.GetCmdPos(true),
+        true
+        );
         #endregion
 
     }
