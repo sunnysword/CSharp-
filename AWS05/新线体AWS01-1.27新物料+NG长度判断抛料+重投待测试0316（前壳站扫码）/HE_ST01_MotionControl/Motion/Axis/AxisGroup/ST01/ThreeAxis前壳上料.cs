@@ -69,23 +69,23 @@ namespace HE_ST01_MotionControl.Motion.Axis.AxisGroup
       () => Cur.Aix_Z.GetCmdPos(true),
       true
       );
-       // [SaveRemark]
-       // [TextBoxRemark("去扫码位")]
-       // public ThreeAixsPosMsgILineZMov scanPos = new ThreeAixsPosMsgILineZMov(() => Cur,
-       //() => Cur.Aix_1.GetCmdPos(true),
-       //() => Cur.Aix_2.GetCmdPos(true),
-       //() => Cur.Aix_Z.GetCmdPos(true),
-       //true
-       //);
+        [SaveRemark]
+        [TextBoxRemark("重投物料扫码点")]
+        public ThreeAixsPosMsgILineZMov ScanPos = new ThreeAixsPosMsgILineZMov(() => Cur,
+       () => Cur.Aix_1.GetCmdPos(true),
+       () => Cur.Aix_2.GetCmdPos(true),
+       () => Cur.Aix_Z.GetCmdPos(true),
+       true
+       );
 
-       // [SaveRemark]
-       // [TextBoxRemark("去拍照NG位1")]
-       // public ThreeAixsPosMsgILineZMov cameraNG1 = new ThreeAixsPosMsgILineZMov(() => Cur,
-       // () => Cur.Aix_1.GetCmdPos(true),
-       // () => Cur.Aix_2.GetCmdPos(true),
-       // () => Cur.Aix_Z.GetCmdPos(true),
-       // true
-       // );
+        // [SaveRemark]
+        // [TextBoxRemark("去拍照NG位1")]
+        // public ThreeAixsPosMsgILineZMov cameraNG1 = new ThreeAixsPosMsgILineZMov(() => Cur,
+        // () => Cur.Aix_1.GetCmdPos(true),
+        // () => Cur.Aix_2.GetCmdPos(true),
+        // () => Cur.Aix_Z.GetCmdPos(true),
+        // true
+        // );
         #endregion
 
     }

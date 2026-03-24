@@ -230,7 +230,7 @@ namespace Handler.Process.Station.TrayLoad
                             visionPoint = ScanPcbShellPallet.GetTrayPointWithZU();//获取当前料盘的物料穴位索引
                             pos.PosMsg_1.GetValue = visionPoint.X;
                             pos.PosMsg_2.GetValue = visionPoint.Y;
-                            pos.PosMsg_3.GetValue = visionPoint.Z;
+                            pos.PosMsg_3.GetValue = ThreeAxis.ScanPos.PosMsg_3.GetValue;//重投物料扫码点的Z轴位置
                             if (WaitAxisPoint(pos,AxisMoveType.AxisXYZ))
                             {
                                 Ref_Step("重投扫码");//扫码位置是锁附完的PCB码
