@@ -1,0 +1,33 @@
+﻿<Window x:Class="Handler.View.RFID.RFIDReadErrorWnd"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Handler.View.RFID"
+        mc:Ignorable="d"
+        Title="RFID读取失败" Height="550" Width="800"
+        DataContext="{Binding RelativeSource={RelativeSource Self}}"
+        Closed="Window_Closed">
+    <StackPanel Margin="5">
+        <TextBlock x:Name="textBlock_Header" Text="RFID读取失败" FontSize="20" TextWrapping="Wrap"/>
+
+        <TextBlock x:Name="textBlock_Info" MinHeight="100" FontSize="20" TextWrapping="Wrap">           
+            <LineBreak/>
+            若点击"此站没有治具"按钮:<LineBreak/>
+            若当前工位没有治具，可能是误触碰传感器导致设备进入读取RFID流程，请点击“此站没有治具"按钮，此站状态将被重置。<LineBreak/>
+            <LineBreak/>
+            若点击"手动输入RFID内容"按钮:<LineBreak/>
+            设备将以用户填写在手动输入区的内容作为RFID读取内容。<LineBreak/>
+            <LineBreak/>
+            若点击"重新读取一次"按钮:<LineBreak/>
+            设备将尝试重新读取一次RFID。<LineBreak/>
+            
+        </TextBlock>
+        <GroupBox Header="手动输入">
+            <TextBox x:Name="textBox_ManualInput" MinHeight="50" TextWrapping="Wrap"/>
+        </GroupBox>
+        <Button Content="{Binding Btn_NoCarrier}" HorizontalAlignment="Right" Margin="5" Click="Button_Click"/>
+        <Button Content="{Binding Btn_UseManualInput}" HorizontalAlignment="Right" Margin="5" Click="Button_Click"/>
+        <Button Content="{Binding Btn_ReadOnceMore}" HorizontalAlignment="Right" Margin="5" Click="Button_Click"/>
+    </StackPanel>
+</Window>

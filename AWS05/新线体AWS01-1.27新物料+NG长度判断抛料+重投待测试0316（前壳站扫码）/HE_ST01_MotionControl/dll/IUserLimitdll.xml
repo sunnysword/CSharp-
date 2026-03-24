@@ -1,0 +1,86 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>IUserLimitdll</name>
+    </assembly>
+    <members>
+        <member name="M:IUserLimitdll.EnableConverter.#ctor(IUserLimitdll.UserLevelModes)">
+            <summary>
+            设定等级限制（最高10级），若输入值大于等于 CurLimit，Convert 返回true
+            </summary>
+            <param name="CurLimit"></param>
+        </member>
+        <member name="M:IUserLimitdll.EnableConverter.ResetCurLimit(IUserLimitdll.UserLevelModes)">
+            <summary>
+            重新设置当前权限值（最高10级）
+            </summary>
+            <param name="i"></param>
+        </member>
+        <member name="P:IUserLimitdll.IUserLimit.UserLevelMode">
+            <summary>
+            权限等级
+            </summary>
+        </member>
+        <member name="T:IUserLimitdll.PreControlBindingHelper">
+            <summary>
+            预置的控件权限绑定
+            </summary>
+        </member>
+        <member name="F:IUserLimitdll.PreControlBindingHelper.binding_OnlyLook">
+            <summary>
+            仅仅查看权限的绑定
+            </summary>
+        </member>
+        <member name="F:IUserLimitdll.PreControlBindingHelper.binding_Operation">
+             <summary>
+            可操作的权限绑定
+             </summary>
+        </member>
+        <member name="F:IUserLimitdll.PreControlBindingHelper.binding_ModifyAndOperation">
+            <summary>
+            可修改参数的权限绑定
+            </summary>
+        </member>
+        <member name="F:IUserLimitdll.PreControlBindingHelper.binding_Top">
+            <summary>
+            最高权限的绑定
+            </summary>
+        </member>
+        <member name="F:IUserLimitdll.StaticUserLevel.actionUserLeverModeChanged">
+            <summary>
+            用户等级改变时触发的事件
+            </summary>
+        </member>
+        <member name="M:IUserLimitdll.StaticUserLevel.SetUserLevelModes(IUserLimitdll.UserLevelModes)">
+            <summary>
+            设置用户权限
+            </summary>
+            <param name="userLevelValue"></param>
+        </member>
+        <member name="T:IUserLimitdll.UserLevelModes">
+            <summary>
+            权限等级
+            </summary>
+        </member>
+        <member name="F:IUserLimitdll.UserLevelModes.OnlyLook">
+            <summary>
+            仅仅能查看，不可操作，修改相关参数
+            </summary>
+        </member>
+        <member name="F:IUserLimitdll.UserLevelModes.Operation">
+            <summary>
+            可查看当前参数，并能执行相关的操作，但不可修改相关参数
+            </summary>
+        </member>
+        <member name="F:IUserLimitdll.UserLevelModes.ModifyAndOperation">
+            <summary>
+            可查看，可操作，可修改相关参数
+            </summary>
+        </member>
+        <member name="F:IUserLimitdll.UserLevelModes.Top">
+            <summary>
+            最高权限等级，可进行任何软件的操作
+            </summary>
+        </member>
+    </members>
+</doc>

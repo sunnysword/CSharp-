@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SaveFileDll</name>
+    </assembly>
+    <members>
+        <member name="M:SaveFileDll.SaveFile.Save_Follow_date(System.String,System.String[],System.String,System.String)">
+            <summary>
+            根据日期将数据保存到本地,表格中不含当前时间
+            </summary>
+            <param name="filename">保存文件data下的文件名</param>
+            <param name="param">需要保存的所有数据</param>
+            <param name="mode_name">产品型号名称</param>
+            <param name="header">表头的所有名称，用逗号隔开</param>
+        </member>
+        <member name="M:SaveFileDll.SaveFile.Save_Follow_date2(System.String,System.String[],System.String,System.String,System.String)">
+            <summary>
+            根据日期将数据保存到本地,表格中含当前时间
+            </summary>
+            <param name="filename">保存文件data下的文件名</param>
+            <param name="param">需要保存的所有数据</param>
+            <param name="mode_name">产品型号名称</param>
+            <param name="header">表头的所有名称，用逗号隔开</param>
+            <param name="dateType">表格中时间显示类型eg:yyyyMMddHHmmss</param> 
+        </member>
+        <member name="M:SaveFileDll.SaveFile.SaveOnlyExcel(System.String,System.String[],System.String,System.String)">
+            <summary>
+            只有仅此一个表格,表格中不含实际时间
+            </summary>
+            <param name="filename">表格名称</param>
+            <param name="param">需要保存的所有数据</param>
+            <param name="mode_name">型号</param>
+            <param name="header">表头的所有名称，用逗号隔开</param>
+        </member>
+        <member name="M:SaveFileDll.SaveFile.SaveOnlyExcel2(System.String,System.String[],System.String,System.String,System.String)">
+            <summary>
+            只有仅此一个表格,表格中含实际时间
+            </summary>
+            <param name="filename">表格名称</param>
+            <param name="param">需要保存的所有数据</param>
+            <param name="mode_name">型号</param>
+            <param name="header">表头的所有名称，用逗号隔开</param>
+            <param name="dateType">时间显示类型eg:yyyyMMddHHmmss</param>
+        </member>
+    </members>
+</doc>

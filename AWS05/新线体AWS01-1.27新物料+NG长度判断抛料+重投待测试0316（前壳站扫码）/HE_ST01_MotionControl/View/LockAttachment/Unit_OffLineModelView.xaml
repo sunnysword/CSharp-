@@ -1,0 +1,46 @@
+﻿<UserControl x:Class="FrontShellLocking.View.Unit_LockAttachmentManual"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:FrontShellLocking.View"
+             xmlns:Lan="clr-namespace:LanguageControlBase.Wpf;assembly=LanguageControlBase"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid Background="WhiteSmoke">
+        <StackPanel VerticalAlignment="Top"  HorizontalAlignment="Center"  Background="LightBlue" Margin="0,10,0,0">
+            <GroupBox BorderThickness="2" BorderBrush="Black" Margin="5,5,5,5" Header="工位二手动镭雕">
+                <StackPanel Orientation="Vertical">
+                    <StackPanel VerticalAlignment="Top"  HorizontalAlignment="Left" Orientation="Horizontal">
+                        <Lan:LanButton LanContent="前壳取料一次" Click="LanButton_Click_2" Margin="20" Width="100" Height="50"></Lan:LanButton>
+                        <Lan:LanButton LanContent="PCB取料一次" Click="LanButton_Click_3" Margin="20" Width="100" Height="50"></Lan:LanButton>
+                        <Lan:LanButton LanContent="镭雕启动一次" Click="LanButton_Click" Margin="20" Width="100" Height="50"></Lan:LanButton>
+                    </StackPanel>
+                </StackPanel>
+
+            </GroupBox>
+            <GroupBox BorderThickness="2" BorderBrush="Black" Margin="5" Header="工位四手动锁附">
+                <StackPanel Orientation="Vertical">
+                    <TextBlock x:Name="textBlockState" Text="允许手动锁附" Foreground="Green" FontSize="30"/>
+                    <StackPanel VerticalAlignment="Top"  HorizontalAlignment="Center" Orientation="Horizontal">
+                        <Lan:LanButton LanContent="锁附1启动" Click="btn_StartScrew1" Margin="20" Width="100" Height="50"></Lan:LanButton>
+                        <Lan:LanButton LanContent="锁附单颗启动" Click="btn_StartScrew2" Margin="20" Width="100" Height="50"></Lan:LanButton>
+                        <Lan:LanButton LanContent="锁附1暂停" Click="btn_PauseScrew1" Margin="20" Width="100" Height="50"></Lan:LanButton>
+                        <Lan:LanButton LanContent="锁附1继续" Click="btn_ContinueScrew1" Margin="20" Width="100" Height="50"></Lan:LanButton>
+                        <Lan:LanButton LanContent="锁附1停止" Click="btn_StopScrew1" Margin="20" Width="100" Height="50"></Lan:LanButton>
+                    </StackPanel>
+                </StackPanel>
+                
+            </GroupBox>
+            <GroupBox BorderThickness="2" BorderBrush="Black" Margin="5" Header="工位五点亮半成品测试">
+                <StackPanel Orientation="Vertical">
+                    <StackPanel VerticalAlignment="Top"  HorizontalAlignment="Left" Orientation="Horizontal">
+                        <TextBox x:Name="textBoxSN" Margin="20" Width="200" Height="50"></TextBox>
+                        <Lan:LanButton LanContent="测试流程启动一次" Click="LanButton_Click_1" Margin="20" Width="100" Height="50"></Lan:LanButton>
+                    </StackPanel>
+                </StackPanel>
+
+            </GroupBox>
+        </StackPanel>
+    </Grid>
+</UserControl>

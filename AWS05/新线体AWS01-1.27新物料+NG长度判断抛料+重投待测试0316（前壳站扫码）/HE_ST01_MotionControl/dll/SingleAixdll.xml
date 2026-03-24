@@ -1,0 +1,221 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SingleAixdll</name>
+    </assembly>
+    <members>
+        <member name="T:SingleAixdll.HomeDir">
+            <summary>
+            回原点方向
+            </summary>
+        </member>
+        <member name="F:SingleAixdll.HomeDir.POSITIVE">
+            <summary>
+            正向
+            </summary>
+        </member>
+        <member name="F:SingleAixdll.HomeDir.NEGATIVE">
+            <summary>
+            负向
+            </summary>
+        </member>
+        <member name="T:SingleAixdll.HomeMode">
+            <summary>
+            回原点模式：提供基本的回原点操作方式
+            </summary>
+        </member>
+        <member name="F:SingleAixdll.HomeMode.HOME_MODE_ORG_EL">
+            <summary>
+            以原点作为回原点模式,限位作为辅助寻找原点的方式；
+            遇到限位时直接反找      
+            </summary>
+        </member>
+        <member name="F:SingleAixdll.HomeMode.HOME_MODE_ORG_Z_EL">
+            <summary>
+            以原点、Z向信号作为回原点模式,限位作为辅助寻找原点的方式；
+            遇到限位时直接反找；找到原点后，在找Z向信号；最终以Z向信号作为原点      
+            </summary>
+        </member>
+        <member name="F:SingleAixdll.HomeMode.HOME_MODE_Z">
+            <summary>
+            以伺服电机的Z向信号作为原点
+            </summary>
+        </member>
+        <member name="F:SingleAixdll.HomeMode.HOME_MODE_EL">
+            <summary>
+            以限位作为原点
+            </summary>
+        </member>
+        <member name="T:SingleAixdll.ISingleAix">
+            <summary>
+            轴操作的基本接口；基本实现对轴的通用操作
+            </summary>
+        </member>
+        <member name="P:SingleAixdll.ISingleAix.AccMax">
+            <summary>
+            加速度最大值
+            </summary>
+        </member>
+        <member name="P:SingleAixdll.ISingleAix.DecMax">
+            <summary>
+            减速度最大值
+            </summary>
+        </member>
+        <member name="P:SingleAixdll.ISingleAix.SpeedMax">
+            <summary>
+            驱动速度最大值
+            </summary>
+        </member>
+        <member name="M:SingleAixdll.ISingleAix.Home(SingleAixdll.HomeMode,SingleAixdll.HomeDir,System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            回原点
+            </summary>
+            <param name="homeMode">回原点模式</param>
+            <param name="homeDir">回原点方向</param>
+            <param name="speedHigh">回原点速度:找原点的速度</param>
+            <param name="speedLow">回原点最后的爬行速度</param>
+            <param name="acc">加速度</param>
+            <param name="dec">减速度</param>
+        </member>
+        <member name="M:SingleAixdll.ISingleAix.JOG(System.Double,SingleAixdll.MovDir)">
+            <summary>
+            单轴的连续运动
+            </summary>
+            <param name="speed">速度</param>
+            <param name="movDir">移动的方向</param>
+        </member>
+        <member name="M:SingleAixdll.ISingleAix.Mov(System.Double,System.Double,System.Double,System.Double,System.Boolean)">
+            <summary>
+            相对当前位置的移动
+            </summary>
+            <param name="dis">移动的距离</param>
+            <param name="speed">速度</param>
+            <param name="acc">加速度</param>
+            <param name="dec">减速度</param>
+            <param name="checkdone">是否等待运动完成，True:等待轴运动完成；False:不等待轴运动完成直接返回</param>
+        </member>
+        <member name="M:SingleAixdll.ISingleAix.MovAbs(System.Double,System.Double,System.Double,System.Double,System.Boolean)">
+            <summary>
+            绝对位置移动
+            </summary>
+            <param name="dis">移动的坐标</param>
+            <param name="speed">速度</param>
+            <param name="acc">加速度</param>
+            <param name="dec">减速度</param>
+            <param name="checkdone">是否等待运动完成，True:等待轴运动完成；False:不等待轴运动完成直接返回</param>
+        </member>
+        <member name="M:SingleAixdll.ISingleAix.GetCmdPos">
+            <summary>
+            获取轴的命令位置
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SingleAixdll.ISingleAix.GetEncPos">
+            <summary>
+            获取轴的编码器位置
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SingleAixdll.ISingleAix.StopEMG">
+            <summary>
+            轴紧急停止
+            </summary>
+        </member>
+        <member name="M:SingleAixdll.ISingleAix.StopSlowDown">
+            <summary>
+            轴的减速停止
+            </summary>
+        </member>
+        <member name="M:SingleAixdll.ISingleAix.SvonOFF">
+            <summary>
+            轴的使能控制
+            使能关
+            </summary>
+        </member>
+        <member name="M:SingleAixdll.ISingleAix.SvonON">
+            <summary>
+            轴的使能控制
+            使能开
+            </summary>
+        </member>
+        <member name="M:SingleAixdll.ISingleAix.WaitDone">
+            <summary>
+            轴的运动等待停止函数
+            </summary>
+        </member>
+        <member name="M:SingleAixdll.ISingleAix.RstAlarm">
+            <summary>
+            伺服报警清除函数
+            </summary>
+        </member>
+        <member name="M:SingleAixdll.ISingleAix.GetAixEMG">
+            <summary>
+            获取轴的急停状态
+            </summary>
+            <returns>True:急停触发；False:未触发</returns>
+        </member>
+        <member name="M:SingleAixdll.ISingleAix.GetAixPEL">
+            <summary>
+            获取轴的正限位状态
+            </summary>
+            <returns>True:限位触发；False:未触发</returns>
+        </member>
+        <member name="M:SingleAixdll.ISingleAix.GetAixNEL">
+            <summary>
+            获取轴的负限位状态
+            </summary>
+            <returns>True:限位触发；False:未触发</returns>
+        </member>
+        <member name="M:SingleAixdll.ISingleAix.GetAixAlarm">
+            <summary>
+            获取轴的伺服报警状态
+            </summary>
+            <returns>True:伺服报警；False:未触发</returns>
+        </member>
+        <member name="M:SingleAixdll.ISingleAix.GetAixORG">
+            <summary>
+            获取原点状态
+            </summary>
+            <returns>True:原点信号触发；False:未触发</returns>
+        </member>
+        <member name="M:SingleAixdll.ISingleAix.GetAixINP">
+            <summary>
+            轴的INP信号状态
+            </summary>
+            <returns>True:触发；False:未触发</returns>
+        </member>
+        <member name="M:SingleAixdll.ISingleAix.GetAixSvon">
+            <summary>
+            获取使能状态
+            </summary>
+            <returns>True:使能中；False:未使能</returns>
+        </member>
+        <member name="M:SingleAixdll.ISingleAix.GetAixRunState">
+            <summary>
+            获取轴运动状态，判断轴是否处于运动中
+            </summary>
+            <returns>True:正在运行；False:已停止</returns>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:SingleAixdll.ISingleAix.GetAixIOState" -->
+        <member name="T:SingleAixdll.MovDir">
+            <summary>
+            移动的方向
+            </summary>
+        </member>
+        <member name="F:SingleAixdll.MovDir.POSITIVE">
+            <summary>
+            正向
+            </summary>
+        </member>
+        <member name="F:SingleAixdll.MovDir.NEGATIVE">
+            <summary>
+            负向
+            </summary>
+        </member>
+        <member name="T:SingleAixdll.SvonLogic">
+            <summary>
+            使能有效电平
+            </summary>
+        </member>
+    </members>
+</doc>

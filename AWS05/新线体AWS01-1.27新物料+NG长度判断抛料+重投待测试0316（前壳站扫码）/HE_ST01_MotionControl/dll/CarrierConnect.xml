@@ -1,0 +1,94 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CarrierConnect</name>
+    </assembly>
+    <members>
+        <member name="P:CarrierConnect.CarrierFlowInConnect.IsReady">
+            <summary>
+            本站允许治具流入
+            </summary>
+        </member>
+        <member name="P:CarrierConnect.CarrierFlowInConnect.LastStationCarrierCanFlowOut">
+            <summary>
+            上一站治具允许流出
+            </summary>
+        </member>
+        <member name="P:CarrierConnect.CarrierFlowInConnect.CurrentStationCarrierArrive">
+            <summary>
+            本站接收到治具
+            </summary>
+        </member>
+        <member name="P:CarrierConnect.CarrierFlowInConnect.ReceiveLastStationReply">
+            <summary>
+            收到上一站治具流出请求
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "T:CarrierConnect.CommunicationProductInfo" -->
+        <member name="F:CarrierConnect.CommunicationProductInfo.MainComponentInfo">
+            <summary>
+            主组件信息，一般指壳体
+            </summary>
+        </member>
+        <member name="F:CarrierConnect.CommunicationProductInfo.ComponentCollection">
+            <summary>
+            组件信息 集合
+            </summary>
+        </member>
+        <member name="P:CarrierConnect.CommunicationProductInfo.NGReason">
+            <summary>
+            NG原因
+            </summary>
+        </member>
+        <member name="P:CarrierConnect.CommunicationProductInfo.Mode">
+            <summary>
+            运行模式,默认正常运行
+            </summary>
+        </member>
+        <member name="T:CarrierConnect.RunMode">
+            <summary>
+            运行模式
+            </summary>
+        </member>
+        <member name="F:CarrierConnect.RunMode.NormalRun">
+            <summary>
+            正常运行模式
+            </summary>
+        </member>
+        <member name="F:CarrierConnect.RunMode.TestRun">
+            <summary>
+            空跑模式
+            </summary>
+        </member>
+        <member name="F:CarrierConnect.RunMode.ClearMode">
+            <summary>
+            清料模式
+            </summary>
+        </member>
+        <member name="F:CarrierConnect.RunMode.DayCheck_1">
+            <summary>
+            点检模式1
+            </summary>
+        </member>
+        <member name="F:CarrierConnect.RunMode.DayCheck_2">
+            <summary>
+            点检模式2
+            </summary>
+        </member>
+        <member name="F:CarrierConnect.RunMode.DayCheck_3">
+            <summary>
+            点检模式3
+            </summary>
+        </member>
+        <member name="F:CarrierConnect.RunMode.DayCheck_4">
+            <summary>
+            点检模式4
+            </summary>
+        </member>
+        <member name="F:CarrierConnect.RunMode.DayCheck_5">
+            <summary>
+            点检模式5
+            </summary>
+        </member>
+    </members>
+</doc>

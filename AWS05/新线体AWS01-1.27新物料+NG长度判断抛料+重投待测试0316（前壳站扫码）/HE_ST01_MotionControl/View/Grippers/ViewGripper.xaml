@@ -1,0 +1,90 @@
+﻿<UserControl x:Class="Handler.View.Gripper.ViewGripper"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+            
+             mc:Ignorable="d" 
+             d:DesignHeight="500" d:DesignWidth="800">
+    <Grid Margin="20,20,0,20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="250"/>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Grid.ColumnSpan="3"
+                    Background="Beige"
+                    FontSize="22"
+                    FontWeight="Bold"
+                    HorizontalAlignment="Left" Width="382" VerticalAlignment="Center" Text="夹爪调试" TextAlignment="Center" Margin="180,0,0,0"/>
+        <TextBox Grid.Row="3" Grid.Column="1"
+                    x:Name="txtClampDistance"
+                    Width="112"
+                    FontSize="18"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="32" />
+
+        <Button x:Name="btnGripperInit" Grid.Row="2" Grid.Column="2"
+                    Click="btnGripperInit_Click"
+                    Content="夹爪初始化" Width="112" FontSize="18"  Height="32"  HorizontalAlignment="Left" />
+
+        <Button x:Name="btnGripperRotate" Grid.Row="5" Grid.Column="2"
+                    Click="btnGripperRotate_Click"
+                    Content="旋  转" Width="112" FontSize="18" Height="32" HorizontalAlignment="Left" />
+
+        <Button x:Name="btnGripperClamp" Grid.Row="3" Grid.Column="2"
+                    Click="btnGripperClamp_Click"
+                    Content="夹  持" Width="112" FontSize="18" Height="32" HorizontalAlignment="Left"/>
+
+        <Button x:Name="btnGripperOpen" Grid.Row="3" Grid.Column="3"
+                    Click="btnGripperOpenClick"
+                    Content="松  开" Width="112" FontSize="18" Height="32" HorizontalAlignment="Left"/>
+
+        <ComboBox x:Name="cmbGripperSel" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="120" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="18" Height="30">
+            <ComboBoxItem Content="前壳夹爪"/>
+            <ComboBoxItem Content="PCB夹爪"/>
+
+
+        </ComboBox>
+
+        <Label Content="选择夹爪：" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left"  VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="18" Grid.ColumnSpan="2" Margin="180,0,0,0"/>
+
+        <Button x:Name="btnGripperConn" Grid.Row="1" Grid.Column="2"
+            Click="btnGripperConn_Click"
+            Content="连接夹爪" Width="112" FontSize="18" Height="32" HorizontalAlignment="Left" />
+
+        <Label Content="夹持距离：" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Left"  VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="18" Grid.ColumnSpan="2" Margin="180,0,0,0"/>
+        <TextBox Grid.Row="5" Grid.Column="1"
+            x:Name="txtRotationAngle"
+            Width="112"
+            FontSize="18" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="32" />
+
+        <Label Content="夹爪夹持距离反馈:" Grid.Row="4"  Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="18" Grid.ColumnSpan="2" Margin="100,0,0,0"/>
+        <TextBox Grid.Row="4" Grid.Column="1"
+                    x:Name="CurrentDistance"
+                    Width="112"
+                    IsReadOnly="True"
+                    BorderThickness="0"
+                    FontSize="18"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="32" />
+
+        <Label Content="旋转角度：" Grid.Row="5" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="18" Grid.ColumnSpan="2" Margin="180,0,0,0"/>
+        <Label x:Name="lblInitResult" Content="未连接夹爪" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center"  VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="18" Margin="0,0,0,0"/>
+        <Label Content="夹爪旋转角度反馈:" Grid.Row="6"  Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="18" Grid.ColumnSpan="2" Margin="100,0,0,0"/>
+        <TextBox Grid.Row="6" Grid.Column="1"
+                    x:Name="CurrentAngle"
+                    Width="112"
+                    IsReadOnly="True"
+                    BorderThickness="0"
+                    FontSize="18"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="32" />
+
+    </Grid>
+</UserControl>

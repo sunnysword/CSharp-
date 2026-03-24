@@ -1,0 +1,460 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>AbstractLineAixsdll</name>
+    </assembly>
+    <members>
+        <member name="T:AbstractLineAixsdll.AbstractLineAixs">
+            <summary>
+            抽象的XY插补轴
+            </summary>
+        </member>
+        <member name="F:AbstractLineAixsdll.AbstractLineAixs.Aix_1">
+            <summary>
+            插补轴1
+            </summary>
+        </member>
+        <member name="F:AbstractLineAixsdll.AbstractLineAixs.Aix_2">
+            <summary>
+            插补轴2
+            </summary>
+        </member>
+        <member name="P:AbstractLineAixsdll.AbstractLineAixs.SafeMaxSpeed_puls">
+            <summary>
+            最大运行保护速度，基于脉冲
+            </summary>
+        </member>
+        <member name="P:AbstractLineAixsdll.AbstractLineAixs.IsBusy">
+            <summary>
+            是否Busy
+            </summary>
+        </member>
+        <member name="F:AbstractLineAixsdll.AbstractLineAixs._lineAixs">
+            <summary>
+            当前的插补对象
+            </summary>
+        </member>
+        <member name="P:AbstractLineAixsdll.AbstractLineAixs.IsSetOutFlag">
+            <summary>
+            当使用ArcMovAngleBaseTimeAndAngleToOut、ArcMovAngleBaseAngleToOut 方法画圆时，必须设置该属性为true；
+            同时复写GetArcMovOutIndex 获取要触发的Io点
+            </summary>
+        </member>
+        <member name="M:AbstractLineAixsdll.AbstractLineAixs.SpeedConvertToCmdPuls(System.Double)">
+            <summary>
+            使用Cmd上设置的参数，将速度的值转换成脉冲单位
+            </summary>
+            <param name="dValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:AbstractLineAixsdll.AbstractLineAixs.CancleOneSafeCheck">
+            <summary>
+            取消一次安全检查，即下次移动不检查安全操作
+            </summary>
+        </member>
+        <member name="M:AbstractLineAixsdll.AbstractLineAixs.RstCancleCancleOneSafeCheck">
+            <summary>
+            重置取消安全检查状态
+            </summary>
+        </member>
+        <member name="M:AbstractLineAixsdll.AbstractLineAixs.SafeCheck">
+            <summary>
+            安全检查的操作
+            </summary>
+        </member>
+        <member name="M:AbstractLineAixsdll.AbstractLineAixs.GetImplementAix``1">
+            <summary>
+            获取具体的轴
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:AbstractLineAixsdll.AbstractLineAixs.LineMovBasePuls(System.Double,System.Double,System.Double,System.Double,System.Double,System.Boolean)">
+            <summary>
+            相对当前位置的直线插补,输入的单位是脉冲:位置、距离、速度都是脉冲
+            </summary>
+            <param name="dis1">轴1的距离</param>
+            <param name="dis2">轴2的距离</param>
+            <param name="speed">插补速度</param>
+            <param name="acc">加速度时间</param>
+            <param name="dec">减速度时间</param>
+            <param name="checkdone">是否等待停止</param>
+        </member>
+        <member name="M:AbstractLineAixsdll.AbstractLineAixs.LineMovAbsBasePuls(System.Double,System.Double,System.Double,System.Double,System.Double,System.Boolean)">
+            <summary>
+            绝对位置插补，输入的单位是脉冲:位置、距离、速度都是脉冲
+            </summary>
+            <param name="dis1">轴1的执行点坐标</param>
+            <param name="dis2">轴2的执行点坐标</param>
+            <param name="speed">插补速度</param>
+            <param name="acc">加速度时间</param>
+            <param name="dec">减速度时间</param>
+            <param name="checkdone">是否等待停止</param>
+        </member>
+        <member name="M:AbstractLineAixsdll.AbstractLineAixs.ArcMovAngleBasePuls(System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Boolean)">
+            <summary>
+            圆插补，基于角度；输入的单位是脉冲:圆心坐标、速度都是脉冲
+            </summary>
+            <param name="centerPos1">轴1的圆心坐标</param>
+            <param name="centerPos2">轴2的圆心坐标</param>
+            <param name="angle">要走的角度，正值逆时针；负值顺时针</param>
+            <param name="speed">画圆速度</param>
+            <param name="acc">加速度时间</param>
+            <param name="dec">减速度时间</param>
+            <param name="checkdone">是否等待停止</param>
+        </member>
+        <member name="M:AbstractLineAixsdll.AbstractLineAixs.LineMov(System.Double,System.Double,System.Double,System.Double,System.Double,System.Boolean,System.Boolean)">
+            <summary>
+            相对当前位置的直线插补,允许是否使用导程换算
+            </summary>
+            <param name="dis1">轴1的距离</param>
+            <param name="dis2">轴2的距离</param>
+            <param name="speed">插补速度</param>
+            <param name="acc">加速度时间</param>
+            <param name="dec">减速度时间</param>
+            <param name="checkdone">是否等待停止</param>
+            <param name="IsUsePPU">是否使用导程换算</param>
+        </member>
+        <member name="M:AbstractLineAixsdll.AbstractLineAixs.LineMov(System.Double,System.Double,System.Boolean,System.Boolean)">
+            <summary>
+            相对当前位置的直线插补,允许是否使用导程换算
+            </summary>
+            <param name="dis1">轴1的距离</param>
+            <param name="dis2">轴2的距离</param>       
+            <param name="checkdone">是否等待停止</param>
+            <param name="IsUsePPU">是否使用导程换算</param>
+        </member>
+        <member name="M:AbstractLineAixsdll.AbstractLineAixs.LineMov(System.Double,System.Double)">
+            <summary>
+            相对当前位置的直线插补,使用导程换算
+            </summary>
+            <param name="dis1">轴1的距离</param>
+            <param name="dis2">轴2的距离</param>              
+        </member>
+        <member name="M:AbstractLineAixsdll.AbstractLineAixs.LineMovAbs(System.Double,System.Double,System.Double,System.Double,System.Double,System.Boolean,System.Boolean)">
+            <summary>
+            绝对位置插补，允许是否使用导程换算
+            </summary>
+            <param name="dis1">轴1的执行点坐标</param>
+            <param name="dis2">轴2的执行点坐标</param>
+            <param name="speed">插补速度</param>
+            <param name="acc">加速度时间</param>
+            <param name="dec">减速度时间</param>
+            <param name="checkdone">是否等待停止</param>
+            <param name="IsUsePPU">是否使用导程换算</param>
+        </member>
+        <member name="M:AbstractLineAixsdll.AbstractLineAixs.LineMovAbs(System.Double,System.Double,System.Boolean,System.Boolean)">
+            <summary>
+            绝对位置插补，允许是否使用导程换算
+            </summary>
+            <param name="dis1">轴1的执行点坐标</param>
+            <param name="dis2">轴2的执行点坐标</param>        
+            <param name="checkdone">是否等待停止</param>
+            <param name="IsUsePPU">是否使用导程换算</param>
+        </member>
+        <member name="M:AbstractLineAixsdll.AbstractLineAixs.LineMovAbs(System.Double,System.Double)">
+            <summary>
+            绝对位置插补，使用导程换算
+            </summary>
+            <param name="dis1">轴1的执行点坐标</param>
+            <param name="dis2">轴2的执行点坐标</param>               
+        </member>
+        <member name="M:AbstractLineAixsdll.AbstractLineAixs.ArcMovAngle(System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Boolean,System.Boolean)">
+            <summary>
+            圆插补，基于角度；允许是否使用导程换算
+            </summary>
+            <param name="centerPos1">轴1的圆心坐标</param>
+            <param name="centerPos2">轴2的圆心坐标</param>
+            <param name="angle">要走的角度，正值逆时针；负值顺时针</param>
+            <param name="speed">画圆速度</param>
+            <param name="acc">加速度时间</param>
+            <param name="dec">减速度时间</param>
+            <param name="checkdone">是否等待停止</param>
+            <param name="IsUsePPU">是否使用导程换算</param>
+        </member>
+        <member name="M:AbstractLineAixsdll.AbstractLineAixs.ArcMovAngle(System.Double,System.Double,System.Double,System.Boolean,System.Boolean)">
+            <summary>
+            圆插补，基于角度；允许是否使用导程换算
+            </summary>
+            <param name="centerPos1">轴1的圆心坐标</param>
+            <param name="centerPos2">轴2的圆心坐标</param>
+            <param name="angle">要走的角度，正值逆时针；负值顺时针</param>
+            <param name="speed">画圆速度</param>
+            <param name="acc">加速度时间</param>
+            <param name="dec">减速度时间</param>
+            <param name="checkdone">是否等待停止</param>
+            <param name="IsUsePPU">是否使用导程换算</param>
+        </member>
+        <member name="M:AbstractLineAixsdll.AbstractLineAixs.ArcMovAngle(System.Double,System.Double,System.Double)">
+            <summary>
+            圆插补，基于角度；允许是否使用导程换算
+            </summary>
+            <param name="centerPos1">轴1的圆心坐标</param>
+            <param name="centerPos2">轴2的圆心坐标</param>
+            <param name="angle">要走的角度，正值逆时针；负值顺时针</param>
+            <param name="speed">画圆速度</param>
+            <param name="acc">加速度时间</param>
+            <param name="dec">减速度时间</param>       
+        </member>
+        <member name="M:AbstractLineAixsdll.AbstractLineAixs.Stop">
+            <summary>
+            停止插补运动
+            </summary>
+        </member>
+        <member name="M:AbstractLineAixsdll.AbstractLineAixs.WaitDone">
+            <summary>
+            等待运动完成
+            </summary>
+        </member>
+        <member name="M:AbstractLineAixsdll.AbstractLineAixs.GetLineState">
+            <summary>
+            获取插补的运行或停止的状态
+            </summary>
+            <returns>True:正在执行插补；False:运动已停止</returns>
+        </member>
+        <member name="E:AbstractLineAixsdll.AbstractLineAixs.GlobalMethonInvokeEvent">
+            <summary>
+            全局事件，当方法被调用时触发的事件: 触发的方法为Mov,Jog 操作类方法！状态访问类的不触发
+            </summary>
+        </member>
+        <member name="T:AbstractLineAixsdll.AbstractLineThreeAixs">
+            <summary>
+            抽象的XYZ插补轴
+            </summary>
+        </member>
+        <member name="F:AbstractLineAixsdll.AbstractLineThreeAixs.Aix_1">
+            <summary>
+            插补轴1
+            </summary>
+        </member>
+        <member name="F:AbstractLineAixsdll.AbstractLineThreeAixs.Aix_2">
+            <summary>
+            插补轴2
+            </summary>
+        </member>
+        <member name="F:AbstractLineAixsdll.AbstractLineThreeAixs.Aix_3">
+            <summary>
+            插补轴3
+            </summary>
+        </member>
+        <member name="P:AbstractLineAixsdll.AbstractLineThreeAixs.SafeMaxSpeed_puls">
+            <summary>
+            最大运行保护速度，基于脉冲
+            </summary>
+        </member>
+        <member name="F:AbstractLineAixsdll.AbstractLineThreeAixs.ArcSpeed">
+            <summary>
+            画圆插补运行速度
+            </summary>
+        </member>
+        <member name="F:AbstractLineAixsdll.AbstractLineThreeAixs.LineSpeed">
+            <summary>
+            直线插补运行速度
+            </summary>
+        </member>
+        <member name="P:AbstractLineAixsdll.AbstractLineThreeAixs.IsBusy">
+            <summary>
+            是否Busy
+            </summary>
+        </member>
+        <member name="F:AbstractLineAixsdll.AbstractLineThreeAixs._lineAixs">
+            <summary>
+            当前的插补对象
+            </summary>
+        </member>
+        <member name="P:AbstractLineAixsdll.AbstractLineThreeAixs.IsSetOutFlag">
+            <summary>
+            当使用ArcMovAngleBaseTimeAndAngleToOut、ArcMovAngleBaseAngleToOut 方法画圆时，必须设置该属性为true；
+            同时复写GetArcMovOutIndex 获取要触发的Io点
+            </summary>
+        </member>
+        <member name="M:AbstractLineAixsdll.AbstractLineThreeAixs.SpeedConvertToCmdPuls(System.Double)">
+            <summary>
+            使用Cmd上设置的参数，将速度的值转换成脉冲单位
+            </summary>
+            <param name="dValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:AbstractLineAixsdll.AbstractLineThreeAixs.CancleOneSafeCheck">
+            <summary>
+            取消一次安全检查，即下次移动不检查安全操作
+            </summary>
+        </member>
+        <member name="M:AbstractLineAixsdll.AbstractLineThreeAixs.RstCancleCancleOneSafeCheck">
+            <summary>
+            重置取消安全检查状态
+            </summary>
+        </member>
+        <member name="M:AbstractLineAixsdll.AbstractLineThreeAixs.SafeCheck">
+            <summary>
+            安全检查的操作
+            </summary>
+        </member>
+        <member name="M:AbstractLineAixsdll.AbstractLineThreeAixs.GetImplementAix``1">
+            <summary>
+            获取具体的轴
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:AbstractLineAixsdll.AbstractLineThreeAixs.Line3MovBasePuls(System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Boolean)">
+            <summary>
+            相对当前位置的直线插补,输入的单位是脉冲:位置、距离、速度都是脉冲
+            </summary>
+            <param name="dis1">轴1的距离</param>
+            <param name="dis2">轴2的距离</param>
+            <param name="dis3">轴2的距离</param>
+            <param name="speed">插补速度</param>
+            <param name="acc">加速度时间</param>
+            <param name="dec">减速度时间</param>
+            <param name="checkdone">是否等待停止</param>
+        </member>
+        <member name="M:AbstractLineAixsdll.AbstractLineThreeAixs.Line3MovAbsBasePuls(System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Boolean)">
+            <summary>
+            绝对位置插补，输入的单位是脉冲:位置、距离、速度都是脉冲
+            </summary>
+            <param name="dis1">轴1的执行点坐标</param>
+            <param name="dis2">轴2的执行点坐标</param>
+            <param name="dis3">轴3的执行点坐标</param>
+            <param name="speed">插补速度</param>
+            <param name="acc">加速度时间</param>
+            <param name="dec">减速度时间</param>
+            <param name="checkdone">是否等待停止</param>
+        </member>
+        <member name="M:AbstractLineAixsdll.AbstractLineThreeAixs.Line3MovAbsBasePuls(System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Boolean)">
+            <summary>
+            绝对位置插补，输入的单位是脉冲:位置、距离、速度都是脉冲
+            </summary>
+            <param name="dis1">轴1的执行点坐标</param>
+            <param name="dis2">轴2的执行点坐标</param>
+            <param name="dis3">轴3的执行点坐标</param>
+            <param name="Z_MovUpDis">Z轴往上抬升的高度：正值往上</param>
+            <param name="speed">插补速度</param>
+            <param name="acc">加速度时间</param>
+            <param name="dec">减速度时间</param>
+            <param name="checkdone">是否等待停止</param>
+        </member>
+        <member name="M:AbstractLineAixsdll.AbstractLineThreeAixs.Line3Mov(System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Boolean,System.Boolean)">
+            <summary>
+            相对当前位置的直线插补,允许是否使用导程换算
+            </summary>
+            <param name="dis1">轴1的距离</param>
+            <param name="dis2">轴2的距离</param>
+            <param name="dis3">轴3的距离</param>
+            <param name="speed">插补速度</param>
+            <param name="acc">加速度时间</param>
+            <param name="dec">减速度时间</param>
+            <param name="checkdone">是否等待停止</param>
+            <param name="IsUsePPU">是否使用导程换算</param>
+        </member>
+        <member name="M:AbstractLineAixsdll.AbstractLineThreeAixs.Line3Mov(System.Double,System.Double,System.Double,System.Boolean,System.Boolean)">
+            <summary>
+            相对当前位置的直线插补,允许是否使用导程换算
+            </summary>
+            <param name="dis1">轴1的距离</param>
+            <param name="dis2">轴2的距离</param>
+            <param name="dis3">轴3的距离</param>       
+            <param name="checkdone">是否等待停止</param>
+            <param name="IsUsePPU">是否使用导程换算</param>
+        </member>
+        <member name="M:AbstractLineAixsdll.AbstractLineThreeAixs.Line3Mov(System.Double,System.Double,System.Double)">
+            <summary>
+            相对当前位置的直线插补,使用导程换算
+            </summary>
+            <param name="dis1">轴1的距离</param>
+            <param name="dis2">轴2的距离</param>
+            <param name="dis3">轴3的距离</param>              
+        </member>
+        <member name="M:AbstractLineAixsdll.AbstractLineThreeAixs.Line3MovAbs(System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Boolean,System.Boolean)">
+            <summary>
+            绝对位置插补，允许是否使用导程换算
+            </summary>
+            <param name="dis1">轴1的执行点坐标</param>
+            <param name="dis2">轴2的执行点坐标</param>
+            <param name="dis3">轴3的执行点坐标</param>
+            <param name="speed">插补速度</param>
+            <param name="acc">加速度时间（0.001~0.1 s）</param>
+            <param name="dec">减速度时间(0.001~0.1 s）</param>
+            <param name="checkdone">是否等待停止</param>
+            <param name="IsUsePPU">是否使用导程换算</param>
+        </member>
+        <member name="M:AbstractLineAixsdll.AbstractLineThreeAixs.Line3MovAbs(System.Double,System.Double,System.Double,System.Boolean,System.Boolean)">
+            <summary>
+            绝对位置插补，允许是否使用导程换算
+            </summary>
+            <param name="dis1">轴1的执行点坐标</param>
+            <param name="dis2">轴2的执行点坐标</param>
+            <param name="dis3">轴3的执行点坐标</param>        
+            <param name="checkdone">是否等待停止</param>
+            <param name="IsUsePPU">是否使用导程换算</param>
+        </member>
+        <member name="M:AbstractLineAixsdll.AbstractLineThreeAixs.Line3MovAbs(System.Double,System.Double,System.Double)">
+            <summary>
+            绝对位置插补，使用导程换算
+            </summary>
+            <param name="dis1">轴1的执行点坐标</param>
+            <param name="dis2">轴2的执行点坐标</param>
+            <param name="dis3">轴3的执行点坐标</param>               
+        </member>
+        <member name="M:AbstractLineAixsdll.AbstractLineThreeAixs.Line3MovAbs(System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Boolean,System.Boolean)">
+            <summary>
+            绝对位置插补，允许是否使用导程换算
+            </summary>
+            <param name="dis1">轴1的执行点坐标</param>
+            <param name="dis2">轴2的执行点坐标</param>
+            <param name="dis3">轴3的执行点坐标</param>
+            <param name="Z_MovUpDis">Z轴预抬升距离：正值往上</param>
+            <param name="speed">插补速度</param>
+            <param name="acc">加速度时间</param>
+            <param name="dec">减速度时间(0.001~0.1 s）</param>
+            <param name="checkdone">是否等待停止</param>
+            <param name="IsUsePPU">是否使用导程换算</param>
+        </member>
+        <member name="M:AbstractLineAixsdll.AbstractLineThreeAixs.Line3MovAbs(System.Double,System.Double,System.Double,System.Double,System.Boolean,System.Boolean)">
+            <summary>
+            绝对位置插补，允许是否使用导程换算
+            </summary>
+            <param name="dis1">轴1的执行点坐标</param>
+            <param name="dis2">轴2的执行点坐标</param>
+            <param name="dis3">轴3的执行点坐标</param>
+            <param name="Z_MovUpDis">Z轴预抬升距离：正值往上</param>        
+            <param name="checkdone">是否等待停止</param>
+            <param name="IsUsePPU">是否使用导程换算</param>
+        </member>
+        <member name="M:AbstractLineAixsdll.AbstractLineThreeAixs.Line3MovAbs(System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            绝对位置插补，使用导程换算
+            </summary>
+            <param name="dis1">轴1的执行点坐标</param>
+            <param name="dis2">轴2的执行点坐标</param>
+            <param name="dis3">轴3的执行点坐标</param>
+            <param name="Z_MovUpDis">Z轴预抬升距离：正值往上</param>               
+        </member>
+        <member name="M:AbstractLineAixsdll.AbstractLineThreeAixs.Stop">
+            <summary>
+            停止插补运动
+            </summary>
+        </member>
+        <member name="M:AbstractLineAixsdll.AbstractLineThreeAixs.WaitDone">
+            <summary>
+            等待运动完成
+            </summary>
+        </member>
+        <member name="M:AbstractLineAixsdll.AbstractLineThreeAixs.GetLineState">
+            <summary>
+            获取插补的运行或停止的状态
+            </summary>
+            <returns>True:正在执行插补；False:运动已停止</returns>
+        </member>
+        <member name="E:AbstractLineAixsdll.AbstractLineThreeAixs.GlobalMethonInvokeEvent">
+            <summary>
+            全局事件，当方法被调用时触发的事件: 触发的方法为Mov,Jog 操作类方法！状态访问类的不触发
+            </summary>
+        </member>
+        <member name="T:AbstractLineAixsdll.LineAixsZCreateBase">
+            <summary>
+            插补抽象:XY 插补 Z轴单动
+            </summary>
+        </member>
+    </members>
+</doc>

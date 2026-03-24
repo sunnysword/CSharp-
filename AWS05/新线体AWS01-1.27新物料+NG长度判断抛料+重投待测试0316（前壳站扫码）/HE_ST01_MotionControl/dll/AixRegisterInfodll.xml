@@ -1,0 +1,189 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>AixRegisterInfodll</name>
+    </assembly>
+    <members>
+        <member name="T:AixRegisterInfodll.AixAlaramStateInfo">
+            <summary>
+            轴的伺服报警状态信息
+            </summary>
+        </member>
+        <member name="T:AixRegisterInfodll.AixEMGStateInfo">
+            <summary>
+            轴的急停状态信息
+            </summary>
+        </member>
+        <member name="T:AixRegisterInfodll.AixIsHomeOK">
+            <summary>
+            轴是否复位完成的检测信息
+            </summary>
+        </member>
+        <member name="F:AixRegisterInfodll.AixIsHomeOK.Name">
+            <summary>
+            轴的名字
+            </summary>
+        </member>
+        <member name="M:AixRegisterInfodll.AixIsHomeOK.GetIsBusy">
+            <summary>
+            当前轴是否运动
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:AixRegisterInfodll.AixIsHomeOK.GetIsHomeOK">
+            <summary>
+            轴是否复位OK
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:AixRegisterInfodll.AixLimitStateInfo">
+            <summary>
+            轴的限位状态信息
+            </summary>
+        </member>
+        <member name="T:AixRegisterInfodll.AixStopEMGEventHandler">
+            <summary>
+            轴的急停事件类型
+            </summary>
+        </member>
+        <member name="T:AixRegisterInfodll.AixStopSlowDownEventHandler">
+            <summary>
+            轴的减速停止事件类型
+            </summary>
+        </member>
+        <member name="T:AixRegisterInfodll.AixSvonONEventHandler">
+            <summary>
+            轴的伺服使能ON事件类型
+            </summary>
+        </member>
+        <member name="T:AixRegisterInfodll.AixSvonOFFEventHandler">
+            <summary>
+            轴的伺服使能OFF事件类型
+            </summary>
+        </member>
+        <member name="T:AixRegisterInfodll.AixAlarmRstEventHandler">
+            <summary>
+            轴伺服报警清除函数事件类型
+            </summary>
+        </member>
+        <member name="T:AixRegisterInfodll.AixRegisterInfo">
+            <summary>
+            轴的注册信息，用来收集轴对象；方便管理
+            </summary>
+        </member>
+        <member name="F:AixRegisterInfodll.AixRegisterInfo.CheckAixEMGList">
+            <summary>
+            轴的急停状态检测集合
+            </summary>
+        </member>
+        <member name="F:AixRegisterInfodll.AixRegisterInfo.CheckAixAlarmList">
+            <summary>
+            轴的伺服报警状态检测集合
+            </summary>
+        </member>
+        <member name="F:AixRegisterInfodll.AixRegisterInfo.CheckAixLimitList">
+            <summary>
+            轴的限位状态检测集合
+            </summary>
+        </member>
+        <member name="F:AixRegisterInfodll.AixRegisterInfo.CheckAixIsHomeOK">
+            <summary>
+            判断轴是否Buysy、复位是否成功
+            </summary>
+        </member>
+        <member name="E:AixRegisterInfodll.AixRegisterInfo.AixAlarmRst">
+            <summary>
+            轴的伺服报警清除函数事件
+            </summary>
+        </member>
+        <member name="E:AixRegisterInfodll.AixRegisterInfo.AixSvonON">
+            <summary>
+            轴使能ON注册事件
+            </summary>
+        </member>
+        <member name="E:AixRegisterInfodll.AixRegisterInfo.AixSvonOFF">
+            <summary>
+            轴使能OFF注册事件
+            </summary>
+        </member>
+        <member name="E:AixRegisterInfodll.AixRegisterInfo.AixStopEMG">
+            <summary>
+            轴的急停注册事件
+            </summary>
+        </member>
+        <member name="E:AixRegisterInfodll.AixRegisterInfo.AixStopSlowDown">
+            <summary>
+            轴的减速停止注册事件
+            </summary>
+        </member>
+        <member name="M:AixRegisterInfodll.AixRegisterInfo.Fun_StopEMG">
+            <summary>
+            停止所有轴(急停)
+            </summary>
+        </member>
+        <member name="M:AixRegisterInfodll.AixRegisterInfo.Fun_StopSlow">
+            <summary>
+            停止所有轴(减速停止)
+            </summary>
+        </member>
+        <member name="M:AixRegisterInfodll.AixRegisterInfo.Fun_SvonON">
+            <summary>
+            所有的轴使能ON
+            </summary>
+        </member>
+        <member name="M:AixRegisterInfodll.AixRegisterInfo.Fun_SvonOFF">
+            <summary>
+            所有的轴使能OFF
+            </summary>
+        </member>
+        <member name="M:AixRegisterInfodll.AixRegisterInfo.Fun_AixAlarmRst">
+            <summary>
+            清除所有轴的伺服报警
+            </summary>
+        </member>
+        <member name="T:AixRegisterInfodll.AixStateInfoBase">
+            <summary>
+            轴状态信息基类
+            </summary>
+        </member>
+        <member name="F:AixRegisterInfodll.AixStateInfoBase._funGetErr">
+            <summary>
+            获取错误信息
+            </summary>
+        </member>
+        <member name="M:AixRegisterInfodll.AixStateInfoBase.GetErr">
+            <summary>
+            获取错误信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:AixRegisterInfodll.IoCheck">
+            <summary>
+            实现上升沿或下降沿操作
+            </summary>
+        </member>
+        <member name="F:AixRegisterInfodll.IoCheck.IsONTrigged">
+            <summary>
+            该信号是否已经出发
+            </summary>
+        </member>
+        <member name="M:AixRegisterInfodll.IoCheck.RisingCheck">
+            <summary>
+            上升沿检测
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:AixRegisterInfodll.IoCheck.FallingCheck">
+            <summary>
+            下降沿检测
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:AixRegisterInfodll.IoCheck.Check">
+            <summary>
+            常开或常闭检测
+            </summary>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

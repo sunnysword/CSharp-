@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ISaveReadSectionKeyValuedll</name>
+    </assembly>
+    <members>
+        <member name="T:ISaveReadSectionKeyValuedll.ISaveReadSectionKeyValue">
+            <summary>
+            约束Section-key-value 形式类的保存操作
+            </summary>
+        </member>
+        <member name="M:ISaveReadSectionKeyValuedll.ISaveReadSectionKeyValue.GetStringValue(System.String,System.String,System.String,System.String)">
+            <summary>
+            读取值
+            </summary>
+            <param name="path">路径</param>
+            <param name="section"></param>
+            <param name="key"></param>
+            <param name="defaultValue"></param>
+            <returns>读到的值</returns>
+        </member>
+        <member name="M:ISaveReadSectionKeyValuedll.ISaveReadSectionKeyValue.WriteStringValue(System.String,System.String,System.String,System.String)">
+            <summary>
+            将指定的值写入指定的key
+            </summary>
+            <param name="path"></param>
+            <param name="section"></param>
+            <param name="key"></param>
+            <param name="value"></param>
+            <returns>True:写入成功；False:写入失败</returns>
+        </member>
+    </members>
+</doc>

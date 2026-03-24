@@ -1,0 +1,45 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="WpfMN200_IMI.Properties" GeneratedClassName="Aix_Pipe_5_Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="Name" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">AA_Pipe_LeftUp_Out</Value>
+    </Setting>
+    <Setting Name="LineNo" Type="System.Byte" Scope="Application">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="DevNo" Type="System.Byte" Scope="Application">
+      <Value Profile="(Default)">29</Value>
+    </Setting>
+    <Setting Name="svonLogic" Type="AixCommInfo.SvonLogic" Scope="Application">
+      <Value Profile="(Default)">OFF</Value>
+    </Setting>
+    <Setting Name="isCheckINP" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="IsRegister" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="PPU_helicalPitch" Type="System.Double" Scope="Application">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="PPU_pulsRound_CMD" Type="System.Double" Scope="Application">
+      <Value Profile="(Default)">6400</Value>
+    </Setting>
+    <Setting Name="PPU_pulsRound_ENC" Type="System.Double" Scope="Application">
+      <Value Profile="(Default)">800</Value>
+    </Setting>
+    <Setting Name="HomeMode" Type="SingleAixdll.HomeMode" Scope="Application">
+      <Value Profile="(Default)">HOME_MODE_EL</Value>
+    </Setting>
+    <Setting Name="HomeDir" Type="SingleAixdll.HomeDir" Scope="Application">
+      <Value Profile="(Default)">NEGATIVE</Value>
+    </Setting>
+    <Setting Name="HomeLowSpeed" Type="System.Double" Scope="Application">
+      <Value Profile="(Default)">500</Value>
+    </Setting>
+    <Setting Name="SafeMaxSpeed_puls" Type="System.Double" Scope="Application">
+      <Value Profile="(Default)">100000</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

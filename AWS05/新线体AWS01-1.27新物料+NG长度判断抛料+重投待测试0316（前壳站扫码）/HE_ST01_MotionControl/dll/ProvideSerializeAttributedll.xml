@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ProvideSerializeAttributedll</name>
+    </assembly>
+    <members>
+        <member name="T:ProvideSerializeAttributedll.ISerializeDeserializeObject">
+             <summary>
+            约束自定义的序列化器:object
+             </summary>
+        </member>
+        <member name="M:ProvideSerializeAttributedll.ISerializeDeserializeObject.SerializeObject(System.Object)">
+            <summary>
+            将对象序列化成字符串
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ProvideSerializeAttributedll.ISerializeDeserializeObject.DeserializeObject(System.String,System.Type)">
+            <summary>
+            将字符串逆序列化成指定的对象
+            </summary>
+            <param name="value"></param>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ProvideSerializeAttributedll.ProvideSerializeAttribute">
+            <summary>
+            为标注的信息指定序列化器
+            </summary>
+        </member>
+        <member name="F:ProvideSerializeAttributedll.ProvideSerializeAttribute.pairs">
+            <summary>
+            定义一个字典集合，用来缓存序列化器，相同的序列化器就不需要创建多个实例，节约内存
+            </summary>
+        </member>
+        <member name="M:ProvideSerializeAttributedll.ProvideSerializeAttribute.#ctor(System.Type)">
+            <summary>
+            指定序列化类提供者的类型：该类型必须实现了ISerializeDeserializeObject  接口
+            </summary>
+            <param name="serializeDeserializeObject"></param>
+        </member>
+        <member name="M:ProvideSerializeAttributedll.ProvideSerializeAttribute.GetSerializeDeserializeObject">
+            <summary>
+            获取当前序列化器
+            </summary>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

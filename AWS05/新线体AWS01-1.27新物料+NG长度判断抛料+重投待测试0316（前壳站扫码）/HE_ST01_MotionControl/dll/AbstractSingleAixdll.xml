@@ -1,0 +1,477 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>AbstractSingleAixdll</name>
+    </assembly>
+    <members>
+        <member name="T:AbstractSingleAixdll.AixBrakeEventHandler">
+            <summary>
+            轴刹车事件类型
+            </summary>
+        </member>
+        <member name="T:AbstractSingleAixdll.AbstractSingleAix">
+            <summary>
+            抽象轴（中间层，相当于一个代理），与上层进行交互
+            </summary>
+        </member>
+        <member name="F:AbstractSingleAixdll.AbstractSingleAix._singleAix">
+            <summary>
+            轴操作的基本控制对象
+            </summary>
+        </member>
+        <member name="F:AbstractSingleAixdll.AbstractSingleAix.ob_LockAix">
+            <summary>
+            锁，保证任何时刻只能有一个线程操作该轴
+            </summary>
+        </member>
+        <member name="P:AbstractSingleAixdll.AbstractSingleAix.IsHoming">
+            <summary>
+            正在回原点标志
+            </summary>
+        </member>
+        <member name="P:AbstractSingleAixdll.AbstractSingleAix.IsHomeOK">
+            <summary>
+            回原点完成标志
+            </summary>
+        </member>
+        <member name="P:AbstractSingleAixdll.AbstractSingleAix.IsBusy">
+            <summary>
+            是否处于Busy状态
+            </summary>
+        </member>
+        <member name="P:AbstractSingleAixdll.AbstractSingleAix.TargetPos_puls">
+            <summary>
+            当前的目标位置
+            </summary>
+        </member>
+        <member name="P:AbstractSingleAixdll.AbstractSingleAix.IsRegister">
+            <summary>
+            是否注册
+            </summary>
+        </member>
+        <member name="P:AbstractSingleAixdll.AbstractSingleAix.Name">
+            <summary>
+            名字
+            </summary>
+        </member>
+        <member name="P:AbstractSingleAixdll.AbstractSingleAix.PPU_helicalPitch">
+            <summary>
+            导程
+            </summary>
+        </member>
+        <member name="P:AbstractSingleAixdll.AbstractSingleAix.PPU_pulsRound_CMD">
+            <summary>
+            电机一圈的脉冲数(板卡发送)
+            </summary>
+        </member>
+        <member name="P:AbstractSingleAixdll.AbstractSingleAix.PPU_pulsRound_ENC">
+            <summary>
+            电机转一圈，编码器返回的脉冲数
+            </summary>
+        </member>
+        <member name="F:AbstractSingleAixdll.AbstractSingleAix._homeMode">
+            <summary>
+            回原点模式
+            </summary>
+        </member>
+        <member name="F:AbstractSingleAixdll.AbstractSingleAix._homeDir">
+            <summary>
+            回原点方向
+            </summary>
+        </member>
+        <member name="F:AbstractSingleAixdll.AbstractSingleAix._homeLowSpeed">
+            <summary>
+            回原点的爬行速度
+            </summary>
+        </member>
+        <member name="P:AbstractSingleAixdll.AbstractSingleAix.SafeMaxSpeed_puls">
+            <summary>
+            最大运行速度，基于脉冲
+            </summary>
+        </member>
+        <member name="P:AbstractSingleAixdll.AbstractSingleAix.AccMax">
+            <summary>
+            最大加速度
+            </summary>
+        </member>
+        <member name="P:AbstractSingleAixdll.AbstractSingleAix.DecMax">
+            <summary>
+            最小减速度
+            </summary>
+        </member>
+        <member name="P:AbstractSingleAixdll.AbstractSingleAix.DigitsNums">
+            <summary>
+            获取位置时，小数的位数
+            </summary>
+        </member>
+        <member name="F:AbstractSingleAixdll.AbstractSingleAix.IsCancleSafeCheckOne">
+            <summary>
+            是否取消安全检查一次
+            </summary>
+        </member>
+        <member name="F:AbstractSingleAixdll.AbstractSingleAix.ExplicitHomeSpeedInfo">
+            <summary>
+            明确指定速度，单位为脉冲
+            </summary>
+        </member>
+        <member name="E:AbstractSingleAixdll.AbstractSingleAix.AixBrakeON">
+            <summary>
+            刹车打开事件:打开刹车，伺服电机就被锁死，不能运动
+            </summary>
+        </member>
+        <member name="E:AbstractSingleAixdll.AbstractSingleAix.AixBrakeOFF">
+            <summary>
+            刹车关闭事件：刹车关闭，伺服电机才可正常运动
+            </summary>
+        </member>
+        <member name="M:AbstractSingleAixdll.AbstractSingleAix.GetImplementAix``1">
+            <summary>
+            获取具体的轴
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:AbstractSingleAixdll.AbstractSingleAix.GetImplementAix">
+            <summary>
+            获取具体的轴
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:AbstractSingleAixdll.AbstractSingleAix.PreAction">
+            <summary>
+            运动前触发的操作
+            </summary>
+        </member>
+        <member name="M:AbstractSingleAixdll.AbstractSingleAix.CancleOneSafeCheck">
+            <summary>
+            取消一次安全检查，即下次移动不检查安全操作
+            </summary>
+        </member>
+        <member name="M:AbstractSingleAixdll.AbstractSingleAix.RstCancleCancleOneSafeCheck">
+            <summary>
+            重置取消安全检查状态
+            </summary>
+        </member>
+        <member name="M:AbstractSingleAixdll.AbstractSingleAix.ImplementSetHomeSpeedInfo">
+            <summary>
+            设置固定的回原点速度,请设置ExplicitHomeSpeedInfo
+            返回true,代表使用ExplicitHomeSpeedInfo 设置的信息回原点
+            返回false,使用默认回原点速度
+            </summary>
+        </member>
+        <member name="M:AbstractSingleAixdll.AbstractSingleAix.Home">
+            <summary>
+            回原点
+            </summary>       
+        </member>
+        <member name="M:AbstractSingleAixdll.AbstractSingleAix.JOG(System.Double,SingleAixdll.MovDir)">
+            <summary>
+            单轴的连续运动
+            </summary>
+            <param name="speed">速度</param>
+            <param name="movDir">移动的方向</param>
+        </member>
+        <member name="M:AbstractSingleAixdll.AbstractSingleAix.JOGN">
+            <summary>
+            负向连续运动
+            </summary>
+        </member>
+        <member name="M:AbstractSingleAixdll.AbstractSingleAix.JOGP">
+            <summary>
+            正向连续运动
+            </summary>
+        </member>
+        <member name="M:AbstractSingleAixdll.AbstractSingleAix.MovBasePuls(System.Double,System.Double,System.Double,System.Double,System.Boolean)">
+            <summary>
+            相对当前位置的移动,不使用导程换算；输入的单位是脉冲:位置、距离、速度都是脉冲
+            </summary>
+            <param name="dis">移动的距离</param>
+            <param name="speed">速度</param>
+            <param name="acc">加速度时间（0.001~0.1 s）</param>
+            <param name="dec">减速度时间(0.001~0.1 s）</param>
+            <param name="checkdone">是否等待运动完成，True:等待轴运动完成；False:不等待轴运动完成直接返回</param>
+        </member>
+        <member name="M:AbstractSingleAixdll.AbstractSingleAix.MovBasePuls(System.Double,System.Boolean)">
+            <summary>
+            相对当前位置的移动,不使用导程换算；输入的单位是脉冲:位置、距离、速度都是脉冲
+            </summary>
+            <param name="dis">移动的距离</param>       
+            <param name="checkdone">是否等待运动完成，True:等待轴运动完成；False:不等待轴运动完成直接返回</param>
+        </member>
+        <member name="M:AbstractSingleAixdll.AbstractSingleAix.MovAbsBasePuls(System.Double,System.Double,System.Double,System.Double,System.Boolean)">
+            <summary>
+            绝对位置移动，不使用导程换算;输入的单位是脉冲:位置、距离、速度都是脉冲
+            </summary>
+            <param name="dis">移动的坐标</param>
+            <param name="speed">速度</param>
+            <param name="acc">加速度时间（0.001~0.1 s）</param>
+            <param name="dec">减速度时间(0.001~0.1 s）</param>
+            <param name="checkdone">是否等待运动完成，True:等待轴运动完成；False:不等待轴运动完成直接返回</param>
+        </member>
+        <member name="M:AbstractSingleAixdll.AbstractSingleAix.MovAbsBasePuls(System.Double,System.Boolean)">
+            <summary>
+            绝对位置移动，不使用导程换算;输入的单位是脉冲:位置、距离、速度都是脉冲
+            </summary>
+            <param name="dis">移动的坐标</param>      
+            <param name="checkdone">是否等待运动完成，True:等待轴运动完成；False:不等待轴运动完成直接返回</param>
+        </member>
+        <member name="M:AbstractSingleAixdll.AbstractSingleAix.Mov(System.Double,System.Double,System.Double,System.Double,System.Boolean,System.Boolean)">
+            <summary>
+            相对当前位置的移动,允许是否使用导程换算;
+            </summary>
+            <param name="dis">移动的距离</param>
+            <param name="speed">速度</param>
+            <param name="acc">加速度时间（0.001~0.1 s）</param>
+            <param name="dec">减速度时间(0.001~0.1 s）</param>
+            <param name="checkdone">是否等待运动完成，True:等待轴运动完成；False:不等待轴运动完成直接返回</param>
+            <param name="IsUsePPU">是否使用导程换算</param>
+        </member>
+        <member name="M:AbstractSingleAixdll.AbstractSingleAix.Mov(System.Double,System.Boolean,System.Boolean)">
+            <summary>
+            相对当前位置的移动,允许是否使用导程换算
+            </summary>
+            <param name="dis">移动的距离</param>       
+            <param name="checkdone">是否等待运动完成，True:等待轴运动完成；False:不等待轴运动完成直接返回</param>
+            <param name="IsUsePPU">是否使用导程换算</param>
+        </member>
+        <member name="M:AbstractSingleAixdll.AbstractSingleAix.Mov(System.Double)">
+            <summary>
+            相对当前位置的移动,使用导程换算
+            </summary>
+            <param name="dis">移动的距离</param>              
+        </member>
+        <member name="M:AbstractSingleAixdll.AbstractSingleAix.MovAbs(System.Double,System.Double,System.Double,System.Double,System.Boolean,System.Boolean)">
+            <summary>
+            绝对位置移动,允许是否使用导程换算
+            </summary>
+            <param name="dis">移动的距离</param>
+            <param name="speed">速度</param>
+            <param name="acc">加速度时间（0.001~0.1 s）</param>
+            <param name="dec">减速度时间(0.001~0.1 s）</param>
+            <param name="checkdone">是否等待运动完成，True:等待轴运动完成；False:不等待轴运动完成直接返回</param>
+            <param name="IsUsePPU">是否使用导程换算</param>
+        </member>
+        <member name="M:AbstractSingleAixdll.AbstractSingleAix.MovAbs(System.Double,System.Boolean,System.Boolean)">
+            <summary>
+            绝对位置移动,允许是否使用导程换算
+            </summary>
+            <param name="dis">移动的距离</param>       
+            <param name="checkdone">是否等待运动完成，True:等待轴运动完成；False:不等待轴运动完成直接返回</param>
+            <param name="IsUsePPU">是否使用导程换算</param>
+        </member>
+        <member name="M:AbstractSingleAixdll.AbstractSingleAix.MovAbs(System.Double)">
+            <summary>
+            绝对位置移动,使用导程换算
+            </summary>
+            <param name="dis">移动的距离</param>              
+        </member>
+        <member name="M:AbstractSingleAixdll.AbstractSingleAix.ConvertToCmdPPU(System.Double)">
+            <summary>
+            使用Cmd上设置的参数，将输入的值转换成PPU单位
+            </summary>
+            <param name="dValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:AbstractSingleAixdll.AbstractSingleAix.ConvertToCmdPuls(System.Double)">
+            <summary>
+            使用Cmd上设置的参数，将输入的值转换成脉冲单位
+            </summary>
+            <param name="dValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:AbstractSingleAixdll.AbstractSingleAix.ConvertToEncPPU(System.Double)">
+            <summary>
+            使用Enc上设置的参数，将输入的值转换成PPU单位
+            </summary>
+            <param name="dValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:AbstractSingleAixdll.AbstractSingleAix.ConvertToEncPuls(System.Double)">
+            <summary>
+            使用Enc上设置的参数，将输入的值转换成脉冲单位
+            </summary>
+            <param name="dValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:AbstractSingleAixdll.AbstractSingleAix.CheckPos_GetPos">
+            <summary>
+            检测位置有效时，获取当前位置的方法
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:AbstractSingleAixdll.AbstractSingleAix.CheckPos(System.Double,System.Double)">
+            <summary>
+            检测当前位置与目标位置的差值
+            </summary>
+            <param name="pos"></param>
+            <param name="dx"></param>
+            <returns>True:代表小于当前误差；False:大于当前设定的误差</returns>
+        </member>
+        <member name="M:AbstractSingleAixdll.AbstractSingleAix.GetCmdPos(System.Boolean)">
+            <summary>
+            获取轴的命令位置
+            </summary>
+            <returns>True:使用导程换算；False:不使用，返回脉冲数</returns>
+        </member>
+        <member name="M:AbstractSingleAixdll.AbstractSingleAix.GetCmdPos">
+            <summary>
+            获取轴的命令位置，使用导程换算
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:AbstractSingleAixdll.AbstractSingleAix.GetEncPos(System.Boolean)">
+            <summary>
+            获取轴的编码器位置
+            </summary>
+            <returns>True:使用导程换算；False:不使用，返回脉冲数</returns>
+        </member>
+        <member name="M:AbstractSingleAixdll.AbstractSingleAix.GetEncPos">
+            <summary>
+            获取轴的编码器位置,使用导程换算
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:AbstractSingleAixdll.AbstractSingleAix.StopEMG">
+            <summary>
+            轴紧急停止
+            </summary>
+        </member>
+        <member name="M:AbstractSingleAixdll.AbstractSingleAix.StopSlowDown">
+            <summary>
+            轴的减速停止
+            </summary>
+        </member>
+        <member name="F:AbstractSingleAixdll.AbstractSingleAix.IssSvoned">
+            <summary>
+            是否执行过使能操作
+            </summary>
+        </member>
+        <member name="M:AbstractSingleAixdll.AbstractSingleAix.SvonOFF">
+            <summary>
+            轴的使能控制
+            使能关
+            </summary>
+        </member>
+        <member name="M:AbstractSingleAixdll.AbstractSingleAix.SvonON">
+            <summary>
+            轴的使能控制
+            使能开
+            </summary>
+        </member>
+        <member name="M:AbstractSingleAixdll.AbstractSingleAix.WaitDone">
+            <summary>
+            轴的运动等待停止函数
+            </summary>
+        </member>
+        <member name="M:AbstractSingleAixdll.AbstractSingleAix.RstAlarm">
+            <summary>
+            伺服报警清除函数
+            </summary>
+        </member>
+        <member name="M:AbstractSingleAixdll.AbstractSingleAix.GetAixPEL">
+            <summary>
+            获取轴的正限位状态
+            </summary>
+            <returns>True:限位触发；False:未触发</returns>
+        </member>
+        <member name="M:AbstractSingleAixdll.AbstractSingleAix.GetAixNEL">
+            <summary>
+            获取轴的负限位状态
+            </summary>
+            <returns>True:限位触发；False:未触发</returns>
+        </member>
+        <member name="M:AbstractSingleAixdll.AbstractSingleAix.GetAixAlarm">
+            <summary>
+            获取轴的伺服报警状态
+            </summary>
+            <returns>True:伺服报警；False:未触发</returns>
+        </member>
+        <member name="M:AbstractSingleAixdll.AbstractSingleAix.GetAixORG">
+            <summary>
+            获取原点状态
+            </summary>
+            <returns>True:原点信号触发；False:未触发</returns>
+        </member>
+        <member name="M:AbstractSingleAixdll.AbstractSingleAix.GetAixINP">
+            <summary>
+            轴的INP信号状态
+            </summary>
+            <returns>True:触发；False:未触发</returns>
+        </member>
+        <member name="M:AbstractSingleAixdll.AbstractSingleAix.GetAixSvon">
+            <summary>
+            获取使能状态
+            </summary>
+            <returns>True:使能中；False:未使能</returns>
+        </member>
+        <member name="M:AbstractSingleAixdll.AbstractSingleAix.GetAixRunState">
+            <summary>
+            获取轴运动状态，判断轴是否处于运动中
+            </summary>
+            <returns>True:正在运行；False:已停止</returns>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:AbstractSingleAixdll.AbstractSingleAix.GetAixIOState" -->
+        <member name="M:AbstractSingleAixdll.AbstractSingleAix.GetAixEMG">
+            <summary>
+            获取轴的急停状态
+            </summary>
+            <returns>True:急停触发；False:未触发</returns>
+        </member>
+        <member name="E:AbstractSingleAixdll.AbstractSingleAix.GlobalMethonInvokeEvent">
+            <summary>
+            全局事件，当方法被调用时触发的事件: 触发的方法为Mov,Jog 操作类方法！状态访问类的不触发
+            </summary>
+        </member>
+        <member name="T:AbstractSingleAixdll.AbstractAixCreateArgs">
+            <summary>
+            抽象轴创建时，所需要的信息
+            </summary>
+        </member>
+        <member name="P:AbstractSingleAixdll.AbstractAixCreateArgs.IsRegister">
+            <summary>
+            是否注册
+            </summary>
+        </member>
+        <member name="P:AbstractSingleAixdll.AbstractAixCreateArgs.Name">
+            <summary>
+            名字
+            </summary>
+        </member>
+        <member name="P:AbstractSingleAixdll.AbstractAixCreateArgs.PPU_helicalPitch">
+            <summary>
+            导程
+            </summary>
+        </member>
+        <member name="P:AbstractSingleAixdll.AbstractAixCreateArgs.PPU_pulsRound_CMD">
+            <summary>
+            电机一圈的脉冲数(板卡发送)
+            </summary>
+        </member>
+        <member name="P:AbstractSingleAixdll.AbstractAixCreateArgs.PPU_pulsRound_ENC">
+            <summary>
+            电机转一圈，编码器返回的脉冲数
+            </summary>
+        </member>
+        <member name="P:AbstractSingleAixdll.AbstractAixCreateArgs.HomeMode">
+            <summary>
+            回原点模式
+            </summary>
+        </member>
+        <member name="P:AbstractSingleAixdll.AbstractAixCreateArgs.HomeDir">
+            <summary>
+            回原点方向
+            </summary>
+        </member>
+        <member name="P:AbstractSingleAixdll.AbstractAixCreateArgs.HomeLowSpeed">
+            <summary>
+            回原点的爬行速度
+            </summary>
+        </member>
+        <member name="P:AbstractSingleAixdll.AbstractAixCreateArgs.SafeMaxSpeed_puls">
+            <summary>
+            最大运行速度，基于脉冲
+            </summary>
+        </member>
+    </members>
+</doc>

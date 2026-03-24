@@ -1,0 +1,154 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ISaveReaddll</name>
+    </assembly>
+    <members>
+        <member name="T:ISaveReaddll.PreReadEventHandler">
+            <summary>
+            读取参数前触发的事件
+            </summary>
+        </member>
+        <member name="T:ISaveReaddll.ReadFinishedEventHandler">
+            <summary>
+            读取参数后触发的事件
+            </summary>
+        </member>
+        <member name="T:ISaveReaddll.PreSaveEventHandler">
+            <summary>
+            保存参数前触发的事件
+            </summary>
+        </member>
+        <member name="T:ISaveReaddll.SaveFinishedEventHandler">
+            <summary>
+            保存参数后触发的事件
+            </summary>
+        </member>
+        <member name="T:ISaveReaddll.ISaveRead">
+            <summary>
+            读取保存参数接口
+            </summary>
+        </member>
+        <member name="M:ISaveReaddll.ISaveRead.Read">
+            <summary>
+            读取参数
+            </summary>
+        </member>
+        <member name="M:ISaveReaddll.ISaveRead.Save">
+            <summary>
+            保存参数
+            </summary>
+        </member>
+        <member name="T:ISaveReaddll.ReadWriteWay">
+            <summary>
+            读写方式
+            </summary>
+        </member>
+        <member name="F:ISaveReaddll.ReadWriteWay.Auto">
+            <summary>
+            自动判断
+            </summary>
+        </member>
+        <member name="F:ISaveReaddll.ReadWriteWay.Direct">
+            <summary>
+            直接转换
+            </summary>
+        </member>
+        <member name="F:ISaveReaddll.ReadWriteWay.NextAndAuto">
+            <summary>
+            如果可以递归下一级，则下一级自动判断
+            </summary>
+        </member>
+        <member name="F:ISaveReaddll.ReadWriteWay.NextAndDirect">
+            <summary>
+            如果可以递归下一级，则下一级直接转换
+            </summary>
+        </member>
+        <member name="T:ISaveReaddll.SaveReadManagerObjectReadEventHandler">
+            <summary>
+            所有保存读取对象的读操作事件类型
+            </summary>
+        </member>
+        <member name="T:ISaveReaddll.SaveReadManagerObjectSaveEventHandler">
+            <summary>
+            所有保存读取对象的保存操作事件类型
+            </summary>
+        </member>
+        <member name="T:ISaveReaddll.SaveReadManagerHelper">
+            <summary>
+            用来管理所有保存对象，对所有保存对象可以执行统一的读取或保存操作
+            </summary>
+        </member>
+        <member name="E:ISaveReaddll.SaveReadManagerHelper.SaveReadManagerObjectRead">
+            <summary>
+            所有保存读取对象的读操作事件
+            </summary>
+        </member>
+        <member name="E:ISaveReaddll.SaveReadManagerHelper.SaveReadManagerObjectSave">
+            <summary>
+            所有保存读取对象的保存操作事件
+            </summary>
+        </member>
+        <member name="E:ISaveReaddll.SaveReadManagerHelper.ReadAllFinishedEventHandler">
+            <summary>
+            读取所有参数后触发的事件
+            </summary>
+        </member>
+        <member name="E:ISaveReaddll.SaveReadManagerHelper.SaveAllFinishedEventHandler">
+            <summary>
+            保存完所有参数后触发的事件
+            </summary>
+        </member>
+        <member name="M:ISaveReaddll.SaveReadManagerHelper.AddISaveRead(ISaveReaddll.ISaveRead)">
+            <summary>
+            注入一个实现了ISaveRead 接口对象，用于统一读取保存操作的调用
+            </summary>
+            <param name="saveRead"></param>
+        </member>
+        <member name="M:ISaveReaddll.SaveReadManagerHelper.RemoveISaveRead(ISaveReaddll.ISaveRead)">
+            <summary>
+            移除一个实现了ISaveRead 接口对象
+            </summary>
+            <param name="saveRead"></param>
+        </member>
+        <member name="M:ISaveReaddll.SaveReadManagerHelper.Fun_ReadAll">
+            <summary>
+            读取已经注入的所有对象保存参数:调用SaveReadManagerObjectRead 事件，遍历ISaveRead集合
+            </summary>
+        </member>
+        <member name="M:ISaveReaddll.SaveReadManagerHelper.Fun_SaveAll">
+            <summary>
+            保存已经注入的所有对象的参数，调用SaveReadManagerObjectSave 事件，遍历ISaveRead集合
+            </summary>
+        </member>
+        <member name="T:ISaveReaddll.SaveRemarkAttribute">
+            <summary>
+            用来标记，判断一个类中的哪些信息需要保存、读取
+            </summary>
+        </member>
+        <member name="F:ISaveReaddll.SaveRemarkAttribute.writeWay">
+            <summary>
+            标记的字段或属性，是否直接序列化后读取或保存
+            </summary>
+        </member>
+        <member name="M:ISaveReaddll.SaveRemarkAttribute.#ctor(ISaveReaddll.ReadWriteWay)">
+            <summary>
+            标记的字段或属性，是否直接序列化后读取或保存
+            
+            </summary>
+            <param name="readWriteWay"></param>
+        </member>
+        <member name="M:ISaveReaddll.SaveRemarkAttribute.#ctor">
+            <summary>
+            标记的字段或属性，是否直接序列化后读取或保存
+            
+            </summary>        
+        </member>
+        <member name="M:ISaveReaddll.SaveRemarkAttribute.GetReadWriteWay">
+            <summary>
+            获取当前读写方式
+            </summary>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

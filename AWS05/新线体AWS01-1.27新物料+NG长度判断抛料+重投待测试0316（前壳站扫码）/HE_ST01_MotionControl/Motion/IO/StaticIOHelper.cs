@@ -1,0 +1,644 @@
+﻿#define ST01  // 手动定义编译条件
+using AccustomeAttributedll;
+using AM.Core.IO;
+using Iodll;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+using Handler.Process.Station;
+using System.Diagnostics;
+using AM.Core.Extension;
+using System.Windows.Media.Media3D;
+using Handler.Motion.Axis;
+using Handler.Connect;
+using HE_ST01_MotionControl.Motion.Axis.AxisGroup;
+using AixCommInfo;
+using HE_ST01_MotionControl.Connect.Modbus;
+using HE_ST01_MotionControl.Motion.IO;
+
+namespace Handler.Motion.IO
+{
+
+    /// <summary>
+    /// 控制卡的IO 管理
+    /// </summary>
+    public class StaticIOHelper
+    {
+        static StaticIOHelper()
+        {
+            //IO静态管理，处理IO扫描异常
+            StaticInitial.Motion.ScanExcuteActionHandler += IOScanHelper.Scan;
+        }
+
+
+        public static void Register()
+        {
+            #region 注册三色灯
+
+            //注册三色灯
+            if (蜂鸣器 != null)
+            {
+                //设置三色灯
+
+                var light = new LightSwitchAnotherHelper(StaticInitial.Motion);
+                //RM_dll2.Light.LightSwitchBase light = StaticInitial.Motion.LightSwitch;
+                StaticInitial.Motion.SetLightSwitch(light);
+                light.Buzzer.SetActionOFF(蜂鸣器.Out_OFF);
+                light.Buzzer.SetActionON(
+                    () =>
+                    {
+                        if (Funs.FunCommon.Cur.BuzzerIsUse.GetValue)
+                        {
+                            蜂鸣器.Out_ON();
+                        }
+                    }
+                    );
+                light.GreenLight.SetActionOFF(绿灯.Out_OFF);
+                light.GreenLight.SetActionON(绿灯.Out_ON);
+                light.YellowLight.SetActionOFF(黄灯.Out_OFF);
+                light.YellowLight.SetActionON(黄灯.Out_ON);
+                light.RedLight.SetActionOFF(红灯.Out_OFF);
+                light.RedLight.SetActionON(红灯.Out_ON);
+                light.SetBuzzerActionTime(() => Funs.FunCommon.Cur.BuzzerActionTime.GetValue);
+
+
+
+                //light.SetWarningBuzzerOnTime(() => Funs.FunCommon.Cur.BuzzerActionTime.GetValue);
+
+                //StaticIOHelper.Cy_FrontShellCompartmentTransplantingCylinder.WorkPosOutput.PreOn_EventHandler += () =>
+                //{
+                //    if (AxisFrontHolderTrayLift.Cur.IsBusy)
+                //    {
+                //        throw new Exception($"{AxisFrontHolderTrayLift.Cur.Name}在运动中，" +
+                //            $"{StaticIOHelper.Cy_FrontShellCompartmentTransplantingCylinder.CylinderName}禁止动作");
+                //    }
+                //};
+                //StaticIOHelper.Cy_FrontShellCompartmentTransplantingCylinder.OriginPosOutput.PreOn_EventHandler += () =>
+                //{
+                //    if (AxisFrontHolderTrayLift.Cur.IsBusy)
+                //    {
+                //        throw new Exception($"{AxisFrontHolderTrayLift.Cur.Name}在运动中，" +
+                //            $"{StaticIOHelper.Cy_FrontShellCompartmentTransplantingCylinder.CylinderName}禁止动作");
+                //    }
+                //};
+                //StaticIOHelper.Cy_PcbWarehouseTransplantingCylinder.WorkPosOutput.PreOn_EventHandler += () =>
+                //{
+                //    if (AxisPCBTrayLift.Cur.IsBusy)
+                //    {
+                //        throw new Exception($"{AxisPCBTrayLift.Cur.Name}在运动中，" +
+                //            $"{StaticIOHelper.Cy_PcbWarehouseTransplantingCylinder.CylinderName}禁止动作");
+                //    }
+                //};
+                //StaticIOHelper.Cy_PcbWarehouseTransplantingCylinder.OriginPosOutput.PreOn_EventHandler += () =>
+                //{
+                //    if (AxisPCBTrayLift.Cur.IsBusy)
+                //    {
+                //        throw new Exception($"{AxisPCBTrayLift.Cur.Name}在运动中，" +
+                //            $"{StaticIOHelper.Cy_PcbWarehouseTransplantingCylinder.CylinderName}禁止动作");
+                //    }
+                //};
+            }
+
+            #endregion 注册三色灯
+            //停止事件
+
+        }
+
+        public static void GripperReset()
+        {
+            //ConnectFactory.FrontShellGripper_Hsl.WriteSingleRegister("259", 500);
+            //ConnectFactory.FrontShellGripper_Hsl.WriteSingleRegister("261", 0);
+
+            ClampRotatedAxisPCB.Cur.Home();
+            ClampRotatedAxisShell.Cur.Home();
+        }
+
+        public static void SafeCheck()
+        {
+            //TODO检查旋转工位上的所有气缸都是安全的
+
+
+            if (!StaticInitial.Motion.CurOrder.IsResOK && !StaticInitial.Motion.CurOrder.IsResing)
+            {
+                throw new Exception($"旋转轴运动失败，请先复位设备");
+            }
+
+            //TODO检查旋转工位上的所有旋转轴都是安全的
+            if (!ThreeAxisPCB上料.Cur.Aix_Z.CheckPos(ThreeAxisPCB上料.Cur.PosWait.PosMsg_3.GetValue, 2)
+                && CheckRange(ThreeAxisPCB上料.Cur, ThreeAxisPCB上料.Cur.PosPlace))
+            {
+                throw new Exception($"旋转轴运动失败，{ThreeAxisPCB上料.Cur.Name}在转盘上料位附近");
+            }
+            if (!ThreeAxis前壳上料.Cur.Aix_Z.CheckPos(ThreeAxis前壳上料.Cur.PosWait.PosMsg_3.GetValue, 2)
+                && CheckRange(ThreeAxis前壳上料.Cur, ThreeAxis前壳上料.Cur.PosPlace))
+            {
+                throw new Exception($"旋转轴运动失败，{ThreeAxis前壳上料.Cur.Name}在转盘上料位附近");
+            }
+
+        }
+
+
+        public static void Initial()
+        {
+            BrakeOn();
+            OutputClose();
+
+        }
+
+        public static bool CheckRange(LineAixZCreateBase threeaxis, ThreeAixsPosMsg pos)
+        {
+            if (threeaxis.Aix_1.CheckPos(pos.PosMsg_1.GetValue, 2)
+                && threeaxis.Aix_2.CheckPos(pos.PosMsg_2.GetValue, 2)
+                && threeaxis.Aix_Z.CheckPos(pos.PosMsg_3.GetValue, 2))
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public static void Clsoe()
+        {
+            BrakeOn();
+            OutputClose();
+
+        }
+
+        public static void ResInitial()
+        {
+            OutputClose();
+        }
+
+        public static void BrakeOn()
+        {
+        }
+
+        public static void OutputClose()
+        {
+            Fun_ProductLight_OFF();
+            黄灯.Out_OFF();
+            绿灯.Out_OFF();
+            红灯.Out_OFF();
+            蜂鸣器.Out_OFF();
+
+        }
+
+        public static void CylinderReset()
+        {
+            外壳料盘移栽气缸.OriginPos();
+            PCB料盘移栽气缸.OriginPos();
+            // 外壳缓存位阻挡气缸.OriginPos();
+            //外壳上料位阻挡气缸.OriginPos();
+            外壳上料位顶升缸.OriginPos();
+            //PCB缓存位阻挡气缸.OriginPos();
+            //PCB上料位阻挡气缸.OriginPos();        
+            PCB上料位顶升缸.OriginPos();
+            //回流线前段阻挡气缸.OriginPos();        
+            //回流线后段阻挡气缸.OriginPos();
+
+            外壳缓存位阻挡气缸.WorkPos();
+            外壳上料位阻挡气缸.WorkPos();
+            PCB缓存位阻挡气缸.WorkPos();
+            PCB上料位阻挡气缸.WorkPos();
+            回流线前段阻挡气缸.WorkPos();
+            回流线后段阻挡气缸.WorkPos();
+            回流移栽气缸.OriginPos();//移栽移动到回流线;
+        }
+
+        public static void ResetOther()
+        {
+            外壳站相机光源.Out_OFF();
+            PCB站相机光源.Out_OFF();
+            NG料仓移载气缸.OriginPos();
+            NG移载锁紧气缸.OriginPos();
+            NG料仓人工按钮灯.Out_OFF();
+        }
+
+        #region 产品灯动作
+
+        public static void Fun_ProductLight_OFF()
+        {
+            //Out_ProductBuzzer.Out_OFF();
+        }
+
+        #endregion 产品灯动作
+
+
+
+        #region  输入信号
+        public static readonly IoInHelper 启动;
+        public static readonly IoInHelper 停止;
+        public static readonly IoInHelper 暂停;
+        public static readonly IoInHelper 复位;
+        public static readonly IoInHelper 初始化;
+        public static readonly IoInHelper 急停1和急停2;
+        public static readonly IoInHelper PCB料盘到位检测接近开关1;
+        public static readonly IoInHelper 外壳料盘到位检测接近开关1;
+        public static readonly IoInHelper 回流移栽气缸伸出检测;
+        public static readonly IoInHelper 回流移栽气缸缩回检测;
+        public static readonly IoInHelper 前回流移栽载具流进光电检测;
+        public static readonly IoInHelper 前回流移栽载具流出光电检测;
+        public static readonly IoInHelper 外壳料仓放置到位接近光电检测1;
+        public static readonly IoInHelper 外壳料仓放置到位接近光电检测2;
+        public static readonly IoInHelper 外壳料仓料盘超出位光电检测1;
+        public static readonly IoInHelper 外壳料仓料盘超出位光电检测2;
+        public static readonly IoInHelper 外壳料仓料盘有无检测;
+        public static readonly IoInHelper 外壳料盘移栽气缸伸出检测;
+        public static readonly IoInHelper 外壳料盘移栽气缸缩回检测;
+        public static readonly IoInHelper 外壳料盘到位检测接近开关2;
+        public static readonly IoInHelper PCB料仓放置到位接近光电检测1;
+        public static readonly IoInHelper PCB料仓放置到位接近光电检测2;
+        public static readonly IoInHelper PCB料仓料盘超出位光电检测1;
+        public static readonly IoInHelper PCB料仓料盘超出位光电检测2;
+        public static readonly IoInHelper PCB料仓料盘有无检测;
+        public static readonly IoInHelper PCB料盘移栽气缸伸出检测;
+        public static readonly IoInHelper PCB料盘移栽气缸缩回检测;
+        public static readonly IoInHelper PCB料盘到位检测接近开关2;
+        public static readonly IoInHelper 外壳缓存位载具流进检测;
+        public static readonly IoInHelper 外壳缓存位载具流出检测;
+        public static readonly IoInHelper 外壳缓存位阻挡气缸伸出检测;
+        public static readonly IoInHelper 外壳缓存位阻挡气缸缩回检测;
+        public static readonly IoInHelper 外壳上料位载具流进检测;
+        public static readonly IoInHelper 外壳上料位载具流出检测;
+        public static readonly IoInHelper 外壳上料位阻挡气缸伸出检测;
+        public static readonly IoInHelper 外壳上料位阻挡气缸缩回检测;
+        public static readonly IoInHelper 外壳上料位顶升气缸伸出检测;
+        public static readonly IoInHelper 外壳上料位顶升气缸缩回检测;
+        public static readonly IoInHelper 外壳上料位物料检测有无;
+        public static readonly IoInHelper PCB缓存位载具流进检测;
+        public static readonly IoInHelper PCB缓存位载具流出检测;
+        public static readonly IoInHelper PCB缓存位阻挡缸伸出检测;
+        public static readonly IoInHelper PCB缓存位阻挡缸缩回检测;
+        public static readonly IoInHelper PCB上料位载具流进检测;
+        public static readonly IoInHelper PCB上料位载具流出检测;
+        public static readonly IoInHelper PCB上料位PCB检测有无;
+        public static readonly IoInHelper PCB上料位外壳检测有无;
+        public static readonly IoInHelper PCB上料位阻挡缸伸出检测;
+        public static readonly IoInHelper PCB上料位阻挡缸缩回检测;
+        public static readonly IoInHelper PCB上料位顶升缸伸出检测;
+        public static readonly IoInHelper PCB上料位顶升缸缩回检测;
+        public static readonly IoInHelper 回流线前段缓存位流进检测;
+        public static readonly IoInHelper 回流线前段缓存位流出检测;
+        public static readonly IoInHelper 回流线前段缓存位阻挡缸伸出检测;
+        public static readonly IoInHelper 回流线前段缓存位阻挡缸缩回检测;
+        public static readonly IoInHelper 回流线后段缓存位流进检测;
+        public static readonly IoInHelper 回流线后段缓存位流出检测;
+        public static readonly IoInHelper 回流线后段缓存位阻挡缸伸出检测;
+        public static readonly IoInHelper 回流线后段缓存位阻挡缸缩回检测;
+        public static readonly IoInHelper PCBNG区载具推到位检测;
+        public static readonly IoInHelper 外壳电动夹抓物料检测;
+        public static readonly IoInHelper PCB电动夹抓物料检测;
+        public static readonly IoInHelper 前安全门锁开关信号;
+        public static readonly IoInHelper 后安全门锁开关信号;
+        public static readonly IoInHelper 左安全门锁开关信号;
+        public static readonly IoInHelper 后站交互后站要料;
+        public static readonly IoInHelper 后站交互后站停止;
+        public static readonly IoInHelper 回流线后站交互后站放料完成;
+        public static readonly IoInHelper NG料仓人工按钮;
+        public static readonly IoInHelper 外壳电夹爪下降取料过压检测;
+        public static readonly IoInHelper PCB电夹爪下降取料过压检测;
+        public static readonly IoInHelper 外壳料仓上料急停;
+        public static readonly IoInHelper 外壳料仓上料允许;
+        public static readonly IoInHelper 外壳料仓上料完成;
+        public static readonly IoInHelper PCB料仓上料急停;
+        public static readonly IoInHelper PCB料仓上料允许;
+        public static readonly IoInHelper PCB料仓上料完成;
+        public static readonly IoInHelper NG料仓载具到位光电;
+        public static readonly IoInHelper 空气压力表信号;
+        public static readonly IoInHelper 前门接近感应器;
+        public static readonly IoInHelper 后门接近感应器;
+        public static readonly IoInHelper 左边门接近感应器;
+        public static readonly IoInHelper 输送线前段皮带线载具流入检测;
+        public static readonly IoInHelper 输送线前段皮带线载具流出检测;
+        public static readonly IoInHelper 输送线后段皮带线载具流入检测;
+        public static readonly IoInHelper 输送线后段皮带线载具流出检测;
+        public static readonly IoInHelper 回流线前段皮带线载具流入检测;
+        public static readonly IoInHelper 回流线前段皮带线载具流出检测;
+        public static readonly IoInHelper 回流线后段皮带线载具流入检测;
+        public static readonly IoInHelper 回流线后段皮带线载具流出检测;
+        public static readonly IoInHelper NG料仓人工推拉到位接近;
+        #endregion
+
+        #region  输出信号
+
+        /// <summary>
+        /// 上电指示灯
+        /// </summary>
+        [GroupRemark("设备基础IO")]
+        public static readonly IoOutHepler 上电指示灯;
+
+        /// <summary>
+        /// 下电指示灯
+        /// </summary>
+        [GroupRemark("设备基础IO")]
+        public static readonly IoOutHepler 下电指示灯;
+
+        /// <summary>
+        /// 启动指示灯
+        /// </summary>
+        [GroupRemark("设备基础IO")]
+        public static readonly IoOutHepler 启动按钮指示灯;
+        /// <summary>
+        /// 复位指示灯
+        /// </summary>
+        [GroupRemark("设备基础IO")]
+        public static readonly IoOutHepler 复位按钮指示灯;
+
+        /// <summary>
+        /// 初始化指示灯
+        /// </summary>
+        [GroupRemark("设备基础IO")]
+        public static readonly IoOutHepler 初始化按钮指示灯;
+
+        /// <summary>
+        /// 停止指示灯
+        /// </summary>
+        [GroupRemark("设备基础IO")]
+        public static readonly IoOutHepler 停止按钮指示灯;
+
+        /// <summary>
+        /// 暂停指示灯
+        /// </summary>
+        [GroupRemark("设备基础IO")]
+        public static readonly IoOutHepler 暂停按钮指示灯;
+
+        /// <summary>
+        /// 三色灯红
+        /// </summary>
+        [GroupRemark("设备基础IO")]
+        public static readonly IoOutHepler 红灯;
+
+        /// <summary>
+        /// 三色灯黄
+        /// </summary>
+        [GroupRemark("设备基础IO")]
+        public static readonly IoOutHepler 黄灯;
+
+        /// <summary>
+        /// 三色灯绿
+        /// </summary>
+        [GroupRemark("设备基础IO")]
+        public static readonly IoOutHepler 绿灯;
+
+        /// <summary>
+        /// 蜂鸣器
+        /// </summary>
+        [GroupRemark("设备基础IO")]
+        public static readonly IoOutHepler 蜂鸣器;
+
+        /// <summary>
+        /// 设备灯
+        /// </summary>
+        [GroupRemark("设备基础IO")]
+        public static readonly IoOutHepler 机台内日光灯控制中继;
+
+        /// <summary>
+        /// 回流移栽缸伸出
+        /// </summary>
+        [GroupRemark("回流移栽站")]
+        public static readonly IoOutHepler 回流移栽缸伸出;
+
+        /// <summary>
+        /// 回流移栽缸缩回
+        /// </summary>
+        [GroupRemark("回流移栽站")]
+        public static readonly IoOutHepler 回流移栽缸缩回;
+
+        /// <summary>
+        /// 外壳料盘移栽气缸伸出
+        /// </summary>
+        [GroupRemark("外壳站")]
+        public static readonly IoOutHepler 外壳料盘移栽气缸伸出;
+
+        /// <summary>
+        /// 外壳料盘移栽气缸缩回
+        /// </summary>
+        [GroupRemark("外壳站")]
+        public static readonly IoOutHepler 外壳料盘移栽气缸缩回;
+
+        /// <summary>
+        /// 外壳缓存位阻挡气缸伸出缩回
+        /// </summary>
+        [GroupRemark("外壳站")]
+        public static readonly IoOutHepler 外壳缓存位阻挡气缸伸出缩回;
+
+        /// <summary>
+        /// 外壳上料位顶升缸伸出
+        /// </summary>
+        [GroupRemark("外壳站")]
+        public static readonly IoOutHepler 外壳上料位顶升缸伸出;
+
+        /// <summary>
+        /// 外壳上料位顶升缸缩回
+        /// </summary>
+        [GroupRemark("外壳站")]
+        public static readonly IoOutHepler 外壳上料位顶升缸缩回;
+
+        /// <summary>
+        /// PCB料盘移栽气缸伸出
+        /// </summary>
+        [GroupRemark("PCB站")]
+        public static readonly IoOutHepler PCB料盘移栽气缸伸出;
+
+        /// <summary>
+        /// PCB料盘移栽气缸缩回
+        /// </summary>
+        [GroupRemark("PCB站")]
+        public static readonly IoOutHepler PCB料盘移栽气缸缩回;
+
+        /// <summary>
+        /// PCB缓存位阻挡气缸伸出缩回
+        /// </summary>
+        [GroupRemark("PCB站")]
+        public static readonly IoOutHepler PCB缓存位阻挡气缸伸出缩回;
+
+        /// <summary>
+        /// PCB上料位阻挡气缸伸出缩回
+        /// </summary>
+        [GroupRemark("PCB站")]
+        public static readonly IoOutHepler PCB上料位阻挡气缸伸出缩回;
+
+        /// <summary>
+        /// PCB上料位顶升缸伸出
+        /// </summary>
+        [GroupRemark("PCB站")]
+        public static readonly IoOutHepler PCB上料位顶升缸伸出;
+
+        /// <summary>
+        /// PCB上料位顶升缸缩回
+        /// </summary>
+        [GroupRemark("PCB站")]
+        public static readonly IoOutHepler PCB上料位顶升缸缩回;
+
+        /// <summary>
+        /// 前段输送线启停
+        /// </summary>
+        [GroupRemark("流水线")]
+        public static readonly IoOutHepler 前段输送线启停;
+
+        /// <summary>
+        /// 后段输送线启停
+        /// </summary>
+        [GroupRemark("流水线")]
+        public static readonly IoOutHepler 后段输送线启停;
+
+        /// <summary>
+        /// 前段回流线启停
+        /// </summary>
+        [GroupRemark("流水线")]
+        public static readonly IoOutHepler 前段回流线启停;
+
+        /// <summary>
+        /// 后段回流线启停
+        /// </summary>
+        [GroupRemark("流水线")]
+        public static readonly IoOutHepler 后段回流线启停;
+
+        /// <summary>
+        /// 回流移栽皮带线启停
+        /// </summary>
+        [GroupRemark("流水线")]
+        public static readonly IoOutHepler 回流移栽皮带线启停;
+
+        /// <summary>
+        /// 回流移栽皮带线正反转
+        /// </summary>
+        [GroupRemark("流水线")]
+        public static readonly IoOutHepler 回流移栽皮带线正反转;
+
+        /// <summary>
+        /// 前移栽输送线阻挡气缸
+        /// </summary>
+        [GroupRemark("回流移栽站")]
+        public static readonly IoOutHepler 前移栽输送线阻挡气缸;//？？
+
+        /// <summary>
+        /// 后站交互本站暂停
+        /// </summary>
+        [GroupRemark("后站交互")]
+        public static readonly IoOutHepler 后站交互本站暂停;
+
+        /// <summary>
+        /// 回流线后站交互本站要料
+        /// </summary>
+        [GroupRemark("后站交互")]
+        public static readonly IoOutHepler 回流线后站交互本站要料;
+
+        /// <summary>
+        /// 后站交互本站流出完成
+        /// </summary>
+        [GroupRemark("后站交互")]
+        public static readonly IoOutHepler 后站交互本站流出完成;
+
+        /// <summary>
+        /// 外壳站相机光源
+        /// </summary>
+        [GroupRemark("其他")]
+        public static readonly IoOutHepler 外壳站相机光源;
+
+        /// <summary>
+        /// PCB站相机光源
+        /// </summary>
+        [GroupRemark("其他")]
+        public static readonly IoOutHepler PCB站相机光源;
+
+        /// <summary>
+        /// 后站交互回流流入本站完成
+        /// </summary>
+        [GroupRemark("后站交互")]
+        public static readonly IoOutHepler 后站交互回流流入本站完成;
+
+        /// <summary>
+        /// FFU控制中继
+        /// </summary>
+        [GroupRemark("其他")]
+        public static readonly IoOutHepler FFU控制中继;
+
+        /// <summary>
+        /// 总气源
+        /// </summary>
+        [GroupRemark("其他")]
+        public static readonly IoOutHepler 总气源;
+
+        /// <summary>
+        /// 前安全门锁
+        /// </summary>
+        [GroupRemark("门锁")]
+        public static readonly IoOutHepler 前安全门锁;
+
+        /// <summary>
+        /// 后安全门锁
+        /// </summary>
+        [GroupRemark("门锁")]
+        public static readonly IoOutHepler 后安全门锁;
+
+        /// <summary>
+        /// 左安全门锁
+        /// </summary>
+        [GroupRemark("门锁")]
+        public static readonly IoOutHepler 左安全门锁;
+
+        /// <summary>
+        /// 外壳上料允许按钮指示灯
+        /// </summary>
+        [GroupRemark("外壳站")]
+        public static readonly IoOutHepler 外壳上料允许按钮指示灯;
+
+        /// <summary>
+        /// 外壳上料完成按钮指示灯
+        /// </summary>
+        [GroupRemark("外壳站")]
+        public static readonly IoOutHepler 外壳上料完成按钮指示灯;
+
+        /// <summary>
+        /// PCB上料允许按钮指示灯
+        /// </summary>
+        [GroupRemark("PCB站")]
+        public static readonly IoOutHepler PCB上料允许按钮指示灯;
+
+        /// <summary>
+        /// PCB上料完成按钮指示灯
+        /// </summary>
+        [GroupRemark("PCB站")]
+        public static readonly IoOutHepler PCB上料完成按钮指示灯;
+
+        /// <summary>
+        /// NG料仓人工按钮灯
+        /// </summary>
+        [GroupRemark("PCB站")]
+        public static readonly IoOutHepler NG料仓人工按钮灯;
+
+        #endregion
+
+        #region  气缸信号
+        [GroupRemark("气缸")]
+        public static readonly Cylinder 外壳料盘移栽气缸;
+        [GroupRemark("气缸")]
+        public static readonly Cylinder PCB料盘移栽气缸;
+        [GroupRemark("气缸")]
+        public static readonly Cylinder 外壳缓存位阻挡气缸;
+        [GroupRemark("气缸")]
+        public static readonly Cylinder 外壳上料位阻挡气缸;
+        [GroupRemark("气缸")]
+        public static readonly Cylinder 外壳上料位顶升缸;
+        [GroupRemark("气缸")]
+        public static readonly Cylinder PCB缓存位阻挡气缸;
+        [GroupRemark("气缸")]
+        public static readonly Cylinder PCB上料位阻挡气缸;
+        [GroupRemark("气缸")]
+        public static readonly Cylinder PCB上料位顶升缸;
+        [GroupRemark("气缸")]
+        public static readonly Cylinder 回流线前段阻挡气缸;
+        [GroupRemark("气缸")]
+        public static readonly Cylinder 回流线后段阻挡气缸;
+        [GroupRemark("气缸")]
+        public static readonly Cylinder 回流移栽气缸;
+        [GroupRemark("气缸")]
+        public static readonly Cylinder NG料仓移载气缸;
+        [GroupRemark("气缸")]
+        public static readonly Cylinder NG移载锁紧气缸;
+        #endregion
+    }
+}

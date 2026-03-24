@@ -1,0 +1,356 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>AviewLightSource</name>
+    </assembly>
+    <members>
+        <member name="F:AviewLightSource.Channel.ChannelOnOffEvent">
+            <summary>
+            通道打开关闭事件
+            </summary>
+        </member>
+        <member name="F:AviewLightSource.Channel.ChannelSetIntensityEvent">
+            <summary>
+            通道设置亮度值事件
+            </summary>
+        </member>
+        <member name="P:AviewLightSource.Channel.Name">
+            <summary>
+            通道名称
+            </summary>
+        </member>
+        <member name="P:AviewLightSource.Channel.ChannelIndex">
+            <summary>
+            通道索引
+            </summary>
+        </member>
+        <member name="P:AviewLightSource.Channel.OnOff">
+            <summary>
+            通道状态
+            </summary>     
+        </member>
+        <member name="P:AviewLightSource.Channel.Intensity">
+            <summary>
+            通道亮度值
+            </summary>
+        </member>
+        <member name="P:AviewLightSource.Channel.Description">
+            <summary>
+            通道描述备注
+            </summary>
+        </member>
+        <member name="T:AviewLightSource.Views.UCLightSourceSlider">
+            <summary>
+            UCLightSourceSlider.xaml 的交互逻辑
+            </summary>
+            <summary>
+            UCLightSourceSlider
+            </summary>
+        </member>
+        <member name="M:AviewLightSource.Views.UCLightSourceSlider.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:AviewLightSource.Views.OPTControllerView">
+            <summary>
+            OPTControllerView.xaml 的交互逻辑
+            </summary>
+            <summary>
+            OPTControllerView
+            </summary>
+        </member>
+        <member name="M:AviewLightSource.Views.OPTControllerView.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:AviewLightSource.MainWindow">
+            <summary>
+            MainWindow.xaml 的交互逻辑
+            </summary>
+            <summary>
+            MainWindow
+            </summary>
+        </member>
+        <member name="M:AviewLightSource.MainWindow.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:AviewLightSource.OPT_COMMUNICATION_MODEL">
+            <summary>
+            OPT光源连接方式
+            </summary>
+        </member>
+        <member name="F:AviewLightSource.OPT_COMMUNICATION_MODEL.COM">
+            <summary>
+            COM串口连接
+            </summary>
+        </member>
+        <member name="F:AviewLightSource.OPT_COMMUNICATION_MODEL.SN">
+            <summary>
+            通过OPT设备SN码连接
+            </summary>
+        </member>
+        <member name="F:AviewLightSource.OPT_COMMUNICATION_MODEL.IP">
+            <summary>
+            通过OPT设备以太网IP地址连接
+            </summary>
+        </member>
+        <member name="T:AviewLightSource.OPT_CHANNEL_STATE">
+            <summary>
+            OPT控制器通道状态
+            </summary>
+        </member>
+        <member name="F:AviewLightSource.OPT_CHANNEL_STATE.LIGHTSOURCE_CONNECTED">
+            <summary>
+            已连接光源
+            </summary>
+        </member>
+        <member name="F:AviewLightSource.OPT_CHANNEL_STATE.LIGHTSOURCE_DISCONNECTED">
+            <summary>
+            未连接光源
+            </summary>
+        </member>
+        <member name="F:AviewLightSource.OPT_CHANNEL_STATE.SHORT_CIRCUIT_PROTECTION">
+            <summary>
+            短路保护
+            </summary>
+        </member>
+        <member name="F:AviewLightSource.OPT_CHANNEL_STATE.OVER_VOLTAGE_PROTECTION">
+            <summary>
+            过压保护
+            </summary>
+        </member>
+        <member name="F:AviewLightSource.OPT_CHANNEL_STATE.OVER_CURRENT_PROTECTION">
+            <summary>
+            过流保护
+            </summary>
+        </member>
+        <member name="P:AviewLightSource.OPTController.SavePath">
+            <summary>
+            当前对象序列化保存路径
+            </summary>
+        </member>
+        <member name="P:AviewLightSource.OPTController.ChannelCount">
+            <summary>
+            OPT光源控制器通道数
+            </summary>
+        </member>
+        <member name="P:AviewLightSource.OPTController.ChannelUsedCount">
+            <summary>
+            OPT光源控制器当前使用通道数
+            </summary>
+        </member>
+        <member name="F:AviewLightSource.OPTController.ConnectionAddress">
+            <summary>
+            OPT光源控制器连接地址，根据OPT光源控制器连接状态可为IP地址格式，SN序列号格式，COM串口号格式
+            </summary>
+        </member>
+        <member name="P:AviewLightSource.OPTController.IsConnected">
+            <summary>
+            OPT光源控制器连接状态
+            </summary>
+        </member>
+        <member name="P:AviewLightSource.OPTController.Model">
+            <summary>
+            OPT光源控制器连接方式
+            </summary>
+        </member>
+        <member name="P:AviewLightSource.OPTController.OPTChannelCollection">
+            <summary>
+            OPT光源控制器通道数据集合
+            </summary>     
+        </member>
+        <member name="M:AviewLightSource.OPTController.SetIntensityByTypeName">
+            <summary>
+            根据产品信息设置OPT光源控制器各通道亮度
+            </summary>
+            <returns>
+            设置是否成功
+            true:设置成功
+            false:设置失败
+            </returns>
+        </member>
+        <member name="M:AviewLightSource.OPTController.ReadAllIntensity">
+            <summary>
+            获取当前OPT光源控制器各通道亮度
+            </summary>
+        </member>
+        <member name="M:AviewLightSource.OPTController.Save">
+            <summary>
+            保存当前OPT光源控制器配置
+            </summary>
+        </member>
+        <member name="M:AviewLightSource.OPTController.TurnOnAllChannels">
+            <summary>
+            打开当前OPT光源控制器所有通道
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:AviewLightSource.OPTController.TurnOffAllChannels">
+            <summary>
+            关闭当前OPT光源控制器所有通道
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:AviewLightSource.OPTController.TurnOnChannel(System.Int32)">
+            <summary>
+            打开当前OPT光源控制器指定通道
+            </summary>
+            <param name="index">通道索引，从1开始</param>
+            <returns></returns>
+        </member>
+        <member name="M:AviewLightSource.OPTController.TurnOffChannel(System.Int32)">
+            <summary>
+            关闭当前OPT光源控制器指定通道
+            </summary>
+            <param name="index">通道索引，从1开始</param>
+            <returns></returns>
+        </member>
+        <member name="M:AviewLightSource.OPTController.Close">
+            <summary>
+            断开连接OPT光源控制器
+            </summary>
+        </member>
+        <member name="M:AviewLightSource.OPTController.Open">
+            <summary>
+            连接OPT光源控制器
+            </summary>
+        </member>
+        <member name="P:AviewLightSource.ViewModels.OPTControllerViewModel.IsIPComunication">
+            <summary>
+            OPT光源控制器是否为IP连接方式
+            </summary>
+        </member>
+        <member name="P:AviewLightSource.ViewModels.OPTControllerViewModel.IsSNComunication">
+            <summary>
+            OPT光源控制器是否为SN连接方式
+            </summary>
+        </member>
+        <member name="P:AviewLightSource.ViewModels.OPTControllerViewModel.IsCOMComunication">
+            <summary>
+            OPT光源控制器是否为COM连接方式
+            </summary>
+        </member>
+        <member name="P:AviewLightSource.ViewModels.OPTControllerViewModel.DeviceList">
+            <summary>
+            当前以太网下OPT光源控制器设备数量
+            </summary>
+        </member>
+        <member name="P:AviewLightSource.ViewModels.OPTControllerViewModel.Info">
+            <summary>
+            运行信息
+            </summary>
+        </member>
+        <member name="P:AviewLightSource.ViewModels.OPTControllerViewModel.ConnectionAddress">
+            <summary>
+            当前OPT光源控制器序列号
+            </summary>
+        </member>
+        <member name="M:AviewLightSource.ViewModels.OPTControllerViewModel.Save">
+            <summary>
+            保存当前配置
+            </summary>
+        </member>
+        <member name="M:AviewLightSource.ViewModels.OPTControllerViewModel.Scan">
+            <summary>
+            搜索以太网内OPT光源控制器设备
+            </summary>
+        </member>
+        <member name="M:AviewLightSource.ViewModels.OPTControllerViewModel.Open">
+            <summary>
+            打开指定OPT光源控制器
+            </summary>
+        </member>
+        <member name="M:AviewLightSource.ViewModels.OPTControllerViewModel.Close">
+            <summary>
+            关闭指定OPT光源控制器
+            </summary>
+        </member>
+        <member name="M:AviewLightSource.ViewModels.OPTControllerViewModel.SetCurrentOPTObject(AviewLightSource.OPTController)">
+            <summary>
+            设置当前OPT光源控制器对象
+            </summary>
+            <param name="opt">当前OPT光源控制器赋值对象</param>
+        </member>
+        <member name="M:AviewLightSource.ViewModels.OPTControllerViewModel.GetOPTChannelCollection">
+            <summary>
+            获取当前OPT光源控制器通道集合
+            </summary>
+            <returns>ObservableCollection OPTChannel 集合，包含通道信息</returns>
+        </member>
+        <member name="M:AviewLightSource.ViewModels.OPTControllerViewModel.ReportMsg(System.String)">
+            <summary>
+            信息
+            </summary>
+            <param name="message">将要汇报的信息</param>
+        </member>
+        <member name="T:AviewLightSource.App">
+            <summary>
+            App.xaml 的交互逻辑
+            </summary>
+            <summary>
+            App
+            </summary>
+        </member>
+        <member name="M:AviewLightSource.App.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:AviewLightSource.Properties.Resources">
+            <summary>
+              一个强类型的资源类，用于查找本地化的字符串等。
+            </summary>
+        </member>
+        <member name="P:AviewLightSource.Properties.Resources.ResourceManager">
+            <summary>
+              返回此类使用的缓存的 ResourceManager 实例。
+            </summary>
+        </member>
+        <member name="P:AviewLightSource.Properties.Resources.Culture">
+            <summary>
+              重写当前线程的 CurrentUICulture 属性，对
+              使用此强类型资源类的所有资源查找执行重写。
+            </summary>
+        </member>
+        <member name="M:Aview.Public.Comunication.SerialPort.SerialPortHelper.GetCurrentPortNameCollection(System.Text.StringBuilder)">
+            <summary>
+            获取当前设备的串口名称集合
+            </summary>
+            <param name="sb">串口名称集合赋值对象</param>
+        </member>
+        <member name="T:XamlGeneratedNamespace.GeneratedInternalTypeHelper">
+            <summary>
+            GeneratedInternalTypeHelper
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateInstance(System.Type,System.Globalization.CultureInfo)">
+            <summary>
+            CreateInstance
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.GetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            GetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.SetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            SetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateDelegate(System.Type,System.Object,System.String)">
+            <summary>
+            CreateDelegate
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.AddEventHandler(System.Reflection.EventInfo,System.Object,System.Delegate)">
+            <summary>
+            AddEventHandler
+            </summary>
+        </member>
+    </members>
+</doc>

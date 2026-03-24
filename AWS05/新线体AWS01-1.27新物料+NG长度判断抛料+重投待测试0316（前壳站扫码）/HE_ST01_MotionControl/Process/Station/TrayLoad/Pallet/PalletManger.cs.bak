@@ -1,0 +1,127 @@
+﻿using Handler;
+using Handler.Motion;
+using Handler.Motion.Axis;
+using Handler.Motion.IO;
+using Handler.Motion.PalletTray;
+using Handler.Process.Station;
+using HE_ST01_MotionControl.Motion.Axis.AxisSingle;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace HE_ST01_MotionControl.Process.Station.TrayLoad.Pallet
+{
+    public static class PalletManger
+    {
+
+        public static PALLET_DEMO.TrayBox.StorageBoxInfo PCBTrayer
+            = new PALLET_DEMO.TrayBox.StorageBoxInfo("PCB上料工站Tray盘",
+                () => System.IO.Path.Combine(App.Cfg, "PCB上料工站TrayBox.ini"),
+                AxisPCB上料工站Tray.Cur);
+
+        public static PALLET_DEMO.TrayBox.StorageBoxInfo 前壳Trayer
+            = new PALLET_DEMO.TrayBox.StorageBoxInfo("前壳上料工站Tray",
+                () => System.IO.Path.Combine(App.Cfg, "前壳上料工站TrayBox.ini"),
+                Axis前壳上料工站Tray.Cur);
+
+        /// <summary>
+        /// 三个上料的相机点位矩阵
+        /// </summary>
+        public static PalletInfoOnePoint PalletPCB
+            = new PalletInfoOnePoint(
+                () => System.IO.Path.Combine(ParamPath_Motion.SelectedDirPath,
+                    "Pallet_PCB.ini"));
+
+        public static PalletInfoOnePoint PalletPCBNG
+    = new PalletInfoOnePoint(
+        () => System.IO.Path.Combine(ParamPath_Motion.SelectedDirPath,
+            "PalletPCBNG.ini"));
+
+        public static PalletInfoOnePoint ScanPCB
+= new PalletInfoOnePoint(
+() => System.IO.Path.Combine(ParamPath_Motion.SelectedDirPath,
+    "ScanPCB.ini"));
+
+        public static PalletInfoOnePoint Pallet前壳
+         = new PalletInfoOnePoint(
+             () => System.IO.Path.Combine(ParamPath_Motion.SelectedDirPath,
+                 "Pallet_Axis前壳.ini"));
+
+        /// <summary>
+        /// 三个上料的NG位矩阵
+        /// </summary>
+        public static PalletInfoOnePoint PalletVisionPCBNG
+          = new PalletInfoOnePoint(
+              () => System.IO.Path.Combine(ParamPath_Motion.SelectedDirPath,
+                  "PalletPCB_NG.ini"));
+
+        public static PalletInfoOnePoint PalletVision前壳NG
+   = new PalletInfoOnePoint(
+       () => System.IO.Path.Combine(ParamPath_Motion.SelectedDirPath,
+           "Pallet前壳_NG.ini"));
+
+        public static PalletCalib PalletCalibPCB
+      = new PalletCalib(
+          () => System.IO.Path.Combine(App.Cfg,
+              "Pallet_Calib_PCB.ini"));
+
+
+        public static PalletCalib PalletCalib前壳
+      = new PalletCalib(
+          () => System.IO.Path.Combine(App.Cfg,
+              "Pallet_Calib_前壳.ini"));
+
+        public static PalletCalib PalletCalibLockAttachment
+      = new PalletCalib(
+     () => System.IO.Path.Combine(App.Cfg,
+         "Pallet_Calib_LockAttachment.ini"));
+
+        public static Process_TrayLoad Process_前壳 = new Process_TrayLoad("前壳料仓");
+        public static Process_TrayLoad Process_PCB = new Process_TrayLoad("PCB料仓");
+
+
+        public static void Initial()
+        {
+            //料仓初始化IO待赋值
+            //初始化并行程序
+            Process_前壳.PosWait = Axis前壳上料工站Tray.Cur.PosWait;
+            Process_前壳.CylinderTrayVehical = StaticIOHelper.外壳料盘移栽气缸;//对应气缸
+            Process_前壳.In_CurrentFloorCheckTray1 = StaticIOHelper.外壳料仓放置到位接近光电检测1;//只用一个接近开关
+            Process_前壳.In_CurrentFloorCheckTray2 = StaticIOHelper.外壳料仓放置到位接近光电检测2;
+            Process_前壳.In_TrayBoxCheck1 = StaticIOHelper.外壳料仓料盘超出位光电检测1;// 对应料箱检测信号
+            Process_前壳.In_TrayBoxCheck2 = StaticIOHelper.外壳料仓料盘超出位光电检测2;// 对应料箱检测信号
+            Process_前壳.In_TransplantTrayOutCheck1 = StaticIOHelper.外壳料盘到位检测接近开关1;// 对应料盘检测信号,只用一个接近开关
+            Process_前壳.In_TransplantTrayOutCheck2 = StaticIOHelper.外壳料盘到位检测接近开关2;// 对应料盘检测信号
+            Process_前壳.TrayBox = 前壳Trayer;//里面是INI文件操作
+            Process_前壳.Out_ButtonLight = StaticIOHelper.外壳上料允许按钮指示灯;// 对应人工按钮灯,待添加
+            Process_前壳.In_Button = StaticIOHelper.外壳料仓上料允许;// 对应人工按钮,待添加
+            Process_前壳.In_Door = StaticIOHelper.后安全门锁开关信号;// 对应IN门信号,待添加
+            Process_前壳.Out_Door = StaticIOHelper.后安全门锁;// 对应开门,待添加
+            Process_前壳.IsCheckDoorInputFunc += () => Handler.Funs.FunSelection.Cur.IsUseSafeDoor.GetValue;
+            Process_前壳.In_CheckTrayExist = StaticIOHelper.外壳料仓料盘有无检测;
+
+            Process_PCB.PosWait = AxisPCB上料工站Tray.Cur.PosWait;
+            Process_PCB.CylinderTrayVehical = StaticIOHelper.PCB料盘移栽气缸;
+            Process_PCB.In_CurrentFloorCheckTray1 = StaticIOHelper.PCB料仓放置到位接近光电检测1;
+            Process_PCB.In_CurrentFloorCheckTray2 = StaticIOHelper.PCB料仓放置到位接近光电检测1;//PCB料仓放置到位接近光电检测2
+            Process_PCB.In_TrayBoxCheck1 = StaticIOHelper.PCB料仓料盘超出位光电检测1;
+            Process_PCB.In_TrayBoxCheck2 = StaticIOHelper.PCB料仓料盘超出位光电检测2;
+            Process_PCB.In_TransplantTrayOutCheck1 = StaticIOHelper.PCB料盘到位检测接近开关1;
+            Process_PCB.In_TransplantTrayOutCheck2 = StaticIOHelper.PCB料盘到位检测接近开关2;
+            Process_PCB.TrayBox = PCBTrayer;
+            Process_PCB.Out_ButtonLight = StaticIOHelper.外壳上料完成按钮指示灯;
+            Process_PCB.In_Button = StaticIOHelper.外壳料仓上料完成;
+            Process_PCB.In_Door = StaticIOHelper.后安全门锁开关信号;
+            Process_PCB.Out_Door = StaticIOHelper.后安全门锁;
+            Process_PCB.IsCheckDoorInputFunc += () => Handler.Funs.FunSelection.Cur.IsUseSafeDoor.GetValue;
+            Process_PCB.In_CheckTrayExist = StaticIOHelper.PCB料仓料盘有无检测;
+
+            //todo
+            PALLET_DEMO.Tray_And_Box_Manager.cur.add_TrayBox(PCBTrayer);
+            PALLET_DEMO.Tray_And_Box_Manager.cur.add_TrayBox(前壳Trayer);
+        }
+
+    }
+}

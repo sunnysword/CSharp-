@@ -1,0 +1,30 @@
+﻿<Window x:Class="Handler.View.AdminTestWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Handler.View"
+        mc:Ignorable="d"
+        Title="AdminTestWindow" Height="450" Width="800">
+    <StackPanel>
+        <Button Content="设置为复位状态" Height="40" Width="100" Background="Yellow" HorizontalAlignment="Left" Margin="5"
+                Click="Button_Click"/>
+
+        <Button Content="1" Height="40" Width="100" Background="Yellow" HorizontalAlignment="Left" Margin="5"
+                Click="Button_Click_1"/>
+        <Button Content="更换螺丝枪程序" Height="40" Width="100" Background="Yellow" HorizontalAlignment="Left" Margin="5"
+         Click="Button_Click_2"/>
+        
+        <Button Content="当前治具" Height="40" Width="100" Background="Yellow" HorizontalAlignment="Left" Margin="5"
+        Click="Button_Click_3"/>
+
+        <Button Content="增加NG1" Height="40" Width="100" Background="Yellow" HorizontalAlignment="Left" Margin="5"
+Click="Button_Click_4"/>
+        <Button Content="增加NG2" Height="40" Width="100" Background="Yellow" HorizontalAlignment="Left" Margin="5"
+Click="Button_Click_5"/>
+        <Button Content="增加NG3" Height="40" Width="100" Background="Yellow" HorizontalAlignment="Left" Margin="5"
+Click="Button_Click_6"/>
+        <Button Content="增加NG4" Height="40" Width="100" Background="Yellow" HorizontalAlignment="Left" Margin="5"
+Click="Button_Click_7"/>
+    </StackPanel>
+</Window>

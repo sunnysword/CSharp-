@@ -1,0 +1,356 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>AixCommInfo</name>
+    </assembly>
+    <members>
+        <member name="E:AixCommInfo.BindableObject.PropertyChanged">
+             <summary>
+            仅仅 用于 UI 界面刷新
+             </summary>
+        </member>
+        <member name="E:AixCommInfo.BindableObject.PropertyValueMustChanged">
+            <summary>
+            当属性值改变时，就会触发
+            </summary>
+        </member>
+        <member name="T:AixCommInfo.EnableOrDisenable">
+            <summary>
+            对于功能的选择：启用或不启用
+            </summary>
+        </member>
+        <member name="F:AixCommInfo.EnableOrDisenable.Disenable">
+            <summary>
+            取消使能
+            </summary>
+        </member>
+        <member name="F:AixCommInfo.EnableOrDisenable.Enable">
+            <summary>
+            使能
+            </summary>
+        </member>
+        <member name="T:AixCommInfo.ILineMov">
+            <summary>
+            直线XY插补动作实现的接口
+            </summary>
+        </member>
+        <member name="M:AixCommInfo.ILineMov.LineMov">
+             <summary>
+            插补XY 轴移动，并且等待轴移动完成
+             </summary>
+        </member>
+        <member name="M:AixCommInfo.ILineMov.LineMov(System.Boolean)">
+             <summary>
+            插补XY 轴移动，并且等待轴移动完成
+             </summary>
+        </member>
+        <member name="T:AixCommInfo.ILineZMov">
+            <summary>
+            直线XYZ插补动作实现的接口
+            </summary>
+        </member>
+        <member name="M:AixCommInfo.ILineZMov.ZMov">
+            <summary>
+            Z轴移动，并且等待Z轴运动完成
+            </summary>
+        </member>
+        <member name="M:AixCommInfo.ILineZMov.ZMov(System.Boolean)">
+            <summary>
+            Z轴移动，并允许判断是否等待完成
+            </summary>
+            <param name="checkdone"></param>
+        </member>
+        <member name="T:AixCommInfo.IMov">
+            <summary>
+            动作操作接口
+            </summary>
+        </member>
+        <member name="M:AixCommInfo.IMov.Mov">
+            <summary>
+            轴移动，并且等待轴移动完成
+            </summary>
+        </member>
+        <member name="M:AixCommInfo.IMov.Mov(System.Boolean)">
+            <summary>
+            轴移动，可选择是否等待轴移动完成
+            </summary>
+            <param name="checkdone">True:等待轴运动完成;False: 不等待轴运动完成，直接返回</param>
+        </member>
+        <member name="T:AixCommInfo.IProxyMov">
+            <summary>
+            操作移动的中间层
+            </summary>
+        </member>
+        <member name="M:AixCommInfo.IProxyLineMov.LineProxyMovAbs(System.Double,System.Double,System.Boolean)">
+            <summary>
+            插补运动
+            </summary>
+            <param name="pos1"></param>
+            <param name="pos2"></param>
+            <param name="checkdone"></param>
+        </member>
+        <member name="M:AixCommInfo.IProxyLineZMov.ZProxyWait">
+            <summary>
+            Z轴回等待点
+            </summary>
+        </member>
+        <member name="T:AixCommInfo.ParamObjectText`1">
+            <summary>
+            object 类型的值，要求无惨构造
+            </summary>
+        </member>
+        <member name="T:AixCommInfo.ParamStructText`1">
+            <summary>
+            文本数值 T:只能是结构体类型的类型：int/double....
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="T:AixCommInfo.Points.PointXY">
+            <summary>
+            XY 点
+            </summary>
+        </member>
+        <member name="M:AixCommInfo.Points.PointXY.GetLength">
+            <summary>
+            获取长度
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:AixCommInfo.Points.PointXY.GetVectorAngle(AixCommInfo.Points.PointXY,AixCommInfo.Points.PointXY)">
+            <summary>
+            获取两向量的夹角，返回度单位
+            返回  Math.Acos(Angle) 计算的值
+            特殊情况说明：
+            如果两个向量长度都为0，则夹角为0
+            如果任意一个向量的长度为0，则两个夹角为90
+            ,
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:AixCommInfo.Points.PointXY.op_Addition(AixCommInfo.Points.PointXY,AixCommInfo.Points.PointXY)">
+            <summary>
+            加法运算
+             pointXY.X = a.X + b.X;
+             pointXY.Y = a.Y + b.Y;
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:AixCommInfo.Points.PointXY.op_Subtraction(AixCommInfo.Points.PointXY,AixCommInfo.Points.PointXY)">
+            <summary>
+            加法运算
+            pointXY.X = a.X - b.X;
+            pointXY.Y = a.Y - b.Y;
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:AixCommInfo.Points.PointXY.op_Multiply(AixCommInfo.Points.PointXY,AixCommInfo.Points.PointXY)">
+            <summary>
+            乘法运算
+            pointXY.X = a.X * b.X;
+            pointXY.Y = a.Y * b.Y;
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="T:AixCommInfo.Points.PointXYZ">
+            <summary>
+            XYZ点
+            </summary>
+        </member>
+        <member name="M:AixCommInfo.Points.PointXYZ.GetLength">
+            <summary>
+            获取长度
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:AixCommInfo.Points.PointXYZ.GetVectorAngle(AixCommInfo.Points.PointXYZ,AixCommInfo.Points.PointXYZ)">
+            <summary>
+            获取两向量的夹角，返回度单位
+            返回  Math.Acos(Angle) 计算的值
+            特殊情况说明：
+            如果两个向量长度都为0，则夹角为0
+            如果任意一个向量的长度为0，则两个夹角为90
+            ,
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:AixCommInfo.Points.PointXYZ.op_Addition(AixCommInfo.Points.PointXYZ,AixCommInfo.Points.PointXYZ)">
+            <summary>
+            加法运算
+             PointXYZ.X = a.X + b.X+;
+             PointXYZ.Y = a.Y + b.Y;
+             pointXYZ.Z = a.Z + b.Z;
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:AixCommInfo.Points.PointXYZ.op_Subtraction(AixCommInfo.Points.PointXYZ,AixCommInfo.Points.PointXYZ)">
+            <summary>
+            加法运算
+            pointXY.X = a.X - b.X;
+            pointXY.Y = a.Y - b.Y;
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:AixCommInfo.Points.PointXYZ.op_Multiply(AixCommInfo.Points.PointXYZ,AixCommInfo.Points.PointXYZ)">
+            <summary>
+            乘法运算
+            pointXY.X = a.X * b.X;
+            pointXY.Y = a.Y * b.Y;
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="T:AixCommInfo.SingleAixPosAndSpeedMsg">
+            <summary>
+            单轴的位置和速度信息
+            </summary>
+        </member>
+        <member name="T:AixCommInfo.PreMovCheckActionEventHandler">
+            <summary>
+            移动前触发的事件类型
+            </summary>
+        </member>
+        <member name="T:AixCommInfo.MovFinishedActionEventHandler">
+            <summary>
+            移动结束后触发的事件类型
+            </summary>
+        </member>
+        <member name="T:AixCommInfo.SingleAixPosAndSpeedMsgAndIMov">
+            <summary>
+            单轴移动和移动的方法
+            </summary>
+        </member>
+        <member name="E:AixCommInfo.SingleAixPosAndSpeedMsgAndIMov.PreMovCheckAction">
+            <summary>
+            移动前注册的事件
+            </summary>
+        </member>
+        <member name="E:AixCommInfo.SingleAixPosAndSpeedMsgAndIMov.MovFinishedAction">
+            <summary>
+            移动结束后注册的事件
+            </summary>
+        </member>
+        <member name="T:AixCommInfo.SpeedParam">
+            <summary>
+            速度参数
+            </summary>
+        </member>
+        <member name="T:AixCommInfo.SvonLogic">
+            <summary>
+            使能的有效电平
+            </summary>
+        </member>
+        <member name="T:AixCommInfo.ThreeAixsPosMsg">
+            <summary>
+            三轴的位置信息
+            </summary>
+        </member>
+        <member name="F:AixCommInfo.ThreeAixsPosMsg.PosMsg_3">
+            <summary>
+            位置信息2
+            </summary>
+        </member>
+        <member name="T:AixCommInfo.ThreeAixsPosMsgILineZMov">
+            <summary>
+            实现了ILineZMov接口的三轴插补信息
+            </summary>
+        </member>
+        <member name="M:AixCommInfo.ThreeAixsPosMsgILineZMov.#ctor(System.Func{AixCommInfo.IProxyLineZMov},System.Func{System.Double},System.Func{System.Double},System.Func{System.Double},System.Boolean,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="func"></param>
+            <param name="getPos_1"></param>
+            <param name="getPos_2"></param>
+            <param name="getPos_3"></param>
+            <param name="isUseGetPos"></param>
+            <param name="IsCheckXYPosForZMov">Z轴移动时，是否检查XY当前坐标，True：检查，位置不对时，抛出异常</param>
+        </member>
+        <member name="P:AixCommInfo.ThreeAixsPosMsgILineZMov.CheckPosErrRemark">
+            <summary>
+            检查位置异常时，错误前缀!
+            抛出异常时，会把该前缀加入错误消息里
+            </summary>
+        </member>
+        <member name="E:AixCommInfo.ThreeAixsPosMsgILineZMov.PreMovCheckAction">
+            <summary>
+            移动前注册的事件
+            </summary>
+        </member>
+        <member name="E:AixCommInfo.ThreeAixsPosMsgILineZMov.MovFinishedAction">
+            <summary>
+            移动结束后注册的事件
+            </summary>
+        </member>
+        <member name="M:AixCommInfo.ThreeAixsPosMsgILineZMov.LineMov">
+            <summary>
+            XY轴移动，移动前先将Z轴会等待点
+            </summary>
+        </member>
+        <member name="M:AixCommInfo.ThreeAixsPosMsgILineZMov.LineMov(System.Boolean)">
+            <summary>
+            XY轴移动，允许是否移动Z轴回等待点
+            True:先回Z轴
+            </summary>
+            <param name="IsZMovWait"></param>
+        </member>
+        <member name="T:AixCommInfo.TwoAixsPosMsg">
+            <summary>
+            两轴的位置信息
+            </summary>
+        </member>
+        <member name="F:AixCommInfo.TwoAixsPosMsg.PosMsg_1">
+            <summary>
+            位置信息1
+            </summary>
+        </member>
+        <member name="F:AixCommInfo.TwoAixsPosMsg.PosMsg_2">
+            <summary>
+            位置信息2
+            </summary>
+        </member>
+        <member name="M:AixCommInfo.TwoAixsPosMsg.SetCurrentPos(AixCommInfo.ParamStructText{System.Double})">
+            <summary>
+            将获取的当前位置信息设置到对应的变量上
+            </summary>
+            <param name="paramStructText"></param>
+        </member>
+        <member name="M:AixCommInfo.TwoAixsPosMsg.SetCurrentPos(System.Int16)">
+            <summary>
+            将获取的当前位置信息设置到对应的变量上
+            </summary>
+            <param name="id"></param>
+        </member>
+        <member name="T:AixCommInfo.TwoAixsPosMsgILineMov">
+            <summary>
+            实现了ILineMov的XY信息
+            </summary>
+        </member>
+        <member name="E:AixCommInfo.TwoAixsPosMsgILineMov.PreMovCheckAction">
+            <summary>
+            对于 XY移动前注册的事件
+            
+            </summary>
+        </member>
+        <member name="E:AixCommInfo.TwoAixsPosMsgILineMov.MovFinishedAction">
+            <summary>
+            对于LineMov XY移动结束后注册的事件
+            对于
+            </summary>
+        </member>
+    </members>
+</doc>

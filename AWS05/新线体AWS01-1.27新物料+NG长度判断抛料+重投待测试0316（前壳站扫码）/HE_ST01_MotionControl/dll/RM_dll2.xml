@@ -1,0 +1,1599 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>RM_dll2</name>
+    </assembly>
+    <members>
+        <member name="T:RM_dll2.AllErrInfoRecord">
+            <summary>
+            所有错误信息收集的帮助类，以便将错误显示到同一个窗体中
+            </summary>
+        </member>
+        <member name="E:RM_dll2.AllErrInfoRecord.WriteErrToUserEvent">
+            <summary>
+            错误消息注册事件
+            </summary>
+        </member>
+        <member name="M:RM_dll2.AllErrInfoRecord.WriteErrToUser(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="msg"></param>
+        </member>
+        <member name="T:RM_dll2.CheckActionHelper">
+            <summary>
+            动作超时管理监控类：IO信号读取超时、动作执行超时
+            </summary>
+        </member>
+        <member name="P:RM_dll2.CheckActionHelper.CheckActionHelperStopwatch.ElapsedMilliseconds">
+            <summary>
+            获取当前实例测得的总运行时间：ms
+            </summary>
+        </member>
+        <member name="M:RM_dll2.CheckActionHelper.CheckAction(System.Func{System.Boolean},System.Int32)">
+            <summary>
+            读取IO信号是否超时，或是判断一个返回为bool类型的方法是否成功，默认检测时间3s
+            </summary>
+            <param name="func"></param>
+            <param name="checkTime">毫秒</param>
+            <returns></returns>
+        </member>
+        <member name="M:RM_dll2.CheckActionHelper.CheckAction(System.Action,System.Int32)">
+            <summary>
+            动作执行是否超时,此方法回强行终止正在执行动作的线程
+            </summary>
+            <param name="action"></param>
+            <param name="checkTime"></param>
+            <returns></returns>
+        </member>
+        <member name="T:RM_dll2.CommitOrderHelper">
+            <summary>
+            命令的实现者
+            </summary>
+        </member>
+        <member name="F:RM_dll2.CommitOrderHelper.orderState">
+            <summary>
+            当前的命令
+            </summary>
+        </member>
+        <member name="P:RM_dll2.CommitOrderHelper.CurOrderState">
+            <summary>
+            获取当前的命令
+            </summary>
+        </member>
+        <member name="T:RM_dll2.ExtraMsgHelper">
+            <summary>
+            额外信息显示帮助类，通常用于底部状态栏显示
+            </summary>
+        </member>
+        <member name="P:RM_dll2.ExtraMsgHelper.Info">
+            <summary>
+            当前的信息
+            </summary>
+        </member>
+        <member name="F:RM_dll2.ExtraMsgHelper.extraMsgHelpersList">
+            <summary>
+            收集额外错误信息的集合
+            </summary>
+        </member>
+        <member name="M:RM_dll2.ExtraMsgHelper.ScanExtraMsg(System.Action{RM_dll2.ExtraMsgHelper})">
+            <summary>
+            遍历所有的额外信息
+            </summary>
+            <param name="action"></param>
+        </member>
+        <member name="M:RM_dll2.ExtraMsgHelper.GetAllMsg">
+            <summary>
+            获取所有信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:RM_dll2.ICommitOrder">
+            <summary>
+            提交命令接口：
+            复位、启动、暂停、停止、报警解除
+            </summary>
+        </member>
+        <member name="M:RM_dll2.ICommitOrder.CommitResOrder">
+            <summary>
+            提交复位命令
+            </summary>
+        </member>
+        <member name="M:RM_dll2.ICommitOrder.CommitStartRunOrder">
+            <summary>
+            提交自动运行指令
+            </summary>
+        </member>
+        <member name="M:RM_dll2.ICommitOrder.CommitPauseOrder">
+             <summary>
+            提交暂停指令
+             </summary>
+        </member>
+        <member name="M:RM_dll2.ICommitOrder.CommitStopOrder">
+            <summary>
+            提交停止指令
+            </summary>
+        </member>
+        <member name="M:RM_dll2.ICommitOrder.CommitClearErrOrder">
+            <summary>
+            提交报警解除
+            </summary>
+        </member>
+        <member name="M:RM_dll2.ICommitOrder.RstOrder">
+            <summary>
+            重置命令
+            </summary>
+        </member>
+        <member name="T:RM_dll2.IMotionFlag">
+            <summary>
+            机器的运行状态标志
+            </summary>
+        </member>
+        <member name="P:RM_dll2.IMotionFlag.IsErr">
+            <summary>
+            运行错误状态标志
+            </summary>
+        </member>
+        <member name="P:RM_dll2.IMotionFlag.IsEMG">
+            <summary>
+            急停中标志
+            </summary>
+        </member>
+        <member name="P:RM_dll2.IMotionFlag.IsAlarm">
+            <summary>
+            伺服报警标志
+            </summary>
+        </member>
+        <member name="P:RM_dll2.IMotionFlag.IsLimit">
+            <summary>
+            轴限位标志
+            </summary>
+        </member>
+        <member name="P:RM_dll2.IMotionFlag.IsResing">
+            <summary>
+            正在复位标志
+            </summary>
+        </member>
+        <member name="P:RM_dll2.IMotionFlag.IsResOK">
+            <summary>
+            机器复位完成标志
+            </summary>
+        </member>
+        <member name="P:RM_dll2.IMotionFlag.IsResErr">
+            <summary>
+            复位异常状态标志
+            </summary>
+        </member>
+        <member name="P:RM_dll2.IMotionFlag.IsAutoRunning">
+            <summary>
+            自动运行中标志
+            </summary>
+        </member>
+        <member name="P:RM_dll2.IMotionFlag.IsPause">
+            <summary>
+            自动运行中正常暂停
+            </summary>
+        </member>
+        <member name="P:RM_dll2.IMotionFlag.IsErrPause">
+            <summary>
+            自动运行中异常暂停
+            </summary>
+        </member>
+        <member name="T:RM_dll2.IoCylinder.CylinderArgs">
+            <summary>
+            气缸实体返回的信息
+            </summary>
+        </member>
+        <member name="P:RM_dll2.IoCylinder.CylinderArgs.IsOK">
+            <summary>
+            当前动作执行是否OK
+            </summary>
+        </member>
+        <member name="P:RM_dll2.IoCylinder.CylinderArgs.ErrInfo">
+            <summary>
+            错误信息
+            </summary>
+        </member>
+        <member name="T:RM_dll2.IoCylinder.CylinderHepler">
+            <summary>
+            气缸实体表示类
+            </summary>
+        </member>
+        <member name="M:RM_dll2.IoCylinder.CylinderHepler.FilteringCheck(System.Func{System.Boolean})">
+            <summary>
+            滤波处理
+            </summary>
+            <param name="func"></param>
+            <returns></returns>
+        </member>
+        <member name="T:RM_dll2.IoCylinder.CylinderActionItemEventHandler">
+            <summary>
+            气缸实体管道组建类型
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:RM_dll2.IoCylinder.CylinderProcessBuilder">
+            <summary>
+            气缸动作流程组件帮助类
+            </summary>
+        </member>
+        <member name="E:RM_dll2.IoCylinder.CylinderProcessBuilder.CylinderActionItem">
+            <summary>
+            气缸动作管道
+            </summary>
+        </member>
+        <member name="M:RM_dll2.IoCylinder.CylinderProcessBuilder.AddCylinderActionItem(RM_dll2.IoCylinder.CylinderActionItemEventHandler)">
+            <summary>
+            添加气缸实体
+            </summary>
+            <param name="cylinderActionItemEvent"></param>
+        </member>
+        <member name="M:RM_dll2.IoCylinder.CylinderProcessBuilder.AddSleep(System.Func{System.Int32})">
+            <summary>
+            添加延时
+            </summary>
+            <param name="getT"></param>
+        </member>
+        <member name="M:RM_dll2.IoCylinder.CylinderProcessBuilder.AddSleep(System.Int32)">
+            <summary>
+            添加延时
+            </summary>
+            <param name="it"></param>
+        </member>
+        <member name="M:RM_dll2.IoCylinder.CylinderProcessBuilder.Add(RM_dll2.IoCylinder.CylinderActionItemEventHandler)">
+            <summary>
+            添加气缸实体
+            </summary>
+            <param name="cylinderActionItemEvent"></param>
+        </member>
+        <member name="M:RM_dll2.IoCylinder.CylinderProcessBuilder.Add(System.Int32)">
+            <summary>
+            添加延时
+            </summary>
+            <param name="tm"></param>
+        </member>
+        <member name="M:RM_dll2.IoCylinder.CylinderProcessBuilder.Add(System.Func{System.Int32})">
+            <summary>
+            添加延时
+            </summary>
+            <param name="getT"></param>
+        </member>
+        <member name="F:RM_dll2.IoCylinder.CylinderProcessBuilder.Index">
+            <summary>
+            缓存执行状态
+            </summary>
+        </member>
+        <member name="M:RM_dll2.IoCylinder.CylinderProcessBuilder.RunAction">
+            <summary>
+            返回执行状态
+            </summary>
+            <param name="action"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RM_dll2.IoCylinder.CylinderProcessBuilder.RunAction(RM_dll2.Process.ProcessIPauseBase)">
+            <summary>
+            返回True,代表气缸动作流程执行OK
+            注意：返回False时，外层程序无需做处理
+            </summary>
+            <param name="processIPauseBase"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RM_dll2.IoCylinder.CylinderProcessBuilder.Reset">
+            <summary>
+            重置当前流程状态
+            </summary>
+        </member>
+        <member name="M:RM_dll2.IoCylinder.CylinderProcessBuilder.Stop">
+            <summary>
+            强制停止当前流程
+            </summary>
+        </member>
+        <member name="T:RM_dll2.IoCylinder.CylinderProcessBuilderArgs">
+            <summary>
+            气缸动作流程返回信息
+            </summary>
+        </member>
+        <member name="P:RM_dll2.IoCylinder.CylinderProcessBuilderArgs.IsOK">
+            <summary>
+            当前流程执行是否OK
+            </summary>
+        </member>
+        <member name="P:RM_dll2.IoCylinder.CylinderProcessBuilderArgs.ErrInfo">
+            <summary>
+            当前错误信息
+            </summary>
+        </member>
+        <member name="P:RM_dll2.IoCylinder.CylinderProcessBuilderArgs.IsForceStop">
+            <summary>
+            是否强制停止
+            </summary>
+        </member>
+        <member name="T:RM_dll2.IoEMGInfo">
+            <summary>
+            IO 急停信息
+            </summary>
+        </member>
+        <member name="T:RM_dll2.IoFilter">
+            <summary>
+            IO 滤波器
+            </summary>
+        </member>
+        <member name="M:RM_dll2.IoFilter.CheckFilter(System.Func{System.Boolean},System.Int32)">
+            <summary>
+            滤波器 对输入信号进行干扰判断：
+            当输入信息的有效累计时间大于filterTime 时，方法返回True;
+            否则返回False
+            </summary>
+            <param name="func"></param>
+            <param name="filterTime">最大值3000ms</param>
+            <returns></returns>
+        </member>
+        <member name="T:RM_dll2.Light.LightSwitchBase">
+            <summary>
+            三色等切换管理类
+            </summary>
+        </member>
+        <member name="E:RM_dll2.Light.LightSwitchBase.LightAction.PreON">
+            <summary>
+            在ON前执行的事件
+            </summary>
+        </member>
+        <member name="E:RM_dll2.Light.LightSwitchBase.LightAction.PreOFF">
+            <summary>
+            在OFF前执行的事件
+            </summary>
+        </member>
+        <member name="P:RM_dll2.Light.LightSwitchBase.LightAction.IsON">
+            <summary>
+            是否打开
+            </summary>
+        </member>
+        <member name="M:RM_dll2.Light.LightSwitchBase.LightAction.SetActionON(System.Action)">
+            <summary>
+            设置ON方法
+            </summary>
+        </member>
+        <member name="M:RM_dll2.Light.LightSwitchBase.LightAction.SetActionOFF(System.Action)">
+            <summary>
+            设置OFF方法
+            </summary>
+            <param name="action"></param>
+        </member>
+        <member name="M:RM_dll2.Light.LightSwitchBase.LightAction.ClearPreONEvent">
+            <summary>
+            清除PreON事件
+            </summary>
+        </member>
+        <member name="M:RM_dll2.Light.LightSwitchBase.LightAction.ClearPreOFFEvent">
+            <summary>
+            清除PreOFF事件
+            </summary>
+        </member>
+        <member name="T:RM_dll2.Light.LightSwitchBase.LightActionLoopFormat">
+            <summary>
+            对灯塔进行闪鸣控制
+            </summary>
+        </member>
+        <member name="M:RM_dll2.Light.LightSwitchBase.LightActionLoopFormat.LoopON(System.Int32)">
+            <summary>
+            进行闪鸣控制：时间到了将自动退出
+            当将时间设为int.MaxValue，将一直闪鸣，直到调用Stop退出
+            </summary>
+            <param name="tm"></param>
+        </member>
+        <member name="M:RM_dll2.Light.LightSwitchBase.LightActionLoopFormat.LoopON">
+            <summary>
+            一直闪鸣
+            </summary>
+        </member>
+        <member name="P:RM_dll2.Light.LightSwitchBase.BuzzerActionTime">
+            <summary>
+            蜂蜜器响应时间
+            </summary>
+        </member>
+        <member name="F:RM_dll2.Light.LightSwitchBase.Motion">
+            <summary>
+            控制器
+            </summary>
+        </member>
+        <member name="F:RM_dll2.Light.LightSwitchBase.RedLight">
+            <summary>
+            红灯
+            </summary>
+        </member>
+        <member name="F:RM_dll2.Light.LightSwitchBase.GreenLight">
+            <summary>
+            绿灯
+            </summary>
+        </member>
+        <member name="F:RM_dll2.Light.LightSwitchBase.YellowLight">
+            <summary>
+            黄灯
+            </summary>
+        </member>
+        <member name="F:RM_dll2.Light.LightSwitchBase.Buzzer">
+            <summary>
+            蜂鸣器
+            </summary>
+        </member>
+        <member name="M:RM_dll2.Light.LightSwitchBase.AddLoopManager(RM_dll2.Light.LightSwitchBase.LightAction)">
+            <summary>
+            添加循环闪鸣管理器
+            </summary>
+            <param name="lightAction"></param>
+        </member>
+        <member name="M:RM_dll2.Light.LightSwitchBase.GetLoopManger(RM_dll2.Light.LightSwitchBase.LightAction)">
+            <summary>
+            获取循环闪鸣管理器
+            </summary>
+            <param name="lightAction"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RM_dll2.Light.LightSwitchBase.Fun_AllOFF">
+            <summary>
+            关闭所有
+            </summary>
+        </member>
+        <member name="M:RM_dll2.Light.LightSwitchBase.ScanLightState">
+            <summary>
+            扫描三色灯状态
+            </summary>
+        </member>
+        <member name="M:RM_dll2.Light.LightSwitchBase.SetBuzzerActionTime(System.Func{System.Int32})">
+            <summary>
+            设置蜂鸣器响应时间，当没有设置时蜂鸣器将常响
+            </summary>
+            <param name="funcGetTime"></param>
+        </member>
+        <member name="T:RM_dll2.Light.LightSwitchDefaultHelper">
+            <summary>
+            默认的三色灯切换管理类
+            </summary>
+        </member>
+        <member name="T:RM_dll2.Light.LightSwitchBaseStateFlagFormat2">
+            <summary>
+            三色灯切换帮助类
+            允许添加控制位进行控制
+            
+            </summary>
+        </member>
+        <member name="T:RM_dll2.Light.LightSwitchBaseStateFlagFormat2.LightActionMode">
+            <summary>
+            三色灯响应模式
+            </summary>
+        </member>
+        <member name="F:RM_dll2.Light.LightSwitchBaseStateFlagFormat2.LightActionMode.Always">
+            <summary>
+            一直响应，常ON模式
+            </summary>
+        </member>
+        <member name="F:RM_dll2.Light.LightSwitchBaseStateFlagFormat2.LightActionMode.Interval">
+            <summary>
+            间断响应，一会打开，一会关闭；即闪鸣模式
+            </summary>
+        </member>
+        <member name="T:RM_dll2.Light.LightSwitchBaseStateFlagFormat2.LightFormatCategory">
+            <summary>
+            默认提供的动作响应类别
+            </summary>
+        </member>
+        <member name="F:RM_dll2.Light.LightSwitchBaseStateFlagFormat2.LightFormatCategory.Normal">
+            <summary>
+            正常模式，即常规模式；红色、黄色、绿色灯在同一时刻只有一个灯亮
+            1. 黄色灯亮：待机、复位时
+            2. 绿色灯亮：自动运行、自动运行时暂停中
+            3. 红色灯亮：任何报错时
+            4. 蜂鸣器：任何报错时
+            </summary>
+        </member>
+        <member name="F:RM_dll2.Light.LightSwitchBaseStateFlagFormat2.LightFormatCategory.Format_1">
+            <summary>
+            1. 黄色灯亮：待机时常亮,复位时闪鸣
+            2. 绿色灯亮：自动运行时常亮，自动运行时暂停中时黄灯闪烁（绿灯常亮,
+            3.红色灯亮：任何报错时
+            4.蜂鸣器：任何报错时
+            </summary>
+        </member>
+        <member name="T:RM_dll2.Light.LightSwitchBaseStateFlagFormat2.LightCanActionManager">
+            <summary>
+            灯塔允许响应控制类
+            使用触发标志位,同时可以指定该标志位下的触发模式,
+            当多个触发标志位同时响应时,允许优先级判断!优先级高的优先响应，如果过不响应判断下一级，
+            一旦响应直接返回！
+            优先级相同时,按添加顺序级判断！默认为0，最低级，数字越大优先级越高
+            
+            特别注意：可以添加排它标志，排它标志优先级最高；当任意一个排它标志响应时，关闭触发的三色灯
+            </summary>
+        </member>
+        <member name="T:RM_dll2.Light.LightSwitchBaseStateFlagFormat2.LightCanActionManager.LightActionFormatInfo">
+            <summary>
+            动作信息管理标识类
+            </summary>
+        </member>
+        <member name="F:RM_dll2.Light.LightSwitchBaseStateFlagFormat2.LightCanActionManager.LightActionFormatInfo.MotionFlagsList">
+            <summary>
+            标志位集合
+            说明标志位全部ON时，才有效
+            </summary>
+        </member>
+        <member name="P:RM_dll2.Light.LightSwitchBaseStateFlagFormat2.LightCanActionManager.LightActionFormatInfo.Mode">
+            <summary>
+            响应模式
+            </summary>
+        </member>
+        <member name="P:RM_dll2.Light.LightSwitchBaseStateFlagFormat2.LightCanActionManager.LightActionFormatInfo.IsReverse">
+            <summary>
+            是否取反
+            </summary>
+        </member>
+        <member name="P:RM_dll2.Light.LightSwitchBaseStateFlagFormat2.LightCanActionManager.LightActionFormatInfo.Level">
+            <summary>
+            优先级
+            </summary>
+        </member>
+        <member name="F:RM_dll2.Light.LightSwitchBaseStateFlagFormat2.LightCanActionManager.motionFlagsLimitActionFlag">
+            <summary>
+            禁用集合标志
+            </summary>
+        </member>
+        <member name="F:RM_dll2.Light.LightSwitchBaseStateFlagFormat2.LightCanActionManager.ActionMode">
+            <summary>
+            当前响应模式
+            </summary>
+        </member>
+        <member name="M:RM_dll2.Light.LightSwitchBaseStateFlagFormat2.LightCanActionManager.Clear">
+            <summary>
+            清空动作集合
+            </summary>
+        </member>
+        <member name="M:RM_dll2.Light.LightSwitchBaseStateFlagFormat2.LightCanActionManager.AddDisableFlags(RM_dll2.MotionFlagModifyHelper)">
+            <summary>
+            添加排它标志，当添加的任意一个排它标志响应时，
+            不在进行响应标志判断
+            </summary>
+            <param name="motionFlag"></param>
+        </member>
+        <member name="M:RM_dll2.Light.LightSwitchBaseStateFlagFormat2.LightCanActionManager.Add(RM_dll2.MotionFlagModifyHelper)">
+            <summary>
+            添加触发标志，默认的响应默认为常ON,即标志位触发时，则一直响应
+            </summary>
+            <param name="motionFlag"></param>
+        </member>
+        <member name="M:RM_dll2.Light.LightSwitchBaseStateFlagFormat2.LightCanActionManager.Add(RM_dll2.MotionFlagModifyHelper,System.Boolean)">
+            <summary>
+            添加触发标志，默认的响应默认为常ON,即标志位触发时，则一直响应
+            </summary>
+            <param name="motionFlag"></param>
+            <param name="IsReverse">取反改标志位</param>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:RM_dll2.Light.LightSwitchBaseStateFlagFormat2.LightCanActionManager.Add(RM_dll2.MotionFlagModifyHelper,RM_dll2.Light.LightSwitchBaseStateFlagFormat2.LightActionMode,System.Int32,System.Boolean)" -->
+        <member name="F:RM_dll2.Light.LightSwitchBaseStateFlagFormat2.RedActionManager">
+            <summary>
+            红色灯响应管理器
+            </summary>
+        </member>
+        <member name="F:RM_dll2.Light.LightSwitchBaseStateFlagFormat2.YellowActionManager">
+            <summary>
+            黄色灯响应管理器
+            </summary>
+        </member>
+        <member name="F:RM_dll2.Light.LightSwitchBaseStateFlagFormat2.GreenActionManager">
+            <summary>
+            绿色灯响应管理器
+            </summary>
+        </member>
+        <member name="F:RM_dll2.Light.LightSwitchBaseStateFlagFormat2.BuzzerActionManager">
+            <summary>
+            蜂鸣器响应管理器
+            </summary>
+        </member>
+        <member name="M:RM_dll2.Light.LightSwitchBaseStateFlagFormat2.LoadFormat(RM_dll2.Light.LightSwitchBaseStateFlagFormat2.LightFormatCategory)">
+            <summary>
+            设置现有模式
+            </summary>
+            <param name="category"></param>
+        </member>
+        <member name="P:RM_dll2.Light.LightSwitchBaseStateFlagFormat2.IsBuzzerAlwaysLoopOnMode">
+            <summary>
+            蜂鸣器是否强制闪鸣，默认false
+            </summary>
+        </member>
+        <member name="F:RM_dll2.LogDefault.ErrLog">
+            <summary>
+            错误型Log
+            </summary>
+        </member>
+        <member name="F:RM_dll2.LogDefault.MotionProcess">
+            <summary>
+            MotionHelper 的扫描流程，相当于系统日志
+            </summary>
+        </member>
+        <member name="T:RM_dll2.LoginInfoHelper">
+            <summary>
+            用户登录信息
+            </summary>
+        </member>
+        <member name="M:RM_dll2.LoginInfoHelper.SetUserInfo(System.Func{System.String})">
+            <summary>
+            设置用户登录信息
+            </summary>
+            <param name="funcGetUserInfo"></param>
+        </member>
+        <member name="M:RM_dll2.LoginInfoHelper.GetUserInfo">
+            <summary>
+            返回用户登录信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:RM_dll2.MotionFlagArgs">
+            <summary>
+            修改标志时，需要提交相关信息
+            </summary>
+        </member>
+        <member name="P:RM_dll2.MotionFlagArgs.Info">
+            <summary>
+            信息
+            </summary>
+        </member>
+        <member name="P:RM_dll2.MotionFlagArgs.TimeTrigger">
+            <summary>
+            信息产生的时间
+            </summary>
+        </member>
+        <member name="M:RM_dll2.MotionFlagArgs.GetCurrentTime">
+            <summary>
+            获取当前时间
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:RM_dll2.MotionFlagArgs.op_Subtraction(RM_dll2.MotionFlagArgs,RM_dll2.MotionFlagArgs)">
+            <summary>
+            返回两个时间差的绝对值，当输入为空时，返回-1
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RM_dll2.MotionFlagArgs.op_Subtraction(RM_dll2.MotionFlagArgs,System.DateTime)">
+            <summary>
+            返回两个时间差的绝对值，当输入为空时，返回-1
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RM_dll2.MotionFlagArgs.op_Subtraction(System.DateTime,RM_dll2.MotionFlagArgs)">
+            <summary>
+            返回两个时间差的绝对值，当输入为空时，返回-1
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="T:RM_dll2.MotionFlagModifyHelper">
+            <summary>
+            运行标志修改帮助类
+            </summary>
+        </member>
+        <member name="M:RM_dll2.MotionFlagModifyHelper.GetIsSetFlag">
+            <summary>
+            是否设置了标志位
+            </summary>
+        </member>
+        <member name="M:RM_dll2.MotionFlagModifyHelper.RecordInfo(System.String,System.String,System.String)">
+            <summary>
+            记录信息
+            </summary>
+        </member>
+        <member name="T:RM_dll2.WriteToUserEevntHandler">
+            <summary>
+            UI 消息推送委托
+            </summary>
+            <param name="msg"></param>
+            <param name="brush"></param>
+            <param name="IsClear"></param>
+        </member>
+        <member name="T:RM_dll2.WriteErrToUserEevntHandler">
+            <summary>
+             UI 消息推送委托 :错误
+            </summary>
+            <param name="Msg"></param>
+        </member>
+        <member name="T:RM_dll2.ClickStopMode">
+            <summary>
+            按钮点击停止时的触发模式
+            </summary>
+        </member>
+        <member name="F:RM_dll2.ClickStopMode.Immediately">
+            <summary>
+            立即停止，主动调用流程类的停止方法
+            </summary>
+        </member>
+        <member name="F:RM_dll2.ClickStopMode.WaitProcessAutoStop">
+             <summary>
+            不主动调用流程的停止方法，置为一个触发信号，
+            由流程类检测，自己决定什么时候停止
+             </summary>
+        </member>
+        <member name="T:RM_dll2.MotionCfgInfo">
+            <summary>
+            控制器配置
+            </summary>
+        </member>
+        <member name="P:RM_dll2.MotionCfgInfo.IsErrAllToPause">
+            <summary>
+            当运行错误时，是否触发所有流程暂停
+            默认True
+            </summary>
+        </member>
+        <member name="P:RM_dll2.MotionCfgInfo.StopMode">
+            <summary>
+            停止模式
+            </summary>
+        </member>
+        <member name="P:RM_dll2.MotionCfgInfo.IsPauseAllProcess">
+            <summary>
+            系统暂停按下时， 是否暂停所有流程
+            默认为True
+            </summary>
+        </member>
+        <member name="P:RM_dll2.MotionHelper.G_IsUseLanguageSwitch">
+            <summary>
+            是否使用语言切换默认False
+            </summary>
+        </member>
+        <member name="P:RM_dll2.MotionHelper.MotionCfg">
+            <summary>
+            控制器相关配置
+            </summary>
+        </member>
+        <member name="P:RM_dll2.MotionHelper.CurOrder">
+            <summary>
+            当前标准命令对象
+            </summary>
+        </member>
+        <member name="P:RM_dll2.MotionHelper.CurOrderState">
+            <summary>
+            当前正在执行的命令
+            </summary>
+        </member>
+        <member name="F:RM_dll2.MotionHelper.pausesProcess">
+            <summary>
+            对实现暂停接口进行收集管理
+            </summary>
+        </member>
+        <member name="P:RM_dll2.MotionHelper.IsStopClicked">
+            <summary>
+            停止按钮是否按下标志，在停止模式为流程自己决定暂停时使用。
+            </summary>
+        </member>
+        <member name="P:RM_dll2.MotionHelper.MotionStateInfo">
+            <summary>
+            机器状态
+            </summary>
+        </member>
+        <member name="P:RM_dll2.MotionHelper.LightSwitch">
+            <summary>
+            三色灯切换
+            </summary>
+        </member>
+        <member name="F:RM_dll2.MotionHelper.ProcessAuto">
+            <summary>
+            自动运行流程
+            </summary>
+        </member>
+        <member name="F:RM_dll2.MotionHelper.ProcessResMachine">
+            <summary>
+            机器复位流程
+            </summary>
+        </member>
+        <member name="E:RM_dll2.MotionHelper.WriteToUserEvent">
+            <summary>
+            界面消息注册事件:直接提交，没有实现语言转换
+            </summary>
+        </member>
+        <member name="E:RM_dll2.MotionHelper.LanWriteToUserEvent">
+            <summary>
+            界面消息注册事件:实现语言转换
+            </summary>
+        </member>
+        <member name="E:RM_dll2.MotionHelper.actionStopEventHandler">
+             <summary>
+            停止、触发的事件
+             </summary>
+        </member>
+        <member name="E:RM_dll2.MotionHelper.actionPauseEventHandler">
+             <summary>
+            暂停的事件
+             </summary>
+        </member>
+        <member name="E:RM_dll2.MotionHelper.actionEmgEventHandler">
+            <summary>
+            急停触发、伺服报警时，触发的事件
+            </summary>
+        </member>
+        <member name="E:RM_dll2.MotionHelper.actionClearErrEventHandler">
+            <summary>
+            执行报警解除命令时触发的事件
+            </summary>
+        </member>
+        <member name="E:RM_dll2.MotionHelper.actionResEventHandler">
+            <summary>
+            执行复位命令时触发的事件
+            </summary>
+        </member>
+        <member name="E:RM_dll2.MotionHelper.actionStartEventHandler">
+            <summary>
+            执行启动命令时触发的事件
+            </summary>
+        </member>
+        <member name="E:RM_dll2.MotionHelper.ScanExcuteActionHandler">
+            <summary>
+            外部委托给它的，扫描方法
+            </summary>
+        </member>
+        <member name="E:RM_dll2.MotionHelper.ScanIActionTriggerEventHandler">
+            <summary>
+            扫描由命令触发器注册的事件
+            </summary>
+        </member>
+        <member name="M:RM_dll2.MotionHelper.SetProcessAutoRun(RM_dll2.Process.ProcessAutoRunBase)">
+            <summary>
+            设置机器自动运行的类
+            </summary>
+            <param name="processAutoRunBase"></param>
+        </member>
+        <member name="M:RM_dll2.MotionHelper.SetProcessResMachine(RM_dll2.Process.ProcessResMachineBase)">
+            <summary>
+            设置机器复位流程的类
+            </summary>
+            <param name="processResMachineBase"></param>
+        </member>
+        <member name="M:RM_dll2.MotionHelper.SetMotionStateInfo(RM_dll2.MotionStateInfoSwitchBase)">
+            <summary>
+            设置机器状态刷新方法
+            </summary>
+            <param name="motionStateInfoBase"></param>
+        </member>
+        <member name="M:RM_dll2.MotionHelper.SetLightSwitch(RM_dll2.Light.LightSwitchBase)">
+            <summary>
+            设置三色灯切换的管理方法
+            </summary>
+            <param name="lightSwitchBase"></param>
+        </member>
+        <member name="M:RM_dll2.MotionHelper.AddIPause(RM_dll2.Process.IPause)">
+            <summary>
+            将实现暂停接口的类，加入MotionHelper管理器中
+            </summary>
+            <param name="pause"></param>
+        </member>
+        <member name="M:RM_dll2.MotionHelper.RemoveIPause(RM_dll2.Process.IPause)">
+            <summary>
+            将实现暂停接口的类，从MotionHelper管理器中移除
+            </summary>
+            <param name="pause"></param>
+        </member>
+        <member name="T:RM_dll2.MotionStateInfoSwitchBase">
+            <summary>
+            机器状态刷新的基类
+            </summary>
+        </member>
+        <member name="P:RM_dll2.MotionStateInfoSwitchBase.MotionState">
+            <summary>
+            机器状态
+            </summary>
+        </member>
+        <member name="P:RM_dll2.MotionStateInfoSwitchBase.MotionStateColor">
+            <summary>
+            状态的颜色
+            </summary>
+        </member>
+        <member name="M:RM_dll2.MotionStateInfoSwitchBase.ScanMotionState">
+            <summary>
+            刷新当前状态
+            </summary>
+        </member>
+        <member name="T:RM_dll2.MotionStateInfoSwitchDefaultHelper">
+            <summary>
+            默认的状态切换管理
+            运行状态信息管理：标识当前状态机
+            </summary>
+        </member>
+        <member name="M:RM_dll2.MotionStateInfoSwitchDefaultHelper.ScanMotionState">
+            <summary>
+            扫描运行状态
+            </summary>
+        </member>
+        <member name="T:RM_dll2.OrderState">
+            <summary>
+            命令标志
+            </summary>
+        </member>
+        <member name="F:RM_dll2.OrderState.Res">
+            <summary>
+            执行复位指令
+            </summary>
+        </member>
+        <member name="F:RM_dll2.OrderState.StartRun">
+            <summary>
+            执行自动运行指令
+            </summary>
+        </member>
+        <member name="F:RM_dll2.OrderState.Pause">
+            <summary>
+            执行暂停指令
+            </summary>
+        </member>
+        <member name="F:RM_dll2.OrderState.Stop">
+            <summary>
+            执行停止指令
+            </summary>
+        </member>
+        <member name="F:RM_dll2.OrderState.ClearErr">
+            <summary>
+            执行报警解除指令
+            </summary>
+        </member>
+        <member name="T:RM_dll2.Process.ConditionRunLimit">
+            <summary>
+            允许启动的条件
+            </summary>
+        </member>
+        <member name="F:RM_dll2.Process.ConditionRunLimit.funcGet">
+            <summary>
+            检测条件
+            </summary>
+        </member>
+        <member name="M:RM_dll2.Process.ConditionRunLimit.#ctor(System.Func{System.Boolean},System.String)">
+            <summary>
+            条件构造器
+            </summary>
+            <param name="funcCheck">执行的条件</param>
+            <param name="errInfo">不满足时的错误信息</param>
+        </member>
+        <member name="T:RM_dll2.Process.CheckConditionTimeoutErrEventHandler">
+            <summary>
+            检测超时时触发的事件类型
+            </summary>
+            <param name="conditionRunLimit"></param>
+        </member>
+        <member name="T:RM_dll2.Process.ConditionsContainer">
+            <summary>
+            ConditionRunLimit 容器，收集检测多个条件
+            </summary>
+        </member>
+        <member name="M:RM_dll2.Process.ConditionsContainer.#ctor">
+            <summary>
+             条件容器构造：超时时间0秒,条件不满足时，直接触发CheckConditionTimeoutErrEventHandler
+            </summary>
+        </member>
+        <member name="M:RM_dll2.Process.ConditionsContainer.#ctor(RM_dll2.Process.CheckConditionTimeoutErrEventHandler,System.Int32)">
+            <summary>
+            条件容器构造：CheckConditionTimeoutErrEventHandler 超时时，对每一个条件所执行的方法；默认超时时间3秒
+            </summary>
+            <param name="checkConditionTimeoutErrEventHandler">超时时，对每一个条件所执行的方法</param>
+            <param name="timeout">毫秒</param>
+        </member>
+        <member name="F:RM_dll2.Process.ConditionsContainer.stopwatch">
+            <summary>
+            定义一个超时检测
+            </summary>
+        </member>
+        <member name="F:RM_dll2.Process.ConditionsContainer.IsFirstIn">
+            <summary>
+            判断是否是第一次进入，当第一次进入时，开启定时器
+            </summary>
+        </member>
+        <member name="F:RM_dll2.Process.ConditionsContainer.actionCheckTimeOutErrEventHandler">
+            <summary>
+            当检测超时时，所要执行的方法
+            </summary>
+        </member>
+        <member name="M:RM_dll2.Process.ConditionsContainer.CheckAllContions">
+            <summary>
+            检测所有的条件
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:RM_dll2.Process.ConditionsContainer.SetTimeout(System.Int32)">
+            <summary>
+            设置超时时间
+            </summary>
+            <param name="timeout"></param>
+        </member>
+        <member name="M:RM_dll2.Process.ConditionsContainer.SetCheckTimeoutErrAction(RM_dll2.Process.CheckConditionTimeoutErrEventHandler)">
+            <summary>
+            设置超时时的事件
+            </summary>
+        </member>
+        <member name="F:RM_dll2.Process.ConditionCheckMode.AND">
+            <summary>
+            所有条件必须全部为True，才返回True
+            </summary>
+        </member>
+        <member name="F:RM_dll2.Process.ConditionCheckMode.OR">
+            <summary>
+            任意条件为True时，就返回True
+            </summary>
+        </member>
+        <member name="T:RM_dll2.Process.IActionTrigger">
+            <summary>
+            功能扩展触发器，用来扩展一个实现ProcessBase的流程的触发执行
+            </summary>
+        </member>
+        <member name="F:RM_dll2.Process.IActionTrigger.DefaultTriggerManager">
+            <summary>
+            触发命令管理器，用来收集所有的触发命令
+            </summary>
+        </member>
+        <member name="P:RM_dll2.Process.IActionTrigger.motionHelper">
+            <summary>
+            执行扫描的控制器对象
+            </summary>
+        </member>
+        <member name="P:RM_dll2.Process.IActionTrigger.IsStart">
+            <summary>
+            是否启动
+            </summary>
+        </member>
+        <member name="P:RM_dll2.Process.IActionTrigger.conditionRunLimits">
+            <summary>
+            条件容器
+            </summary>
+        </member>
+        <member name="P:RM_dll2.Process.IActionTrigger.Tag">
+            <summary>
+            标识
+            </summary>
+        </member>
+        <member name="T:RM_dll2.Process.IPause">
+            <summary>
+            暂停接口：流程类实现该接口，标识该类允许暂停
+            </summary>
+        </member>
+        <member name="M:RM_dll2.Process.IPause.WaitPause">
+            <summary>
+            等待暂停，如果暂停了，则一直等待下去
+            </summary>
+        </member>
+        <member name="M:RM_dll2.Process.IPause.CheckPause">
+            <summary>
+            暂停的条件
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:RM_dll2.Process.IPause.Pause">
+            <summary>
+            触发暂停
+            </summary>
+        </member>
+        <member name="M:RM_dll2.Process.IPause.CanclePause">
+            <summary>
+            取消暂停
+            </summary>
+        </member>
+        <member name="T:RM_dll2.Process.ProcessArgsBase">
+            <summary>
+            流程类返回的数据信息
+            </summary>
+        </member>
+        <member name="P:RM_dll2.Process.ProcessArgsBase.IsExitOK">
+            <summary>
+            当前是否是正常退出
+            </summary>
+        </member>
+        <member name="P:RM_dll2.Process.ProcessArgsBase.ErrInfo">
+            <summary>
+            错误信息
+            </summary>
+        </member>
+        <member name="T:RM_dll2.Process.ProcessAutoRunArgs">
+            <summary>
+            自动运行流程返回的参数
+            </summary>
+        </member>
+        <member name="T:RM_dll2.Process.ProcessAutoRunBase">
+            <summary>
+            自动运行的基类
+            </summary>
+        </member>
+        <member name="E:RM_dll2.Process.ProcessAutoRunBase.AutoRunPreStartEventHandler">
+            <summary>
+            自动运行开始前触发的事件
+            </summary>
+        </member>
+        <member name="E:RM_dll2.Process.ProcessAutoRunBase.AutoRunExitOKEventHandler">
+            <summary>
+            自动运行正常退出时触发的事件
+            </summary>
+        </member>
+        <member name="E:RM_dll2.Process.ProcessAutoRunBase.AutoRunExitErrEventHandler">
+            <summary>
+            自动运行异常退出时触发的事件
+            </summary>
+        </member>
+        <member name="T:RM_dll2.Process.ProcessBase">
+            <summary>
+            所有流程的基类
+            </summary>
+        </member>
+        <member name="P:RM_dll2.Process.ProcessBase.G_IsNotAutoRunningThrow">
+            <summary>
+            不是自动运行时，WriteErrToUser是否抛出异常；默认为false
+            </summary>
+        </member>
+        <member name="P:RM_dll2.Process.ProcessBase.G_IsUseLanguageSwitch">
+            <summary>
+            是否使用语言切换默认False
+            </summary>
+        </member>
+        <member name="F:RM_dll2.Process.ProcessBase.Log">
+            <summary>
+            日志
+            </summary>
+        </member>
+        <member name="P:RM_dll2.Process.ProcessBase.Name">
+            <summary>
+            当前流程的名字
+            </summary>
+        </member>
+        <member name="P:RM_dll2.Process.ProcessBase.Motion">
+            <summary>
+            当前所属的运行管理器
+            </summary>
+        </member>
+        <member name="P:RM_dll2.Process.ProcessBase.IsRunning">
+            <summary>
+            当前流程是否运行中
+            </summary>
+        </member>
+        <member name="P:RM_dll2.Process.ProcessBase.IsProcessRunning">
+            <summary>
+            方法的执行中标志，可以作为whlie 的循环条件
+            在调用方法前，会置位该标志
+            调用Stop时会将该标志复位
+            </summary>
+        </member>
+        <member name="P:RM_dll2.Process.ProcessBase.IsErr">
+            <summary>
+            当前运行是否有错
+            </summary>
+        </member>
+        <member name="P:RM_dll2.Process.ProcessBase.Step">
+            <summary>
+            当前执行歩
+            </summary>
+        </member>
+        <member name="P:RM_dll2.Process.ProcessBase.IsCommitStopOnRunErrExit">
+            <summary>
+            当流程异常退出时，是否向控制器提交停止指令；默认为True
+            </summary>
+        </member>
+        <member name="P:RM_dll2.Process.ProcessBase.IsAllowLanguageSwitch">
+             <summary>
+             是否允许语言切换,默认为True
+             只有该标志位为True时，语言切换全局标志才有效
+             
+            
+             </summary>
+        </member>
+        <member name="E:RM_dll2.Process.ProcessBase.WriteToUserEvent">
+            <summary>
+            界面消息注册事件
+            </summary>
+        </member>
+        <member name="E:RM_dll2.Process.ProcessBase.LanWriteToUserEvent">
+            <summary>
+            界面消息注册事件:实现语言转换
+            </summary>
+        </member>
+        <member name="E:RM_dll2.Process.ProcessBase.ProcessStartAsyncEvent">
+            <summary>
+            流程开始时触发的事件(异步)
+            </summary>
+        </member>
+        <member name="E:RM_dll2.Process.ProcessBase.ProcessFinishedAsyncEvent">
+            <summary>
+            流程结束触发的事件(异步)
+            </summary>
+        </member>
+        <member name="E:RM_dll2.Process.ProcessBase.ProcessExceptionExitAsyncEvnt">
+            <summary>
+            流程异常退出触发的事件(异步)
+            </summary>
+        </member>
+        <member name="M:RM_dll2.Process.ProcessBase.ImplementRunAction">
+            <summary>
+            子类需要实现的具体方法
+            </summary>
+        </member>
+        <member name="M:RM_dll2.Process.ProcessBase.Stop">
+            <summary>
+            子类需要实现的停止方法
+            </summary>
+        </member>
+        <member name="M:RM_dll2.Process.ProcessBase.CommitStopOnRunErr">
+            <summary>
+            当流程运行时，异常退出提交停止指令
+            
+            </summary>
+        </member>
+        <member name="M:RM_dll2.Process.ProcessBase.ClearErr">
+            <summary>
+            清除当前错误
+            </summary>
+        </member>
+        <member name="M:RM_dll2.Process.ProcessBase.Reset">
+            <summary>
+            重置当前类的状态
+            </summary>
+        </member>
+        <member name="M:RM_dll2.Process.ProcessBase.WriteToUser(System.String,System.Windows.Media.Brush,System.Boolean)">
+            <summary>
+            提交信息
+            </summary>
+            <param name="msg"></param>
+            <param name="brush"></param>
+            <param name="IsClear"></param>
+        </member>
+        <member name="M:RM_dll2.Process.ProcessBase.WriteToUser(System.String,System.Windows.Media.Brush,System.Boolean,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="msg"></param>
+            <param name="brush"></param>
+            <param name="IsClear"></param>
+            <param name="IsUseLanguage">是否使用语言切换,优先级高于IsUseLanguageSwitch</param>
+        </member>
+        <member name="M:RM_dll2.Process.ProcessBase.WriteToUser(System.String)">
+            <summary>
+            提交信息
+            </summary>
+            <param name="msg"></param>      
+        </member>
+        <member name="M:RM_dll2.Process.ProcessBase.Ref_Step(System.String)">
+            <summary>
+            刷新当前步
+            </summary>
+            <param name="step"></param>
+        </member>
+        <member name="M:RM_dll2.Process.ProcessBase.ReportStep">
+            <summary>
+            报告当前步
+            </summary>
+        </member>
+        <member name="M:RM_dll2.Process.ProcessBase.ReportMsg(System.String)">
+            <summary>
+            提交信息
+            </summary>
+            <param name="str"></param>
+        </member>
+        <member name="M:RM_dll2.Process.ProcessBase.Sleep(System.Int32)">
+            <summary>
+            延时：ms
+            </summary>
+            <param name="tm"></param>
+        </member>
+        <member name="M:RM_dll2.Process.ProcessBase.CheckSafeRun(RM_dll2.Process.ProcessBase)">
+            <summary>
+            调用流程，并检查流程的退出表示是否OK,不OK时，回抛出异常
+            </summary>
+            <param name="process"></param>
+        </member>
+        <member name="F:RM_dll2.Process.ProcessBase.processBasesList">
+            <summary>
+            收集所流程
+            </summary>
+        </member>
+        <member name="M:RM_dll2.Process.ProcessBase.Fun_StopAllProcess">
+            <summary>
+            停止所有流程
+            </summary>
+        </member>
+        <member name="M:RM_dll2.Process.ProcessBase.Fun_IsAnyProcessRun">
+            <summary>
+            是否存在任意一个正在运行的类
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:RM_dll2.Process.ProcessIPauseBase">
+            <summary>
+            实现了暂停接口的流程类
+            </summary>
+        </member>
+        <member name="F:RM_dll2.Process.ProcessIPauseBase.isPause">
+            <summary>
+            当前类的暂停标志
+            </summary>
+        </member>
+        <member name="P:RM_dll2.Process.ProcessIPauseBase.IsCheckMotionErr">
+            <summary>
+            是否检测系统的错误
+            默认为True,即当系统发生错误时，流程暂停
+            </summary>
+        </member>
+        <member name="T:RM_dll2.Process.ProcessQueueActionHelper">
+             <summary>
+             单项的动作流程帮助类
+            如果一个动作流程是单向的，不需要反复跳转时！推荐使用单向注入方法，这样比写Case简单
+            
+             </summary>
+        </member>
+        <member name="F:RM_dll2.Process.ProcessQueueActionHelper.SingleActionsList">
+            <summary>
+            动作收集齐
+            </summary>
+        </member>
+        <member name="M:RM_dll2.Process.ProcessQueueActionHelper.Register(RM_dll2.Process.SingleActionInfo)">
+            <summary>
+            注册一个动作
+            执行管理器，只判断True，才会切换下一个SingleActionInfo; False时需要自己处理！
+            </summary>
+            <param name="singleActionInfo">标识动作流程的信息</param>
+        </member>
+        <member name="M:RM_dll2.Process.ProcessQueueActionHelper.Register(System.Func{System.Boolean},System.String)">
+            <summary>
+            注册一个动作；
+            执行管理器，只判断True，才会切换下一个SingleActionInfo; False时需要自己处理！
+            </summary>
+            <param name="funcAction">需要执行的动作</param>
+            <param name="stepInfo">执行前打印的消息</param>
+        </member>
+        <member name="M:RM_dll2.Process.ProcessQueueActionHelper.Register(System.Int32)">
+            <summary>
+            注册延时，单位ms
+            </summary>
+            <param name="timeSleep"></param>
+        </member>
+        <member name="M:RM_dll2.Process.ProcessQueueActionHelper.Run(RM_dll2.Process.ProcessIPauseBase)">
+            <summary>
+            返回True代表执行正常
+            注意不存在False,如果返回False，说明流程被退出了！
+            
+            </summary>
+            <param name="processIPauseBase"></param>
+            <returns></returns>
+        </member>
+        <member name="T:RM_dll2.Process.SingleActionInfo">
+            <summary>
+            单动作信息帮助类，一般一个SingleActionInfo 可以对于一个Case分支
+            执行管理器，只判断True，才会切换下一个SingleActionInfo
+            </summary>
+        </member>
+        <member name="P:RM_dll2.Process.SingleActionInfo.StepInfo">
+            <summary>
+            标识当步信息
+            </summary>
+        </member>
+        <member name="M:RM_dll2.Process.SingleActionInfo.Fun_CheckAction">
+            <summary>
+            该方法返回True，代表执行正常结束
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:RM_dll2.Process.ProcessResMachineArgs">
+            <summary>
+            机器复位完成时返回的参数
+            </summary>
+        </member>
+        <member name="P:RM_dll2.Process.ProcessResMachineArgs.IsResOK">
+            <summary>
+            复位是否OK
+            </summary>
+        </member>
+        <member name="T:RM_dll2.Process.ProcessResMachineBase">
+            <summary>
+            机器复位流程的基类
+            </summary>
+        </member>
+        <member name="E:RM_dll2.Process.ProcessResMachineBase.ResPreStartEventHandler">
+            <summary>
+            复位启动时触发的事件
+            </summary>
+        </member>
+        <member name="E:RM_dll2.Process.ProcessResMachineBase.ResFinishedOKEventHandler">
+            <summary>
+            复位OK结束时触发的事件
+            </summary>
+        </member>
+        <member name="E:RM_dll2.Process.ProcessResMachineBase.ResFinishedErrEventHandler">
+            <summary>
+            复位错误时，触发的事件
+            </summary>
+        </member>
+        <member name="T:RM_dll2.StandardOrderHelper">
+            <summary>
+            提供运行时的相关标志位，命令操作
+            </summary>
+        </member>
+        <member name="F:RM_dll2.StandardOrderHelper.ErrFlag">
+            <summary>
+            错误标志修改器
+            </summary>
+        </member>
+        <member name="F:RM_dll2.StandardOrderHelper.EMGFlag">
+            <summary>
+            急停标志修改器
+            </summary>
+        </member>
+        <member name="F:RM_dll2.StandardOrderHelper.AlarmFlag">
+            <summary>
+            伺服报警标志修改器
+            </summary>
+        </member>
+        <member name="F:RM_dll2.StandardOrderHelper.LimitFlag">
+            <summary>
+            限位标志修改器
+            </summary>
+        </member>
+        <member name="F:RM_dll2.StandardOrderHelper.ResingFlag">
+            <summary>
+            正在复位标志修改器
+            </summary>
+        </member>
+        <member name="F:RM_dll2.StandardOrderHelper.ResOKFlag">
+            <summary>
+            复位Ok标志修改器
+            </summary>
+        </member>
+        <member name="F:RM_dll2.StandardOrderHelper.ResErrFlag">
+            <summary>
+            复位异常标志修改器
+            </summary>
+        </member>
+        <member name="F:RM_dll2.StandardOrderHelper.AutoRunningFlag">
+            <summary>
+            自动运行标志修改器
+            </summary>
+        </member>
+        <member name="F:RM_dll2.StandardOrderHelper.PauseFlag">
+            <summary>
+            自动运行暂停标志修改器
+            </summary>
+        </member>
+        <member name="F:RM_dll2.StandardOrderHelper.ErrPauseFlag">
+            <summary>
+            自动运行错误暂停标志修改器
+            </summary>
+        </member>
+        <member name="E:RM_dll2.StandardOrderHelper.In_Start">
+            <summary>
+            IO 启动命令注册 上升沿注册
+            </summary>
+        </member>
+        <member name="E:RM_dll2.StandardOrderHelper.In_Stop">
+            <summary>
+            IO 停止命令注册 
+            </summary>
+        </member>
+        <member name="E:RM_dll2.StandardOrderHelper.In_Res">
+            <summary>
+            IO 复位命令注册 上升沿注册
+            </summary>
+        </member>
+        <member name="E:RM_dll2.StandardOrderHelper.In_Pause">
+            <summary>
+            IO 暂停命令注册 上升沿注册
+            </summary>
+        </member>
+        <member name="E:RM_dll2.StandardOrderHelper.In_ClearErr">
+            <summary>
+            IO 报警解除命令注册 上升沿注册
+            </summary>
+        </member>
+        <member name="F:RM_dll2.StandardOrderHelper.ioEMGInfosList">
+            <summary>
+            IO急停列表
+            </summary>
+        </member>
+        <member name="F:RM_dll2.StandardOrderHelper._aixRegisterInfo">
+            <summary>
+            轴注册信息
+            </summary>
+        </member>
+        <member name="F:RM_dll2.StandardOrderHelper.IsNeedClearAlarm">
+            <summary>
+            是否需要清除伺服报警
+            </summary>
+        </member>
+        <member name="M:RM_dll2.StandardOrderHelper.ClearErr">
+            <summary>
+            清除错误标志
+            </summary>
+        </member>
+        <member name="M:RM_dll2.StandardOrderHelper.ScanAixState">
+            <summary>
+            扫描轴状态，打印错误信息
+            </summary>
+        </member>
+        <member name="M:RM_dll2.StandardOrderHelper.Fun_EMG">
+            <summary>
+            读取轴或Io急停信号
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:RM_dll2.StandardOrderHelper.Fun_Alarm">
+             <summary>
+            读取 轴伺服报警
+             </summary>
+             <returns></returns>
+        </member>
+        <member name="M:RM_dll2.StandardOrderHelper.Fun_Limit">
+            <summary>
+            读取限位信号
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:RM_dll2.StandardOrderHelper.Fun_GetAixIsBusy">
+            <summary>
+            判断轴是否运动中
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:RM_dll2.UPHHelper">
+             <summary>
+             UPH
+             预测每小的产量
+             
+             使用方法：
+            1.调用Start()方法初始化计算
+            2. 用一个常驻线程调用ShowUI刷新计算
+            3. 不需要计算时，调用Stop()方法停止计算
+            
+             或者直接调用Register方法完成使用
+             </summary>
+        </member>
+        <member name="P:RM_dll2.UPHHelper.SplitCalcSecond">
+            <summary>
+            更新时间
+            默认间隔计算的时间，单位秒(s)
+            
+            </summary>
+        </member>
+        <member name="M:RM_dll2.UPHHelper.Fun_SetSplitCalcSecond(System.Int32)">
+            <summary>
+            设置UPH计算间隔,单位：S
+            </summary>
+            <param name="tm"></param>
+        </member>
+        <member name="M:RM_dll2.UPHHelper.#ctor(System.Func{System.Int32})">
+            <summary>
+            获取当前产量的方法
+            UPH最好计算OK品的产量，计算有效产能会比较好！所以GetTotalNums最好为当前已生产的OK品。
+            （注：如果统计是总产量，就会有一个问题，NG品会被计算在内！同时如果一段时间呢NG品比较多，会造成UPH在这段时间内偏高，因为一般情况下NG品所花费的时间是小于或等于OK品的）
+            </summary>
+            <param name="GetTotalNums"></param>
+        </member>
+        <member name="F:RM_dll2.UPHHelper.funcGetTotalNums">
+            <summary>
+            获取当前产量
+            </summary>
+        </member>
+        <member name="P:RM_dll2.UPHHelper.UPH">
+            <summary>
+            当前的UPH：每小时的产量
+            </summary>
+        </member>
+        <member name="M:RM_dll2.UPHHelper.Start">
+            <summary>
+            开始计算
+            </summary>
+        </member>
+        <member name="M:RM_dll2.UPHHelper.Stop">
+            <summary>
+            停止计算
+            </summary>
+        </member>
+        <member name="M:RM_dll2.UPHHelper.ShowUI">
+            <summary>
+            执行刷新
+            </summary>
+        </member>
+        <member name="M:RM_dll2.UPHHelper.Register(RM_dll2.Process.ProcessAutoRunBase)">
+            <summary>
+            注册到ProcessAutoRun中，由自动运行或停止运行UPH计算器
+            </summary>
+            <param name="motionHelper"></param>
+        </member>
+    </members>
+</doc>

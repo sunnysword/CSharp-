@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ILog_dll</name>
+    </assembly>
+    <members>
+        <member name="P:ILog_dll.LogArgs.UserName">
+            <summary>
+            用户名字
+            </summary>
+        </member>
+        <member name="P:ILog_dll.LogArgs.Info">
+            <summary>
+            消息
+            </summary>
+        </member>
+        <member name="T:ILog_dll.LogBase">
+            <summary>
+            日志基类
+            </summary>
+        </member>
+        <member name="P:ILog_dll.LogBase.IsLimitAllWriteLog">
+            <summary>
+            是否禁止所有写入Log的操作，默认为False,即允许写入
+            
+            </summary>
+        </member>
+        <member name="P:ILog_dll.LogBase.IsWriteLog">
+            <summary>
+            是否写入Log,默认为True,即写入
+            </summary>
+        </member>
+        <member name="P:ILog_dll.LogBase.LogRoot">
+            <summary>
+            Log 根目录
+            </summary>
+        </member>
+        <member name="T:ILog_dll.LogErrCollectionHelper">
+            <summary>
+            错误收集型日志：专门用来收集错误信息
+            日志保存在：Log\\Log_Err\\...
+            </summary>
+        </member>
+        <member name="M:ILog_dll.LogErrCollectionHelper.#ctor(System.String)">
+            <summary>
+            文件的名字
+            </summary>
+            <param name="errName"></param>
+        </member>
+        <member name="T:ILog_dll.LogOperationHelper">
+            <summary>
+            用户操作型日志
+            日志保存在：Log\\UserOperation\\...
+            </summary>
+        </member>
+        <member name="M:ILog_dll.LogOperationHelper.#ctor(System.String)">
+            <summary>
+            文件的名字
+            </summary>
+            <param name="operationName"></param>
+        </member>
+        <member name="T:ILog_dll.LogProcessHelper">
+            <summary>
+            流程类 Log记录
+            记录的路径默认为：当前运行程序\\Log\\ProcessLog\\...
+            </summary>
+        </member>
+        <member name="M:ILog_dll.LogProcessHelper.#ctor(System.String)">
+            <summary>
+            文件的名字
+            </summary>
+            <param name="processName"></param>
+        </member>
+    </members>
+</doc>

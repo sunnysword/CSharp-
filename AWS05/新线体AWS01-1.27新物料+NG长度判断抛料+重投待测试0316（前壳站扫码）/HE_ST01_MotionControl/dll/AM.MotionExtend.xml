@@ -1,0 +1,195 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>AM.MotionExtend</name>
+    </assembly>
+    <members>
+        <member name="F:AM.Core.Axis.AxisInfoManger.AxisInfoDict">
+            <summary>
+            轴信息列表
+            </summary>
+        </member>
+        <member name="T:AM.Core.IO.Cylinder">
+            <summary>
+            气缸实体表示类
+            </summary>
+        </member>
+        <member name="P:AM.Core.IO.Cylinder.WorkPosOutput">
+            <summary>
+            获取气缸工作位对应输出
+            </summary>
+        </member>
+        <member name="P:AM.Core.IO.Cylinder.OriginPosOutput">
+            <summary>
+            获取气缸原点位对应输出
+            </summary>
+        </member>
+        <member name="F:AM.Core.IO.Cylinder.TIME_OUT">
+            <summary>
+            超时时间
+            </summary>
+        </member>
+        <member name="P:AM.Core.IO.Cylinder.GroupName">
+            <summary>
+            气缸IO组名，用于IO界面生成
+            </summary>
+        </member>
+        <member name="P:AM.Core.IO.Cylinder.GroupIndex">
+            <summary>
+            气缸IO组中索引，用于IO界面生成
+            </summary>
+        </member>
+        <member name="P:AM.Core.IO.Cylinder.IsCheckInputSensor">
+            <summary>
+            气缸动作后是否检测对应传感器信号
+            </summary>
+        </member>
+        <member name="P:AM.Core.IO.Cylinder.IsOutReversal">
+            <summary>
+            是否对Out输出反转
+            </summary>
+        </member>
+        <member name="P:AM.Core.IO.Cylinder.IsBackReversal">
+            <summary>
+            是否对Back输出反转
+            </summary>
+        </member>
+        <member name="M:AM.Core.IO.Cylinder.#ctor(System.String,Iodll.IoOutHepler,Iodll.IoOutHepler,Iodll.IoInHelper[],Iodll.IoInHelper[])">
+            <summary>
+            声明一个双控式气缸
+            </summary>
+            <param name="cylinderName">气缸名称</param>
+            <param name="cylinderOut">气缸伸出输出点</param>
+            <param name="cylinderBack">气缸缩回输出点</param>
+            <param name="outSensor">气缸伸出感应输入点</param>
+            <param name="backSensor">气缸缩回感应输入点</param>
+        </member>
+        <member name="M:AM.Core.IO.Cylinder.#ctor(System.String,Iodll.IoOutHepler,Iodll.IoInHelper[],Iodll.IoInHelper[])">
+            <summary>
+            声明一个单控式气缸
+            </summary>
+            <param name="cylinderName">气缸名称</param>
+            <param name="cylinderOut">气缸伸出输出点</param>
+            <param name="outSensor">气缸伸出感应输入点</param>
+            <param name="backSensor">气缸缩回感应输入点</param>
+        </member>
+        <member name="M:AM.Core.IO.Cylinder.SetExcuteCondition(System.Func{System.Boolean})">
+            <summary>
+            设置执行条件
+            </summary>
+            <param name="canExecute">执行条件委托
+            <para>若此委托返回为true，后续相关操作允许执行</para>
+            <para>若此委托返回为false，后续相关操作不允许执行，直接返回</para>
+            </param>
+        </member>
+        <member name="M:AM.Core.IO.Cylinder.RegisterAirSourceSignal(Iodll.IoInHelper)">
+            <summary>
+            注册气压反馈信号，用于每次气缸动作前检测
+            </summary>
+            <param name="input"></param>
+        </member>
+        <member name="M:AM.Core.IO.Cylinder.SetGroup(System.String,System.Int32)">
+            <summary>
+            设置气缸所属组属性
+            </summary>
+            <param name="groupName">组名</param>
+            <param name="groupIndex">所属组索引</param>
+        </member>
+        <member name="M:AM.Core.IO.Cylinder.GetInputInfo(Iodll.IoInHelper[])">
+            <summary>
+            获取对应IO点位的详细信息
+            </summary>
+            <param name="ioIns"></param>
+            <returns></returns>
+        </member>
+        <member name="M:AM.Core.IO.Cylinder.WorkPos">
+            <summary>
+            气缸伸出
+            </summary>
+        </member>
+        <member name="M:AM.Core.IO.Cylinder.OriginPos">
+            <summary>
+            气缸缩回
+            </summary>
+        </member>
+        <member name="M:AM.Core.IO.Cylinder.WorkPos(System.String@,System.Boolean)">
+            <summary>
+            气缸伸出
+            </summary>
+        </member>
+        <member name="M:AM.Core.IO.Cylinder.OriginPos(System.String@,System.Boolean)">
+            <summary>
+            气缸缩回
+            </summary>
+        </member>
+        <member name="M:AM.Core.IO.Cylinder.GetWorkPosState">
+            <summary>
+            获取气缸工作位状态
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:AM.Core.IO.Cylinder.GetOriginPosState">
+            <summary>
+            获取气缸原点位状态
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:AM.Core.IO.Cylinder.GetWorkPosInputObject">
+            <summary>
+            获取气缸工作位输入点对象实例
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:AM.Core.IO.Cylinder.GetOriginInputObject">
+            <summary>
+            获取气缸位输入点对象实例
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:AM.Core.IO.CylinderActionType">
+            <summary>
+            气缸动作类型
+            </summary>
+        </member>
+        <member name="F:AM.Core.IO.CylinderActionType.WorkPos">
+            <summary>
+            工作位
+            </summary>
+        </member>
+        <member name="F:AM.Core.IO.CylinderActionType.OriginPos">
+            <summary>
+            原点位
+            </summary>
+        </member>
+        <member name="T:AM.Global.GlobalCfg">
+            <summary>
+            全局配置类
+            </summary>
+        </member>
+        <member name="T:AM.Global.GlobalCfg.CardType">
+            <summary>
+            控制卡类型
+            </summary>
+        </member>
+        <member name="F:AM.Global.GlobalCfg.CardType.ZMotion">
+            <summary>
+            正运动
+            </summary>
+        </member>
+        <member name="F:AM.Global.GlobalCfg.CardType.HongGe">
+            <summary>
+            宏格
+            </summary>
+        </member>
+        <member name="F:AM.Global.GlobalCfg.G_CardType">
+            <summary>
+            控制卡类型，初始化前需要设置
+            </summary>
+        </member>
+        <member name="T:AM.MotionExtend.Global.LogGenerator">
+            <summary>
+            日志全局管理单元
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,121 @@
+﻿<Window x:Class="Handler.View.MESTest"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+       
+        mc:Ignorable="d"
+        Title="MESTest" Height="670" Width="900" Background="#F5F5F5">
+    <Window.Resources>
+        <Style x:Key="RoundedButtonStyle" TargetType="Button">
+            <Setter Property="Padding" Value="8,4"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Background" Value="#007ACC"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="Width" Value="80"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+                                CornerRadius="5"
+                                BorderBrush="{TemplateBinding BorderBrush}" 
+                                BorderThickness="1">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="150"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- SN 输入框 -->
+        <Border Margin="5" Padding="5" Background="White" CornerRadius="5" BorderBrush="Gray" BorderThickness="1">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="80"/>
+                    <ColumnDefinition Width="250"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="SN: " VerticalAlignment="Center"  FontWeight="Bold" Width="80"/>
+                <TextBox Name="txt_SN" Grid.Column="1"  VerticalContentAlignment="Center" Margin="2" Height="24" Padding="4"/>
+                <Button x:Name="btn_CheckSN" Grid.Column="2" Click="btn_CheckSN_Click" Content="Check SN" Style="{StaticResource RoundedButtonStyle}" Margin="10" />
+            </Grid>
+        </Border>
+        <Border Margin="5" Padding="5" Grid.Row="1" Background="White" CornerRadius="5" BorderBrush="Gray" BorderThickness="1">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="80"/>
+                    <ColumnDefinition Width="250"/>
+                    <ColumnDefinition Width="250"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="SN: " VerticalAlignment="Center"  FontWeight="Bold" Width="80"/>
+                <TextBox Name="txt_BindSN" Grid.Column="1"  VerticalContentAlignment="Center" Margin="2" Height="24" Padding="4"/>
+                <TextBox Name="txt_BindLensSN" Grid.Column="2"  VerticalContentAlignment="Center" Margin="2" Height="24" Padding="4"/>
+                <Button x:Name="btn_Bind" Grid.Column="3" Click="btn_Bind_Click" Content="Bind" Style="{StaticResource RoundedButtonStyle}" Margin="10" />
+            </Grid>
+        </Border>
+        <!-- MES 数据输入区 -->
+        <Border Grid.Row="2" Margin="5" Padding="5" Background="White" CornerRadius="5" BorderBrush="Gray" BorderThickness="1">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="80"/>
+                    <ColumnDefinition Width="250"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Text="SN: " FontWeight="Bold" Grid.Row="0" VerticalAlignment="Center" />
+                <TextBlock Text="开始时间: " FontWeight="Bold"  Grid.Row="1" VerticalAlignment="Center"/>
+                <TextBlock Text="结束时间: " FontWeight="Bold"  Grid.Row="2" VerticalAlignment="Center" />
+                <TextBlock Text="测试结果: " FontWeight="Bold" Grid.Row="3" VerticalAlignment="Center" />
+
+                <TextBox Grid.Row="0" Grid.Column="1" x:Name="txt_SNInput" Margin="2" Height="24" Padding="4"/>
+                <TextBox Grid.Row="1" Grid.Column="1" x:Name="txt_StartTimeInput" Margin="2" Height="24" Padding="4"/>
+                <TextBox Grid.Row="2" Grid.Column="1" x:Name="txt_EndTimeInput" Margin="2" Height="24" Padding="4"/>
+
+                <ComboBox x:Name="txt_ResultInput" Grid.Row="3" Grid.Column="1" Margin="2" Height="24">
+                    <ComboBoxItem Content="NG"/>
+                    <ComboBoxItem Content="OK" IsSelected="True"/>
+                </ComboBox>
+
+                <Button Grid.Row="1" Grid.RowSpan="2" Grid.Column="2" Content="Data Up" Style="{StaticResource RoundedButtonStyle}" Margin="10" Click="btn_DataUp_Click"/>
+            </Grid>
+        </Border>
+
+        <!-- DataGrid 区域 -->
+        <Border Grid.Row="3" Margin="5" Padding="5" Background="White" CornerRadius="5" BorderBrush="Gray" BorderThickness="1">
+            <StackPanel>
+                <DataGrid x:Name="myDataGrid" AutoGenerateColumns="False" CanUserAddRows="False" Height="250"
+                          AlternationCount="2" Background="White" BorderBrush="Gray" BorderThickness="1" IsReadOnly="True" >
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="命令" Binding="{Binding Command}" Width="*"/>
+                        <DataGridTextColumn Header="SN" Binding="{Binding SN}" Width="*"/>
+                        <DataGridTextColumn Header="结果" Binding="{Binding Result}" Width="*"/>
+                        <DataGridTextColumn Header="错误信息" Binding="{Binding ErrMsg}" Width="*"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Button Content="删除选中项" Click="RemoveSelected_Click" Style="{StaticResource RoundedButtonStyle}" HorizontalAlignment="Center" Margin="0,10,50,0"/>
+                    <Button Content="删除全部" Click="RemoveAll_Click" Style="{StaticResource RoundedButtonStyle}" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>

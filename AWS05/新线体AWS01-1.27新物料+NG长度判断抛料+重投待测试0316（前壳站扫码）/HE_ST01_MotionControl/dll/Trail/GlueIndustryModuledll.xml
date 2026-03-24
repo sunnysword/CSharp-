@@ -1,0 +1,716 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>GlueIndustryModuledll</name>
+    </assembly>
+    <members>
+        <member name="T:GlueIndustryModuledll.Arcs.ArcInfo">
+            <summary>
+            圆弧的基本信息
+            </summary>
+        </member>
+        <member name="F:GlueIndustryModuledll.Arcs.ArcInfo.Pt1">
+            <summary>
+            圆弧第一点
+            </summary>
+        </member>
+        <member name="F:GlueIndustryModuledll.Arcs.ArcInfo.Pt2">
+            <summary>
+            圆弧第二点
+            </summary>
+        </member>
+        <member name="F:GlueIndustryModuledll.Arcs.ArcInfo.Pt3">
+            <summary>
+            圆弧第三点
+            </summary>
+        </member>
+        <member name="P:GlueIndustryModuledll.Arcs.ArcInfo.Z_Pos">
+            <summary>
+            Z轴位置
+            </summary>
+        </member>
+        <member name="F:GlueIndustryModuledll.Arcs.ArcInfo.Speed">
+            <summary>
+            移动速度
+            </summary>
+        </member>
+        <member name="P:GlueIndustryModuledll.Arcs.ArcInfo.OutTriggeredDelayTime">
+            <summary>
+            Io触发延时多长时间:ms
+            </summary>
+        </member>
+        <member name="P:GlueIndustryModuledll.Arcs.ArcInfo.CloseTriggerPercent">
+            <summary>
+            关闭触发百分比
+            </summary>
+        </member>
+        <member name="P:GlueIndustryModuledll.Arcs.ArcInfo.IsEndToFrictionGlue">
+            <summary>
+            画圆结束时，后尾是否刮胶
+            </summary>
+        </member>
+        <member name="P:GlueIndustryModuledll.Arcs.ArcInfo.FrictionAgle">
+            <summary>
+            后尾刮胶角度
+            </summary>
+        </member>
+        <member name="P:GlueIndustryModuledll.Arcs.ArcInfo.DispenserEndFrictioningHeight">
+            <summary>
+            后尾刮胶高度±0.5
+            </summary>
+        </member>
+        <member name="P:GlueIndustryModuledll.Arcs.ArcInfo.FrictionAgleNums">
+            <summary>
+            后尾刮胶次数
+            </summary>
+        </member>
+        <member name="M:GlueIndustryModuledll.Arcs.ArcInfo.GetArcCenter">
+            <summary>
+            由三点计算出圆心
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:GlueIndustryModuledll.Arcs.ExctueArcInfosAction">
+            <summary>
+            画圆弧信息的执行者
+            </summary>
+        </member>
+        <member name="P:GlueIndustryModuledll.Arcs.ExctueArcInfosAction.InfoManager">
+            <summary>
+            圆弧信息的管理者
+            </summary>
+        </member>
+        <member name="P:GlueIndustryModuledll.Arcs.ExctueArcInfosAction.ArcLine">
+            <summary>
+            圆弧信息的操作者
+            </summary>
+        </member>
+        <member name="T:GlueIndustryModuledll.Arcs.GroupArcInfosManager">
+            <summary>
+            所有圆弧信息的管理者
+            </summary>
+        </member>
+        <member name="F:GlueIndustryModuledll.Arcs.GroupArcInfosManager.ArcInfos">
+            <summary>
+            画圆信息集合
+            </summary>
+        </member>
+        <member name="P:GlueIndustryModuledll.Arcs.GroupArcInfosManager.DispenserIO">
+            <summary>
+            点胶触发IO
+            </summary>
+        </member>
+        <member name="P:GlueIndustryModuledll.Arcs.GroupArcInfosManager.MovNextPointHeight">
+            <summary>
+            移动到下一个点时,回抬高度
+            </summary>
+        </member>
+        <member name="F:GlueIndustryModuledll.Arcs.GroupArcInfosManager.XY_Speed">
+            <summary>
+            XY轴移动速度
+            </summary>
+        </member>
+        <member name="F:GlueIndustryModuledll.Arcs.GroupArcInfosManager.Z_Speed">
+            <summary>
+            Z 轴移动速度:点完胶回抬速度
+            </summary>
+        </member>
+        <member name="F:GlueIndustryModuledll.Arcs.GroupArcInfosManager.MaxDispenserEndFrictioningHeight">
+            <summary>
+            后尾刮胶高度:最大值
+            </summary>
+        </member>
+        <member name="P:GlueIndustryModuledll.Arcs.GroupArcInfosManager.OFFFinishedDelay">
+            <summary>
+            关闭点胶触发后，延时响应时间
+            </summary>
+        </member>
+        <member name="M:GlueIndustryModuledll.Arcs.GroupArcInfosManager.Add(GlueIndustryModuledll.Arcs.ArcInfo)">
+            <summary>
+            添加数据
+            </summary>
+            <param name="arcInfo"></param>
+        </member>
+        <member name="M:GlueIndustryModuledll.Arcs.GroupArcInfosManager.Clear">
+            <summary>
+            清除点集合
+            </summary>
+        </member>
+        <member name="T:GlueIndustryModuledll.Circle.DispenserCircleInfo">
+            <summary>
+            画圆点胶信息:角度逆时针为正
+            </summary>
+        </member>
+        <member name="P:GlueIndustryModuledll.Circle.DispenserCircleInfo.Radius">
+            <summary>
+            圆半径
+            </summary>
+        </member>
+        <member name="P:GlueIndustryModuledll.Circle.DispenserCircleInfo.StartAngle">
+            <summary>
+            画圆起始角度
+            </summary>
+        </member>
+        <member name="P:GlueIndustryModuledll.Circle.DispenserCircleInfo.PreMovAngleTriggerActionTime">
+            <summary>
+            画圆前点胶触发延时
+            </summary>
+        </member>
+        <member name="P:GlueIndustryModuledll.Circle.DispenserCircleInfo.CircleAngle">
+            <summary>
+            画圆角度
+            </summary>
+        </member>
+        <member name="P:GlueIndustryModuledll.Circle.DispenserCircleInfo.CloseAngle">
+            <summary>
+            画圆点胶关闭角度
+            </summary>
+        </member>
+        <member name="F:GlueIndustryModuledll.Circle.DispenserCircleInfo.CenterPosXY">
+            <summary>
+            XY 圆心坐标
+            </summary>
+        </member>
+        <member name="P:GlueIndustryModuledll.Circle.DispenserCircleInfo.Z_WorkCirclePos">
+            <summary>
+            Z 轴画圆时坐标
+            </summary>
+        </member>
+        <member name="F:GlueIndustryModuledll.Circle.DispenserCircleInfo.CircleSpeed">
+            <summary>
+            画圆速度
+            </summary>
+        </member>
+        <member name="P:GlueIndustryModuledll.Circle.DispenserCircleInfo.Pos_XStart">
+            <summary>
+            画圆时X起始点坐标
+            </summary>
+        </member>
+        <member name="P:GlueIndustryModuledll.Circle.DispenserCircleInfo.Pos_YStart">
+            <summary>
+            画圆时Y起始点坐标
+            </summary>
+        </member>
+        <member name="P:GlueIndustryModuledll.Circle.DispenserCircleInfo.IsEndToFrictionGlue">
+            <summary>
+            画圆结束时，后尾是否刮胶
+            </summary>
+        </member>
+        <member name="P:GlueIndustryModuledll.Circle.DispenserCircleInfo.FrictionAgle">
+            <summary>
+            后尾刮胶角度
+            </summary>
+        </member>
+        <member name="P:GlueIndustryModuledll.Circle.DispenserCircleInfo.DispenserEndFrictioningHeight">
+            <summary>
+            后尾刮胶高度±0.5
+            </summary>
+        </member>
+        <member name="P:GlueIndustryModuledll.Circle.DispenserCircleInfo.FrictionAgleNums">
+            <summary>
+            后尾刮胶次数
+            </summary>
+        </member>
+        <member name="T:GlueIndustryModuledll.Circle.ExcuteDispenserCirclesAction">
+            <summary>
+            画圆信息的执行者
+            </summary>
+        </member>
+        <member name="P:GlueIndustryModuledll.Circle.ExcuteDispenserCirclesAction.InfoManager">
+            <summary>
+            画圆信息管理者
+            </summary>
+        </member>
+        <member name="P:GlueIndustryModuledll.Circle.ExcuteDispenserCirclesAction.CircleHelper">
+            <summary>
+            画圆操作对象
+            </summary>
+        </member>
+        <member name="T:GlueIndustryModuledll.Circle.GroupDispenserCirclesInfoManager">
+            <summary>
+            画圆点胶信息管理
+            </summary>
+        </member>
+        <member name="P:GlueIndustryModuledll.Circle.GroupDispenserCirclesInfoManager.DispenserIO">
+            <summary>
+            点胶触发IO
+            </summary>
+        </member>
+        <member name="F:GlueIndustryModuledll.Circle.GroupDispenserCirclesInfoManager.CircleInfos">
+            <summary>
+            画圆信息集合
+            </summary>
+        </member>
+        <member name="P:GlueIndustryModuledll.Circle.GroupDispenserCirclesInfoManager.OutTriggerIndex">
+            <summary>
+            点胶触发点
+            </summary>
+        </member>
+        <member name="P:GlueIndustryModuledll.Circle.GroupDispenserCirclesInfoManager.MovNextPointHeight">
+            <summary>
+            移动到下一个点时,回抬高度
+            </summary>
+        </member>
+        <member name="F:GlueIndustryModuledll.Circle.GroupDispenserCirclesInfoManager.XY_Speed">
+            <summary>
+            XY轴移动速度
+            </summary>
+        </member>
+        <member name="F:GlueIndustryModuledll.Circle.GroupDispenserCirclesInfoManager.Z_Speed">
+            <summary>
+            Z 轴移动速度:点完胶回抬速度
+            </summary>
+        </member>
+        <member name="F:GlueIndustryModuledll.Circle.GroupDispenserCirclesInfoManager.MaxDispenserEndFrictioningHeight">
+            <summary>
+            后尾刮胶高度:最大值
+            </summary>
+        </member>
+        <member name="M:GlueIndustryModuledll.Circle.GroupDispenserCirclesInfoManager.Add(GlueIndustryModuledll.Circle.DispenserCircleInfo)">
+            <summary>
+            添加数据
+            </summary>
+            <param name="dispenserCircleInfo"></param>
+        </member>
+        <member name="M:GlueIndustryModuledll.Circle.GroupDispenserCirclesInfoManager.Clear">
+            <summary>
+            清除点集合
+            </summary>
+        </member>
+        <member name="T:GlueIndustryModuledll.DispenserActionBase">
+            <summary>
+            所有点胶动作的基类
+            </summary>
+        </member>
+        <member name="P:GlueIndustryModuledll.DispenserActionBase.MovHelper">
+            <summary>
+            运动对象
+            </summary>
+        </member>
+        <member name="P:GlueIndustryModuledll.DispenserActionBase.IsExit">
+            <summary>
+            退出标志
+            </summary>
+        </member>
+        <member name="P:GlueIndustryModuledll.DispenserActionBase.IsRunning">
+            <summary>
+            运行标志
+            </summary>
+        </member>
+        <member name="E:GlueIndustryModuledll.DispenserActionBase.XYMovFirstPointFinishedEvent">
+            <summary>
+            XY轴移动到第一点触发的事件
+            </summary>
+        </member>
+        <member name="M:GlueIndustryModuledll.DispenserActionBase.Stop">
+            <summary>
+            停止
+            </summary>
+        </member>
+        <member name="M:GlueIndustryModuledll.DispenserActionBase.Fun_XYMovFirstPointFinishedAction">
+            <summary>
+            触发XY移动到第一点后的事件
+            </summary>
+        </member>
+        <member name="M:GlueIndustryModuledll.DispenserActionBase.DoAction">
+            <summary>
+            执行动作
+            </summary>
+        </member>
+        <member name="M:GlueIndustryModuledll.DispenserActionBase.ImplemnetAction">
+            <summary>
+            子类需要实现的动作
+            </summary>
+        </member>
+        <member name="M:GlueIndustryModuledll.DispenserActionBase.Sleep(System.Int32)">
+            <summary>
+            延时
+            </summary>
+            <param name="tm"></param>
+        </member>
+        <member name="T:GlueIndustryModuledll.ImplementForMotionCard.IArcLine">
+            <summary>
+            圆弧操作
+            输入单位都是脉冲
+            由板卡底层实现
+            </summary>
+        </member>
+        <member name="M:GlueIndustryModuledll.ImplementForMotionCard.IArcLine.ArcBase3PointMov(System.Double,System.Double,System.Double,System.Double,System.Int32,System.Double,System.Double,System.Double,System.Double,System.Boolean)">
+            <summary>
+            基于三点的圆弧操作
+            </summary>
+            <param name="mid_x"></param>
+            <param name="mid_y"></param>
+            <param name="end_x"></param>
+            <param name="end_y"></param>
+            <param name="outONTime"></param>
+            <param name="closeTriggerPercent">关闭触发的路径百分比</param>
+            <param name="speed"></param>
+            <param name="acc"></param>
+            <param name="dec"></param>       
+            <param name="checkdone"></param>
+        </member>
+        <member name="T:GlueIndustryModuledll.ImplementForMotionCard.ICirlceLine">
+            <summary>
+            画圆操作
+             输入单位都是脉冲
+             
+            由底层实现：板卡实现层
+            </summary>
+        </member>
+        <member name="M:GlueIndustryModuledll.ImplementForMotionCard.ICirlceLine.ArcMovAngleBaseTimeAndAngleToOut(System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Boolean)">
+            <summary>
+            画圆插补：基于时间和关闭角度的点胶
+            </summary>
+            <param name="centerPos1"></param>
+            <param name="centerPos2"></param>
+            <param name="angle"></param>
+            <param name="outONTime"></param>
+            <param name="outOFFAngle"></param>
+            <param name="speed"></param>
+            <param name="acc"></param>
+            <param name="dec"></param>
+            <param name="checkdone"></param>
+        </member>
+        <member name="M:GlueIndustryModuledll.ImplementForMotionCard.ICirlceLine.ArcMovAngle(System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Boolean)">
+            <summary>
+            画圆插补:仅仅执行画圆操作
+            </summary>
+            <param name="centerPos1"></param>
+            <param name="centerPos2"></param>
+            <param name="angle"></param>
+            <param name="speed"></param>
+            <param name="acc"></param>
+            <param name="dec"></param>
+            <param name="checkdone"></param>
+        </member>
+        <member name="T:GlueIndustryModuledll.ImplementForMotionCard.IPushContinueLineData">
+            <summary>
+            连续线数据插入接口
+             输入单位都是脉冲
+             由底层实现：板卡实现层
+            </summary>
+        </member>
+        <member name="M:GlueIndustryModuledll.ImplementForMotionCard.IPushContinueLineData.StartPush">
+            <summary>
+            开始插入操作
+            </summary>
+        </member>
+        <member name="M:GlueIndustryModuledll.ImplementForMotionCard.IPushContinueLineData.PushIO_ON">
+            <summary>
+            插入输出点ON操作数据
+            </summary>
+        </member>
+        <member name="M:GlueIndustryModuledll.ImplementForMotionCard.IPushContinueLineData.PushIO_OFF">
+            <summary>
+            插入输出点OFF操作数据
+            </summary>
+        </member>
+        <member name="M:GlueIndustryModuledll.ImplementForMotionCard.IPushContinueLineData.PushDelayTime(System.Int32)">
+            <summary>
+            插入延时：ms
+            </summary>
+            <param name="tm"></param>
+        </member>
+        <member name="M:GlueIndustryModuledll.ImplementForMotionCard.IPushContinueLineData.PushLineData(System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Boolean)">
+            <summary>
+            插入x y z 坐标数据：都是绝对坐标
+            </summary>
+            <param name="x"></param>
+            <param name="y"></param>
+            <param name="z"></param>
+            <param name="speed"></param>
+            <param name="acc"></param>
+            <param name="dec"></param>
+            <param name="IsJump">当移动到下一点时，如果Z轴的相对高度发生改变时；
+            有两种方式改变Z轴的高度：爬升或阶跃。爬升是在移动到下一点过程中逐渐改变Z轴高度，相当于走空间直线。
+            阶跃：是移动到下一点后直接将Z轴移动到所需要的高度，然后再做XY上的移动。
+            默认为true，即阶跃。
+            </param>
+        </member>
+        <member name="M:GlueIndustryModuledll.ImplementForMotionCard.IPushContinueLineData.EndPush">
+            <summary>
+            插入结束
+            </summary>
+        </member>
+        <member name="T:GlueIndustryModuledll.Lines.ExcuteDispenserContinueLinesAction">
+            <summary>
+            连续线执行者
+            </summary>
+        </member>
+        <member name="T:GlueIndustryModuledll.Lines.ContinueLinePointInfo">
+            <summary>
+            连续线点的信息
+            </summary>
+        </member>
+        <member name="F:GlueIndustryModuledll.Lines.ContinueLinePointInfo.NextPoint">
+            <summary>
+            连续线点位置
+            </summary>
+        </member>
+        <member name="F:GlueIndustryModuledll.Lines.ContinueLinePointInfo.Speed">
+            <summary>
+            移动到这点得速度
+            </summary>
+        </member>
+        <member name="P:GlueIndustryModuledll.Lines.ContinueLinePointInfo.IsJump">
+            <summary>
+            移动到这点时，如果Z轴高度发生变化，是阶跃还是爬升
+            为true即是阶跃，为false即为爬升
+            默认为true
+            </summary>
+        </member>
+        <member name="T:GlueIndustryModuledll.Lines.GroupContinueLinePointsInfoManager">
+            <summary>
+            连续线点信息管理者
+            </summary>
+        </member>
+        <member name="F:GlueIndustryModuledll.Lines.GroupContinueLinePointsInfoManager.MaxLineSegmentCount">
+            <summary>
+            连续线最大段数
+            </summary>
+        </member>
+        <member name="P:GlueIndustryModuledll.Lines.GroupContinueLinePointsInfoManager.DispenserIO">
+            <summary>
+            点胶触发IO
+            </summary>
+        </member>
+        <member name="P:GlueIndustryModuledll.Lines.GroupContinueLinePointsInfoManager.OutTriggeredDelayTime">
+            <summary>
+            Io触发延时多长时间:ms
+            </summary>
+        </member>
+        <member name="P:GlueIndustryModuledll.Lines.GroupContinueLinePointsInfoManager.ClosePrecentForLastSegment">
+            <summary>
+            连续线最后一段关闭百分比:0~1
+            </summary>
+        </member>
+        <member name="P:GlueIndustryModuledll.Lines.GroupContinueLinePointsInfoManager.DelayForLinished">
+            <summary>
+            画线结束后延时回抬
+            </summary>
+        </member>
+        <member name="F:GlueIndustryModuledll.Lines.GroupContinueLinePointsInfoManager.ContinueLineInfos">
+            <summary>
+            连续线的点信息集合
+            </summary>
+        </member>
+        <member name="F:GlueIndustryModuledll.Lines.GroupContinueLinePointsInfoManager.XY_Speed">
+            <summary>
+            XY轴移动速度
+            </summary>
+        </member>
+        <member name="F:GlueIndustryModuledll.Lines.GroupContinueLinePointsInfoManager.Z_Speed">
+            <summary>
+            Z 轴移动速度
+            </summary>
+        </member>
+        <member name="M:GlueIndustryModuledll.Lines.GroupContinueLinePointsInfoManager.Add(GlueIndustryModuledll.Lines.ContinueLinePointInfo)">
+            <summary>
+            添加数据
+            </summary>
+            <param name="continueLinePointInfo"></param>
+        </member>
+        <member name="M:GlueIndustryModuledll.Lines.GroupContinueLinePointsInfoManager.Clear">
+            <summary>
+            清除点集合
+            </summary>
+        </member>
+        <member name="T:GlueIndustryModuledll.ImplementForApplication.IXYLineAndZMov">
+            <summary>
+            XY 移动,Z 轴移动接口
+            输入单位都是脉冲
+            由上层实现：应用层
+            </summary>
+        </member>
+        <member name="M:GlueIndustryModuledll.ImplementForApplication.IXYLineAndZMov.XY_LineMov(System.Double,System.Double,System.Double,System.Double,System.Double,System.Boolean)">
+            <summary>
+            XY 相对直线插补
+            </summary>
+            <param name="dis_x"></param>
+            <param name="dis_y"></param>
+            <param name="speed"></param>
+            <param name="acc"></param>
+            <param name="dec"></param>
+            <param name="checkdone"></param>
+        </member>
+        <member name="M:GlueIndustryModuledll.ImplementForApplication.IXYLineAndZMov.XY_LineMovAbs(System.Double,System.Double,System.Double,System.Double,System.Double,System.Boolean)">
+            <summary>
+            XY 绝对直线插补
+            </summary>
+            <param name="pos_x"></param>
+            <param name="pos_y"></param>
+            <param name="speed"></param>
+            <param name="acc"></param>
+            <param name="dec"></param>
+            <param name="checkdone"></param>
+        </member>
+        <member name="M:GlueIndustryModuledll.ImplementForApplication.IXYLineAndZMov.Z_Mov(System.Double,System.Double,System.Double,System.Double,System.Boolean)">
+            <summary>
+            Z 轴相对移动
+            </summary>
+            <param name="dis"></param>
+            <param name="speed"></param>
+            <param name="acc"></param>
+            <param name="dec"></param>
+            <param name="checkdone"></param>
+        </member>
+        <member name="M:GlueIndustryModuledll.ImplementForApplication.IXYLineAndZMov.Z_MovAbs(System.Double,System.Double,System.Double,System.Double,System.Boolean)">
+            <summary>
+            Z 轴绝对直线移动
+            </summary>
+            <param name="pos"></param>
+            <param name="speed"></param>
+            <param name="acc"></param>
+            <param name="dec"></param>
+            <param name="checkdone"></param>
+        </member>
+        <member name="M:GlueIndustryModuledll.ImplementForApplication.IXYLineAndZMov.Z_WaitDone">
+            <summary>
+            等待Z轴运动完成
+            </summary>
+        </member>
+        <member name="M:GlueIndustryModuledll.ImplementForApplication.IXYLineAndZMov.XY_WaitDone">
+            <summary>
+            等待XY运动完成
+            </summary>
+        </member>
+        <member name="T:GlueIndustryModuledll.ImplementForApplication.ImplementPoint.IPointDispenserIOTriggerBase">
+            <summary>
+            定义一个接口：用来约束点胶点触发
+            由上层实现：应用层
+            </summary>
+        </member>
+        <member name="M:GlueIndustryModuledll.ImplementForApplication.ImplementPoint.IPointDispenserIOTriggerBase.Out_ON">
+            <summary>
+            打开IO点
+            </summary>
+        </member>
+        <member name="M:GlueIndustryModuledll.ImplementForApplication.ImplementPoint.IPointDispenserIOTriggerBase.Out_OFF">
+            <summary>
+            关闭IO点
+            </summary>
+        </member>
+        <member name="T:GlueIndustryModuledll.Points.ExcuteDispenserPointsAction">
+            <summary>
+            打点信息的执行者
+            </summary>
+        </member>
+        <member name="P:GlueIndustryModuledll.Points.ExcuteDispenserPointsAction.infoManager">
+            <summary>
+            点信息
+            </summary>
+        </member>
+        <member name="T:GlueIndustryModuledll.Points.GroupDispenserPointsInfoManager">
+            <summary>
+            打点点胶信息的管理者
+            </summary>
+        </member>
+        <member name="P:GlueIndustryModuledll.Points.GroupDispenserPointsInfoManager.DispenserIO">
+            <summary>
+            点胶触发IO
+            </summary>
+        </member>
+        <member name="F:GlueIndustryModuledll.Points.GroupDispenserPointsInfoManager.PointsInfo">
+            <summary>
+            打点点胶信息集合
+            </summary>
+        </member>
+        <member name="P:GlueIndustryModuledll.Points.GroupDispenserPointsInfoManager.ALL_PreDispenserDelayTime">
+            <summary>
+            点胶前延时[全局时间]:ms
+            </summary>
+        </member>
+        <member name="P:GlueIndustryModuledll.Points.GroupDispenserPointsInfoManager.ALL_DispenserTriggerTime">
+            <summary>
+            点胶触发时间，即吐胶时间[全局时间]：ms
+            </summary>
+        </member>
+        <member name="P:GlueIndustryModuledll.Points.GroupDispenserPointsInfoManager.ALL_FinishedDispenserToDelayTime">
+            <summary>
+            点胶结束后延时[全局时间]:ms
+            </summary>
+        </member>
+        <member name="P:GlueIndustryModuledll.Points.GroupDispenserPointsInfoManager.MovNextPointHeight">
+            <summary>
+            移动到下一个点时,回抬高度
+            </summary>
+        </member>
+        <member name="F:GlueIndustryModuledll.Points.GroupDispenserPointsInfoManager.XY_Speed">
+            <summary>
+            XY轴移动速度
+            </summary>
+        </member>
+        <member name="F:GlueIndustryModuledll.Points.GroupDispenserPointsInfoManager.Z_Speed">
+            <summary>
+            Z 轴移动速度:点完胶回抬速度
+            </summary>
+        </member>
+        <member name="M:GlueIndustryModuledll.Points.GroupDispenserPointsInfoManager.Add(GlueIndustryModuledll.Points.DispenserPointInfo)">
+            <summary>
+            添加数据
+            </summary>
+            <param name="dispenserPointInfo"></param>
+        </member>
+        <member name="M:GlueIndustryModuledll.Points.GroupDispenserPointsInfoManager.Clear">
+            <summary>
+            清除点集合
+            </summary>
+        </member>
+        <member name="T:GlueIndustryModuledll.Points.DispenserPointInfo">
+            <summary>
+            打点点胶时一个点的具体信息
+            </summary>
+        </member>
+        <member name="F:GlueIndustryModuledll.Points.DispenserPointInfo.WorkPos">
+            <summary>
+            打点时XYZ的工作点位
+            </summary>
+        </member>
+        <member name="P:GlueIndustryModuledll.Points.DispenserPointInfo.PreDispenserDelayTime">
+            <summary>
+            点胶前延时:ms
+            </summary>
+        </member>
+        <member name="P:GlueIndustryModuledll.Points.DispenserPointInfo.DispenserTriggerTime">
+            <summary>
+            点胶触发时间，即吐胶时间:ms
+            </summary>
+        </member>
+        <member name="P:GlueIndustryModuledll.Points.DispenserPointInfo.FinishedDispenserToDelayTime">
+            <summary>
+            点胶结束后延时:ms
+            </summary>
+        </member>
+        <member name="T:GlueIndustryModuledll.PointXY">
+            <summary>
+            XY 位置信息
+            </summary>
+        </member>
+        <member name="T:GlueIndustryModuledll.PointXYZ">
+            <summary>
+            XYZ 点位置
+            </summary>
+        </member>
+        <member name="T:GlueIndustryModuledll.SpeedParam">
+            <summary>
+            速度参数
+            </summary>
+        </member>
+        <member name="P:GlueIndustryModuledll.SpeedParam.Speed">
+            <summary>
+            运行速度
+            </summary>
+        </member>
+        <member name="P:GlueIndustryModuledll.SpeedParam.Acc">
+            <summary>
+            加速度
+            </summary>
+        </member>
+        <member name="P:GlueIndustryModuledll.SpeedParam.Dec">
+            <summary>
+            减速度
+            </summary>
+        </member>
+    </members>
+</doc>

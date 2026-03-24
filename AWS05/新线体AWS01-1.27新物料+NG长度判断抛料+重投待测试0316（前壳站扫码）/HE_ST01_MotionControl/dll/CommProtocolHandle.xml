@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CommProtocolHandle</name>
+    </assembly>
+    <members>
+        <member name="T:CommProtocolHandle.ProtocolFormat">
+            <summary>
+            通信的协议格式
+            </summary>
+        </member>
+        <member name="P:CommProtocolHandle.ProtocolFormat.Command">
+            <summary>
+            命令
+            </summary>
+        </member>
+        <member name="P:CommProtocolHandle.ProtocolFormat.Text">
+            <summary>
+            内容
+            </summary>
+        </member>
+        <member name="P:CommProtocolHandle.ProtocolFormat.Status">
+            <summary>
+            状态
+            </summary>
+        </member>
+        <member name="M:CommProtocolHandle.ProtocolFormat.ConvertFromStr(System.String)">
+            <summary>
+            将标准的格式字符创转换为协议对象
+            转换成成功，返回对象
+            转换失败，返回null
+            </summary>
+            <param name="parseStr"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,238 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>LineAixsdll</name>
+    </assembly>
+    <members>
+        <member name="T:LineAixsdll.ILineAixs">
+            <summary>
+            插补的基本操作
+            </summary>
+        </member>
+        <member name="M:LineAixsdll.ILineAixs.LineMov(System.Double,System.Double,System.Double,System.Double,System.Double,System.Boolean)">
+            <summary>
+            相对当前位置的直线插补
+            </summary>
+            <param name="dis1">轴1的距离</param>
+            <param name="dis2">轴2的距离</param>
+            <param name="speed">插补速度</param>
+            <param name="acc">加速度</param>
+            <param name="dec">减速度</param>
+            <param name="checkdone">是否等待停止</param>
+        </member>
+        <member name="M:LineAixsdll.ILineAixs.LineMovAbs(System.Double,System.Double,System.Double,System.Double,System.Double,System.Boolean)">
+            <summary>
+            绝对位置插补
+            </summary>
+            <param name="dis1">轴1的执行点坐标</param>
+            <param name="dis2">轴2的执行点坐标</param>
+            <param name="speed">插补速度</param>
+            <param name="acc">加速度</param>
+            <param name="dec">减速度</param>
+            <param name="checkdone">是否等待停止</param>
+        </member>
+        <member name="M:LineAixsdll.ILineAixs.ArcMovAngle(System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Boolean)">
+            <summary>
+            圆插补，基于角度；仅仅画圆
+            </summary>
+            <param name="centerPos1">轴1的圆心坐标</param>
+            <param name="centerPos2">轴2的圆心坐标</param>
+            <param name="angle">要走的角度，正值逆时针；负值顺时针</param>
+            <param name="speed">画圆速度</param>
+            <param name="acc">加速度</param>
+            <param name="dec">减速度</param>
+            <param name="checkdone">是否等待停止</param>
+        </member>
+        <member name="M:LineAixsdll.ILineAixs.ArcMovAngleBaseAngleToOut(System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Boolean)">
+            <summary>
+            圆插补，基于角度；同时触发IO
+            </summary>
+            <param name="centerPos1">轴1的圆心坐标</param>
+            <param name="centerPos2">轴2的圆心坐标</param>
+            <param name="angle">要走的角度，正值逆时针；负值顺时针</param>
+            <param name="outONAngle">设置输出点触发角度</param>
+            <param name="outOFFAngle">设置输出点的关闭角度</param>
+            <param name="speed">画圆速度</param>
+            <param name="acc">加速度</param>
+            <param name="dec">减速度</param>
+            <param name="checkdone">是否等待停止</param>
+        </member>
+        <member name="M:LineAixsdll.ILineAixs.ArcMovAngleBaseTimeAndAngleToOut(System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Boolean)">
+            <summary>
+            圆插补，基于角度；同时触发IO
+            </summary>
+            <param name="centerPos1">轴1的圆心坐标</param>
+            <param name="centerPos2">轴2的圆心坐标</param>
+            <param name="angle">要走的角度，正值逆时针；负值顺时针</param>
+            <param name="outONTime">(优先触发IO)设置输出点响应时间，当时间到时,后面才继续执行</param>
+            <param name="outOFFAngle">设置输出点的关闭角度</param>
+            <param name="speed">画圆速度</param>
+            <param name="acc">加速度</param>
+            <param name="dec">减速度</param>
+            <param name="checkdone">是否等待停止</param>
+        </member>
+        <member name="M:LineAixsdll.ILineAixs.SetArcMovOutIndex(System.Int32)">
+            <summary>
+            设置的输出点
+            </summary>
+            <param name="index"></param>
+        </member>
+        <member name="M:LineAixsdll.ILineAixs.Stop">
+            <summary>
+            停止插补运动
+            </summary>
+        </member>
+        <member name="M:LineAixsdll.ILineAixs.WaitDone">
+            <summary>
+            等待运动完成
+            </summary>
+        </member>
+        <member name="M:LineAixsdll.ILineAixs.GetLineState">
+            <summary>
+            获取插补的运行或停止的状态
+            </summary>
+            <returns>True:正在执行插补；False:运动已停止</returns>
+        </member>
+        <member name="T:LineAixsdll.ILineThreeAixs">
+            <summary>
+            三轴插补操作
+            </summary>
+        </member>
+        <member name="M:LineAixsdll.ILineThreeAixs.Line3Mov(System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Boolean)">
+            <summary>
+            相对当前位置的直线插补
+            </summary>
+            <param name="disX">轴1的距离</param>
+            <param name="disY">轴2的距离</param>
+            <param name="disZ">轴3的距离</param>
+            <param name="speed">插补速度</param>
+            <param name="acc">加速度</param>
+            <param name="dec">减速度</param>
+            <param name="checkdone">是否等待停止</param>
+        </member>
+        <member name="M:LineAixsdll.ILineThreeAixs.Line3MovAbs(System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Boolean)">
+            <summary>
+            绝对位置插补
+            </summary>
+            <param name="disX">轴1的执行点坐标</param>
+            <param name="disY">轴2的执行点坐标</param>
+             <param name="disZ">轴3的执行点坐标</param>
+            <param name="speed">插补速度</param>
+            <param name="acc">加速度</param>
+            <param name="dec">减速度</param>
+            <param name="checkdone">是否等待停止</param>
+        </member>
+        <member name="M:LineAixsdll.ILineThreeAixs.Line3MovAbs(System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Boolean)">
+            <summary>
+            绝对位置插补
+            </summary>
+            <param name="disX">轴1的执行点坐标</param>
+            <param name="disY">轴2的执行点坐标</param>
+             <param name="disZ">轴3的执行点坐标</param>
+            <param name="Z_MovUpDis">Z 轴预先抬升高度</param>
+            <param name="speed">插补速度</param>
+            <param name="acc">加速度</param>
+            <param name="dec">减速度</param>
+            <param name="checkdone">是否等待停止</param>
+        </member>
+        <member name="M:LineAixsdll.ILineThreeAixs.Line2Mov(System.Double,System.Double,System.Double,System.Double,System.Double,System.Boolean)">
+            <summary>
+            相对当前位置的直线插补
+            </summary>
+            <param name="dis1">轴1的距离</param>
+            <param name="dis2">轴2的距离</param>
+            <param name="speed">插补速度</param>
+            <param name="acc">加速度</param>
+            <param name="dec">减速度</param>
+            <param name="checkdone">是否等待停止</param>
+        </member>
+        <member name="M:LineAixsdll.ILineThreeAixs.Line2MovAbs(System.Double,System.Double,System.Double,System.Double,System.Double,System.Boolean)">
+            <summary>
+            绝对位置插补
+            </summary>
+            <param name="dis1">轴1的执行点坐标</param>
+            <param name="dis2">轴2的执行点坐标</param>
+            <param name="speed">插补速度</param>
+            <param name="acc">加速度</param>
+            <param name="dec">减速度</param>
+            <param name="checkdone">是否等待停止</param>
+        </member>
+        <member name="M:LineAixsdll.ILineThreeAixs.ArcMovAngleBaseAngleToOut(System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Boolean)">
+            <summary>
+            圆插补，基于角度；同时触发IO
+            </summary>
+            <param name="centerPos1">轴1的圆心坐标</param>
+            <param name="centerPos2">轴2的圆心坐标</param>
+            <param name="angle">要走的角度，正值逆时针；负值顺时针</param>
+            <param name="outONAngle">设置输出点触发角度</param>
+            <param name="outOFFAngle">设置输出点的关闭角度</param>
+            <param name="speed">画圆速度</param>
+            <param name="acc">加速度</param>
+            <param name="dec">减速度</param>
+            <param name="checkdone">是否等待停止</param>
+        </member>
+        <member name="M:LineAixsdll.ILineThreeAixs.ArcMovAngleBaseTimeAndAngleToOut(System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Boolean)">
+            <summary>
+            圆插补，基于角度；同时触发IO
+            </summary>
+            <param name="centerPos1">轴1的圆心坐标</param>
+            <param name="centerPos2">轴2的圆心坐标</param>
+            <param name="angle">要走的角度，正值逆时针；负值顺时针</param>
+            <param name="outONTime">(优先触发IO)设置输出点响应时间，当时间到时,后面才继续执行</param>
+            <param name="outOFFAngle">设置输出点的关闭角度</param>
+            <param name="speed">画圆速度</param>
+            <param name="acc">加速度</param>
+            <param name="dec">减速度</param>
+            <param name="checkdone">是否等待停止</param>
+        </member>
+        <member name="M:LineAixsdll.ILineThreeAixs.SetArcMovOutIndex(System.Int32)">
+            <summary>
+            设置的输出点
+            </summary>
+            <param name="index"></param>
+        </member>
+        <member name="M:LineAixsdll.ILineThreeAixs.Stop">
+            <summary>
+            停止插补运动
+            </summary>
+        </member>
+        <member name="M:LineAixsdll.ILineThreeAixs.WaitDone">
+            <summary>
+            等待运动完成
+            </summary>
+        </member>
+        <member name="M:LineAixsdll.ILineThreeAixs.GetLineState">
+            <summary>
+            获取插补的运行或停止的状态
+            </summary>
+            <returns>True:正在执行插补；False:运动已停止</returns>
+        </member>
+        <member name="T:LineAixsdll.LineAixsFactory">
+            <summary>
+            插补对象创建的抽象类工厂
+            </summary>
+        </member>
+        <member name="M:LineAixsdll.LineAixsFactory.CreateLineAix(SingleAixdll.ISingleAix,SingleAixdll.ISingleAix)">
+            <summary>
+            创建插补对象
+            </summary>
+            <param name="aix1"></param>
+            <param name="aix2"></param>
+            <returns></returns>
+        </member>
+        <member name="T:LineAixsdll.LineThreeAixsFactory">
+            <summary>
+            插补对象创建的抽象类工厂
+            </summary>
+        </member>
+        <member name="M:LineAixsdll.LineThreeAixsFactory.CreateLineAix(SingleAixdll.ISingleAix,SingleAixdll.ISingleAix,SingleAixdll.ISingleAix)">
+            <summary>
+            创建插补对象
+            </summary>
+            <param name="aix1"></param>
+            <param name="aix2"></param>
+            <param name="aix3"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

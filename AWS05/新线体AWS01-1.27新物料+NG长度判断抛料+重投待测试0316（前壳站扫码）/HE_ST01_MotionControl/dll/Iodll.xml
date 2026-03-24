@@ -1,0 +1,383 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Iodll</name>
+    </assembly>
+    <members>
+        <member name="T:Iodll.IGetIOAbsAddressInfo">
+            <summary>
+            获取IO输入或输出点的绝对地址信息
+            </summary>
+        </member>
+        <member name="M:Iodll.IGetIOAbsAddressInfo.GetInAbsAddressInfo(Iodll.IoInHelper)">
+            <summary>
+            获取输入点的绝对地址信息
+            </summary>
+            <param name="ioIn"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Iodll.IGetIOAbsAddressInfo.GetOutAbsAddressInfo(Iodll.IoOutHepler)">
+            <summary>
+            获取输出点的绝对地址信息
+            </summary>
+            <param name="ioOut"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Iodll.IoInAbsAddressInfoBase">
+            <summary>
+            返回一个IO点的输入点绝对地址信息
+            
+            </summary>
+        </member>
+        <member name="T:Iodll.IoControl">
+            <summary>
+            Io控制卡对象
+            确切的说每一个Io模块都是一个IoControl对象
+            例如：电脑里装了一张专门用来控制Io的卡，该卡搭载了4个Io模块，每个Io模块有16个输入16个输出；那么我们就需要为这4个模块创建四个IoControl对象
+            </summary>
+        </member>
+        <member name="M:Iodll.IoControl.#ctor(System.String,System.Int32,System.Int32,Iodll.IoControlContainer)">
+            <summary>
+            模块控制对象的创建
+            </summary>
+            <param name="name">模块名字</param>
+            <param name="InNums">输入点数</param>
+            <param name="OutNums">输出点数</param>
+            <param name="ioMsg">提供信息的收集器</param>
+        </member>
+        <member name="P:Iodll.IoControl.Name">
+            <summary>
+            模块的名字
+            </summary>
+        </member>
+        <member name="P:Iodll.IoControl.InTotalNums">
+            <summary>
+            输入的总点数
+            </summary>
+        </member>
+        <member name="P:Iodll.IoControl.OutTotalNums">
+            <summary>
+            输出的总点数
+            </summary>
+        </member>
+        <member name="P:Iodll.IoControl.Mode">
+            <summary>
+            Io上模块
+            </summary>
+        </member>
+        <member name="P:Iodll.IoControl.Tag">
+            <summary>
+            标识
+            </summary>
+        </member>
+        <member name="M:Iodll.IoControl.Out_Setbit(System.Int16,System.Byte)">
+            <summary>
+            打开或关闭输出
+            </summary>
+            <param name="bitNo">输出点:0~15</param>
+            <param name="doValue">设定值：0/1</param>
+        </member>
+        <member name="M:Iodll.IoControl.In_Getbit(System.Int16)">
+            <summary>
+            读取IO上输入点的有效电平，返回true，代表导通
+            </summary>
+            <param name="bitNo">输入点：0~15</param>
+            <returns></returns>
+        </member>
+        <member name="M:Iodll.IoControl.Out_Getbit(System.Int16)">
+            <summary>
+            读取IO上输出点的有效电平，返回true，代表导通
+            </summary>
+            <param name="bitNo">输入点：0~15</param>
+            <returns></returns>
+        </member>
+        <member name="M:Iodll.IoControl.In_GetAll">
+            <summary>
+            读取IO上所有的输入点状态，每一位上1代表导通，0代表断开，共0~15位
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Iodll.IoControl.Out_GetAll">
+            <summary>
+            读取IO上所有的输出点状态，每一位上1代表导通，0代表断开，共0~15位
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Iodll.IoInHelper">
+            <summary>
+            单个输入点对象
+            </summary>
+        </member>
+        <member name="P:Iodll.IoInHelper.ioHelper">
+            <summary>
+            IO卡的控制对象
+            </summary>
+        </member>
+        <member name="P:Iodll.IoInHelper.InBytes">
+            <summary>
+            输入点
+            </summary>
+        </member>
+        <member name="P:Iodll.IoInHelper.andOrEnable">
+            <summary>
+            当输入点数多于一个时，是与有效，还是或有效
+            </summary>
+        </member>
+        <member name="P:Iodll.IoInHelper.IsReverse">
+            <summary>
+            是否取反
+            </summary>
+        </member>
+        <member name="P:Iodll.IoInHelper.IsLimit">
+            <summary>
+            是否禁用,禁用后，返回的始终是False
+            </summary>
+        </member>
+        <member name="P:Iodll.IoInHelper.LimitReturn">
+            <summary>
+            禁用下的返回值
+            </summary>
+        </member>
+        <member name="P:Iodll.IoInHelper.IsReplaceUseTime">
+            <summary>
+            输入信号是否用延时替代
+            </summary>
+        </member>
+        <member name="P:Iodll.IoInHelper.Remark">
+            <summary>
+            描述
+            </summary>
+        </member>
+        <member name="M:Iodll.IoInHelper.In">
+            <summary>
+            获取输入信号状态，返回True，代表指定列表输入点导通，否则不导通
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Iodll.IoInHelper.Set_IsReverse(System.Boolean)">
+            <summary>
+            设置是否信号取反
+            </summary>
+            <param name="bl"></param>
+        </member>
+        <member name="M:Iodll.IoInHelper.Set_IsLimit(System.Boolean,System.Boolean)">
+            <summary>
+            设置是否禁用，如果禁用是设置返回值
+            </summary>
+            <param name="bl"></param>
+            <param name="limitRetrun"></param>
+        </member>
+        <member name="M:Iodll.IoInHelper.Set_ReplaceUseTime(System.Boolean,System.Int32)">
+            <summary>
+            设置时间：用延时替代
+            </summary>
+            <param name="IsReplay"></param>
+            <param name="tm"></param>
+        </member>
+        <member name="T:Iodll.IoControlContainer">
+            <summary>
+            Io 卡的信息收集器
+            </summary>
+        </member>
+        <member name="T:Iodll.IoOutAbsAddressInfoBase">
+            <summary>
+            获取IO输出点的绝对地址信息
+            </summary>
+        </member>
+        <member name="T:Iodll.IoOutHepler">
+            <summary>
+            单个输出点对象
+            </summary>
+        </member>
+        <member name="P:Iodll.IoOutHepler.ioHelper">
+            <summary>
+            IO卡的控制对象
+            </summary>
+        </member>
+        <member name="P:Iodll.IoOutHepler.OutBytes">
+            <summary>
+            输入点
+            </summary>
+        </member>
+        <member name="P:Iodll.IoOutHepler.Remark">
+            <summary>
+            描述
+            </summary>
+        </member>
+        <member name="P:Iodll.IoOutHepler.ButtonRemark">
+            <summary>
+            按钮名字
+            </summary>
+        </member>
+        <member name="P:Iodll.IoOutHepler.IsAddClick">
+            <summary>
+            是否添加按钮
+            </summary>
+        </member>
+        <member name="E:Iodll.IoOutHepler.SafeCheck_ON">
+            <summary>
+            置位时，检查的安全条件
+            </summary>
+        </member>
+        <member name="E:Iodll.IoOutHepler.SafeCheck_OFF">
+            <summary>
+            复位时，检查的安全条件
+            </summary>
+        </member>
+        <member name="E:Iodll.IoOutHepler.PreOn_EventHandler">
+            <summary>
+            置位前时，触发的条件
+            </summary>
+        </member>
+        <member name="E:Iodll.IoOutHepler.OnFinished_EventHandler">
+            <summary>
+            置位后时，触发的条件
+            </summary>
+        </member>
+        <member name="E:Iodll.IoOutHepler.PreOFF_EventHandler">
+            <summary>
+            复位前时，触发的条件
+            </summary>
+        </member>
+        <member name="E:Iodll.IoOutHepler.OffFinished_EventHandler">
+            <summary>
+            复位后时，触发的条件
+            </summary>
+        </member>
+        <member name="M:Iodll.IoOutHepler.#ctor(Iodll.IoControl,System.String,System.String,System.Byte[])">
+            <summary>
+            创建对象，需传入Io卡的控制对像，该信号的描述，输出信号的列表
+            </summary>
+            <param name="helper"></param>
+            <param name="_remark">输出点注释</param>
+            <param name="_buttonRemark">按钮的名字</param>
+            <param name="ByteParas"></param>
+        </member>
+        <member name="M:Iodll.IoOutHepler.#ctor(Iodll.IoControl,System.String,System.Byte[])">
+            <summary>
+            创建对象，需传入Io卡的控制对像，该信号的描述，输出信号的列表
+            </summary>
+            <param name="helper"></param>
+            <param name="_remark">输出点注释</param>        
+            <param name="ByteParas"></param>
+        </member>
+        <member name="M:Iodll.IoOutHepler.#ctor(Iodll.IoControl,System.String,System.Boolean,System.Byte[])">
+            <summary>
+            创建对象，需传入Io卡的控制对像，该信号的描述，输出信号的列表
+            </summary>
+            <param name="helper"></param>
+            <param name="_remark">输出点注释</param>
+            <param name="IsAddClick"></param>
+            <param name="ByteParas"></param>
+        </member>
+        <member name="M:Iodll.IoOutHepler.#ctor(Iodll.IoControl,System.String,System.String,System.Boolean,System.Byte[])">
+            <summary>
+            创建对象，需传入Io卡的控制对像，该信号的描述，输出信号的列表
+            </summary>
+            <param name="helper"></param>
+            <param name="_remark">输出点注释</param>
+            <param name="_buttonRemark">按钮的名字</param>
+            <param name="IsAddClick"></param>
+            <param name="ByteParas"></param>
+        </member>
+        <member name="M:Iodll.IoOutHepler.Out_ON">
+            <summary>
+            置位指定列表里的全部输出点
+            </summary>
+        </member>
+        <member name="M:Iodll.IoOutHepler.Out_OFF">
+            <summary>
+            复位指定列表里的全部输出点
+            </summary>
+        </member>
+        <member name="M:Iodll.IoOutHepler.Out_Trriger(System.Int32)">
+            <summary>
+             以震荡形式指定列表里的输出点：ON->OFF;
+            </summary>
+            <param name="i_time"> ON到OFF变化的间隙时间</param>
+        </member>
+        <member name="M:Iodll.IoOutHepler.In_Outbit">
+            <summary>
+            读取输出点的状态，全On时为true，否则为false
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="E:Iodll.IoOutHepler.GlobalMethonInvokeEvent">
+            <summary>
+            全局事件，当方法被调用时触发的事件: 触发的方法为Mov,Jog 操作类方法！状态访问类的不触发
+            </summary>
+        </member>
+        <member name="T:Iodll.IoTotalDataMode">
+            <summary>
+            一张Io模块的信息集合
+            </summary>
+        </member>
+        <member name="P:Iodll.IoTotalDataMode.InTotalNums">
+            <summary>
+            输入的总点数
+            </summary>
+        </member>
+        <member name="P:Iodll.IoTotalDataMode.OutTotalNums">
+            <summary>
+            输出的总点数
+            </summary>
+        </member>
+        <member name="F:Iodll.IoTotalDataMode.pairs_In">
+            <summary>
+            输入点信息集合
+            </summary>
+        </member>
+        <member name="F:Iodll.IoTotalDataMode.pairs_Out">
+            <summary>
+            输出点信息集合
+            </summary>
+        </member>
+        <member name="F:Iodll.IoTotalDataMode.outActions">
+            <summary>
+            输出点动作集合
+            </summary>
+        </member>
+        <member name="M:Iodll.IoTotalDataMode.Add_InRemark(System.Byte,System.String)">
+            <summary>
+            增加输入点注释
+            </summary>
+            <param name="index"></param>
+            <param name="remark"></param>
+        </member>
+        <member name="M:Iodll.IoTotalDataMode.Add_OutRemark(System.Byte,System.String)">
+            <summary>
+            增加输出点注释
+            </summary>
+            <param name="index"></param>
+            <param name="remark"></param>
+        </member>
+        <member name="M:Iodll.IoTotalDataMode.Add_OutAction(Iodll.IOutActionData)">
+            <summary>
+            增加输出点按钮信息
+            </summary>
+            <param name="index"></param>
+            <param name="remark"></param>
+        </member>
+        <member name="M:Iodll.IoTotalDataMode.GetOutActions">
+            <summary>
+            获取Io输出点的按钮事件
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Iodll.IOutActionData">
+            <summary>
+             针对输出的点接口，因为输出点要对应按钮事件，需要先收集起来便于后来的遍历
+            </summary>
+        </member>
+        <member name="P:Iodll.IOutActionData.ButtonRemark">
+            <summary>
+            按键名字
+            </summary>
+        </member>
+        <member name="P:Iodll.IOutActionData.OutBytes">
+            <summary>
+            输出点集合
+            </summary>
+        </member>
+    </members>
+</doc>

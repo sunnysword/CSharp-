@@ -1,0 +1,54 @@
+﻿<UserControl
+    x:Class="Handler.View.MainUnits.Unit_SiteStationSetting"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:Handler.View.MainUnits"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="450"
+    d:DesignWidth="400"
+    Loaded="UserControl_Loaded"
+    mc:Ignorable="d">
+    <Grid Margin="0" Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="220" />
+        </Grid.RowDefinitions>
+        <!--<ScrollViewer Grid.Row="0">
+            <StackPanel Orientation="Vertical">
+                <TextBlock
+                    VerticalAlignment="Center"
+                    Background="Yellow"
+                    FontSize="20"
+                    FontWeight="Bold"
+                    Text="工位设置" />
+                <StackPanel Orientation="Horizontal">
+                   
+                </StackPanel>
+                <StackPanel x:Name="stackPanelStationSettings" Orientation="Vertical" />
+            </StackPanel>
+
+        </ScrollViewer>-->
+        <ScrollViewer Grid.Row="1">
+            <StackPanel x:Name="stackPanelSocketSettings" Orientation="Vertical">
+                <TextBlock
+                    VerticalAlignment="Center"
+                    Background="Yellow"
+                    FontSize="20"
+                    FontWeight="Bold"
+                    Text="治具设置" />
+                <Grid x:Name="gridSocketSettings">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="auto" />
+                    </Grid.ColumnDefinitions>
+                </Grid>
+            </StackPanel>
+
+        </ScrollViewer>
+
+
+
+
+    </Grid>
+</UserControl>

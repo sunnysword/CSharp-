@@ -1,0 +1,300 @@
+﻿<Window xmlns:MainUnits="clr-namespace:Handler.View.MainUnits"  x:Class="Handler.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:Lcb="clr-namespace:LanCustomControldll.Unit_ListMsg;assembly=LanCustomControldll"
+        xmlns:local="clr-namespace:Handler"   
+        xmlns:home="clr-namespace:Handler.Views.HomePage"
+        xmlns:system="clr-namespace:System;assembly=mscorlib"
+        xmlns:MainUnitsView="clr-namespace:Handler.View.MainUnits" xmlns:Lan="clr-namespace:LanguageControlBase.Wpf;assembly=LanguageControlBase" xmlns:devicelife="clr-namespace:Handler.View.DeviceLife"
+        mc:Ignorable="d"
+        Title="运动控制" Height="820" Width="1080" Closed="Window_Closed" 
+         Loaded="Window_Loaded" WindowStartupLocation="CenterScreen" Closing="Window_Closing"
+        KeyDown="Window_KeyDown" FontSize="12" >
+    <Window.Resources>
+        <system:Double x:Key="IntFontSize">
+            14
+        </system:Double>
+    </Window.Resources>
+    <Grid Background="{DynamicResource {x:Static SystemColors.GradientActiveCaptionBrushKey}}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="20"></RowDefinition>
+        </Grid.RowDefinitions>
+        <MainUnits:Unit_MainTopMenu VerticalContentAlignment="Top" Height="20" x:Name="Menu_Main" Grid.Row="0"/>
+        <Grid Grid.Row="1">
+            <Grid Grid.Row="2" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="610"></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <StackPanel Orientation="Vertical">
+                    <Border BorderThickness="0.1" BorderBrush="Black" Margin="10"
+                            CornerRadius="10" Background="Transparent" >
+                        <MainUnits:Unit_MainTopPart Margin="2" Grid.Row="1" x:Name="Main_TopPart"></MainUnits:Unit_MainTopPart>
+                    </Border>
+                    <StackPanel Orientation="Vertical">
+
+                        <StackPanel Orientation="Horizontal">
+                            <StackPanel Orientation="Vertical" Width="240">
+                                <StackPanel Orientation="Horizontal">
+                                    <StackPanel Orientation="Vertical" Visibility="Collapsed">
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Margin="5"
+                                   FontSize="{StaticResource IntFontSize}" Text="治具1" />
+                                            <TextBlock
+                        x:Name="textBlockSocketAState"
+                        Margin="5" FontSize="{StaticResource IntFontSize}"
+                        Background="Green"
+                        Text="启用中" />
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Margin="5" Text="治具2"  FontSize="{StaticResource IntFontSize}"/>
+                                            <TextBlock
+                        x:Name="textBlockSocketBState"
+                        Margin="5" FontSize="{StaticResource IntFontSize}"
+                        Background="Green"
+                        Text="启用中" />
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Margin="5" Text="治具3"  FontSize="{StaticResource IntFontSize}"/>
+                                            <TextBlock
+                        x:Name="textBlockSocketCState" FontSize="{StaticResource IntFontSize}"
+                        Margin="5"
+                        Background="Green"
+                        Text="启用中" />
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Margin="5" Text="治具4" FontSize="{StaticResource IntFontSize}" />
+                                            <TextBlock
+x:Name="textBlockSocketDState" FontSize="{StaticResource IntFontSize}"
+Margin="5"
+Background="Green"
+Text="启用中" />
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Margin="5,5,7,5" Text="治具5"  FontSize="{StaticResource IntFontSize}"/>
+                                            <TextBlock
+x:Name="textBlockSocketEState" FontSize="{StaticResource IntFontSize}"
+Margin="5"
+Background="Green"
+Text="启用中" />
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Margin="5,5,8,5" Text="治具6"  FontSize="{StaticResource IntFontSize}"/>
+                                            <TextBlock
+x:Name="textBlockSocketFState" FontSize="{StaticResource IntFontSize}"
+Margin="5"
+Background="Green"
+Text="启用中" />
+                                        </StackPanel>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Vertical" Visibility="Collapsed">
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock
+Width="80" FontSize="{StaticResource IntFontSize}"
+Margin="5"
+Text="工位1传感器" />
+                                            <TextBlock
+x:Name="textBlockSite1State" FontSize="{StaticResource IntFontSize}"
+Margin="5"
+Background="Green"
+Text="启用中" />
+
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock
+Width="80"
+Margin="5" FontSize="{StaticResource IntFontSize}"
+Text="工位2传感器" />
+                                            <TextBlock
+x:Name="textBlockSite2State" FontSize="{StaticResource IntFontSize}"
+Margin="5"
+Background="Green"
+Text="启用中" />
+
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock
+Width="80"
+Margin="5" FontSize="{StaticResource IntFontSize}"
+Text="工位3传感器" />
+                                            <TextBlock
+x:Name="textBlockSite3State" FontSize="{StaticResource IntFontSize}"
+Margin="5"
+Background="Green"
+Text="启用中" />
+
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock
+Width="80"
+Margin="5" FontSize="{StaticResource IntFontSize}"
+Text="工位4传感器" />
+                                            <TextBlock
+x:Name="textBlockSite4State"
+Margin="5" FontSize="{StaticResource IntFontSize}"
+Background="Green"
+Text="启用中" />
+
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock
+Width="80" FontSize="{StaticResource IntFontSize}"
+Margin="5"
+Text="工位5传感器" />
+                                            <TextBlock
+x:Name="textBlockSite5State"
+Margin="5" FontSize="{StaticResource IntFontSize}"
+Background="Green"
+Text="启用中" />
+
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock
+Width="80" FontSize="{StaticResource IntFontSize}"
+Margin="5"
+Text="工位6传感器" />
+                                            <TextBlock
+x:Name="textBlockSite6State"
+Margin="5" FontSize="{StaticResource IntFontSize}"
+Background="Green"
+Text="启用中" />
+
+                                        </StackPanel>
+                                    </StackPanel>
+                                </StackPanel>
+                                <MainUnits:UC_LinkState Margin="5" Grid.Row="0" x:Name="uc_link"></MainUnits:UC_LinkState>
+                            </StackPanel>
+
+
+                            <StackPanel Width="350"
+                                Grid.Row="1"
+                                Margin="15,5,0,0"
+                                Orientation="Vertical">
+                                <StackPanel Orientation="Horizontal">
+                                    <StackPanel Orientation="Vertical">
+                                        <StackPanel Orientation="Vertical" Width="150" HorizontalAlignment="Left">
+                                            <StackPanel Orientation="Vertical">
+                                                <TextBlock Text="壳体料仓当前层数:" Margin="5"/>
+                                                <TextBox x:Name="textBlockHolderLayers" IsReadOnly="True" Margin="5"/>
+                                                <TextBlock Text="壳体料盘当前计数:" Margin="5"/>
+                                                <TextBox x:Name="textBoxHolderIndex" IsReadOnly="True" Margin="5"/>
+                                                <Button Content="壳体料盘清除计数" Background="Yellow" Click="Button_Click" Margin="5"/>
+                                                <Button Content="壳体料盘计数到最后" Background="Yellow" Click="ButtonClear_Click" Margin="5"/>
+                                            </StackPanel>
+                                            <StackPanel Orientation="Vertical">
+                                                <TextBlock Text="PCB料仓当前层数:" Margin="5"/>
+                                                <TextBox x:Name="textBlockPCBLayers" IsReadOnly="True" Margin="5"/>
+                                                <TextBlock Text="PCB料盘当前计数:" Margin="5"/>
+                                                <TextBox x:Name="textBoxPCBIndex" IsReadOnly="True" Margin="5"/>
+                                                <Button Content="PCB料盘清除计数" Background="Yellow" Click="Button_Click_1" Margin="5"/>
+                                                <Button Content="PCB料盘计数到最后" Background="Yellow" Click="ButtonEnd_Click_2" Margin="5"/>
+                                            </StackPanel>
+                                            <StackPanel Orientation="Vertical">
+                                                <TextBlock Text="NG料盘当前计数:" Margin="5"/>
+                                                <TextBox x:Name="textBoxNGIndex" IsReadOnly="True" Margin="5"/>
+                                                <Button Content="NG料盘清除计数" Background="Yellow" Click="Button_Click_2" Margin="5"/>
+                                            </StackPanel>
+                                        </StackPanel>
+                                        <devicelife:DeviecLifeView x:Name="viewLife" Margin="5" Visibility="Collapsed"/>
+                                        <Button x:Name="button" Click="TestPrint_Btn" Content="测试打印" Visibility="Collapsed"/>
+                                    </StackPanel>
+                                    <StackPanel Width="180">
+                                        <StackPanel>
+                                            <GroupBox Height="130" Header="前壳上料站">
+                                                <StackPanel>
+                                                    <StackPanel Orientation="Vertical" VerticalAlignment="Center" Margin="5">
+                                                        <TextBlock Text="RFID: " Margin="5,2,2,0"></TextBlock>
+                                                        <TextBlock Name="tb_ShellRFID"   Margin="2"></TextBlock>
+                                                    </StackPanel>
+                                                    <StackPanel Orientation="Vertical" VerticalAlignment="Center" Margin="5">
+                                                        <TextBlock Text="CT: " Margin="5,2,2,2"></TextBlock>
+                                                        <TextBlock Name="tb_ShellCT"   Margin="2"></TextBlock>
+                                                    </StackPanel>
+
+
+                                                </StackPanel>
+                                            </GroupBox>
+                                            <GroupBox Height="300" Header="PCB上料站">
+                                                <StackPanel>
+                                                    <StackPanel Orientation="Vertical" VerticalAlignment="Center" Margin="5">
+                                                        <TextBlock Text="RFID: " Margin="5,2,2,0"></TextBlock>
+                                                        <TextBlock Name="tb_PCBRFID"  Margin="2"></TextBlock>
+                                                    </StackPanel>
+                                                    <StackPanel Orientation="Vertical" VerticalAlignment="Center" Margin="5">
+                                                        <TextBlock Text="PCB条码: " Margin="5,2,2,2"></TextBlock>
+                                                        <TextBlock Name="tb_PCBBarcode"   Margin="2"></TextBlock>
+                                                    </StackPanel>
+                                                    <StackPanel Orientation="Vertical" VerticalAlignment="Center" Margin="5">
+                                                        <TextBlock Text="PCB转码: " Margin="5,2,2,2"></TextBlock>
+                                                        <TextBlock Name="tb_PCBBarcodeFormate"   Margin="2"></TextBlock>
+                                                    </StackPanel>
+                                                    <StackPanel Orientation="Vertical" VerticalAlignment="Center" Margin="5">
+                                                        <TextBlock Text="CT: " Margin="5,2,2,2"></TextBlock>
+                                                        <TextBlock Name="tb_PCBCT"   Margin="2"></TextBlock>
+                                                    </StackPanel>
+                                                    <StackPanel Orientation="Vertical" VerticalAlignment="Center" Margin="5">
+                                                        <TextBlock Text="头校验: " Margin="5,2,2,2"></TextBlock>
+                                                        <TextBlock Name="tb_Check"   Margin="2"></TextBlock>
+                                                    </StackPanel>
+
+                                                    <StackPanel Orientation="Vertical" VerticalAlignment="Center" Margin="5">
+                                                        <TextBlock Text="版本号: " Margin="5,2,2,2"></TextBlock>
+                                                        <TextBlock Name="tb_Version"   Margin="2"></TextBlock>
+
+                                                    </StackPanel>
+                                                </StackPanel>
+                                            </GroupBox>
+                                        </StackPanel>
+
+                                    </StackPanel>
+                                </StackPanel>
+
+
+                            </StackPanel>
+
+                        </StackPanel>
+
+
+
+                        <MainUnits:Unit_MainRightPart x:Name="Main_rightPart" ></MainUnits:Unit_MainRightPart>
+
+
+
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel Grid.Column="1" Orientation="Vertical">
+                    <Border x:Name="Border_MachineBackClolor" BorderThickness="1" BorderBrush="Black" Margin="10"
+                            Height="70" CornerRadius="10" Background="Red" >
+                        <Lan:LanTextBlock x:Name="tb_MachineState" LanText="程序初始化失败" HorizontalAlignment="Center"  VerticalAlignment="Center" FontSize="25" FontFamily="宋体"/>
+                    </Border>
+                    <MainUnitsView:Unit_ProductListMsg Grid.Row="1" MinHeight="150"  x:Name="unit_ProductInfoList"/>
+                    <home:Unit_ResultList x:Name="viewResultList" MinHeight="200" MaxHeight="300"/>
+                    <TabControl Grid.Row="1" Name="tb_ProcessList" Height="300" MaxHeight="300" Margin="5">
+                        <TabItem Header="错误信息">
+                            <Lcb:UC_ListMsg x:Name="uc_ErrLog"></Lcb:UC_ListMsg>
+                        </TabItem>
+                    </TabControl>
+
+                </StackPanel>
+
+            </Grid>
+        </Grid>
+
+        <StatusBar  Grid.Row="2" Margin="2,2,166,2" >
+            <TextBlock x:Name="tb_NoticeBar" Text="Attention to safety: Security door open!" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        </StatusBar>
+        <StatusBar Grid.Row="2" Margin="449,0,0,0" Background="Transparent" HorizontalAlignment="Right">
+            <Button x:Name="FrontDoor" FontSize="9" BorderBrush="Transparent"  Content="开启前门锁" Background="LightGray" HorizontalAlignment="Left" VerticalAlignment="Center" Click="FrontDoor_Click"  />
+            <Button x:Name="BackDoor"  FontSize="9" BorderBrush="Transparent"  Content="开启后门锁" Background="LightGray" HorizontalAlignment="Left" VerticalAlignment="Center" Click="BackDoor_Click" />
+            <Button x:Name="LeftDoor"  FontSize="9" BorderBrush="Transparent"  Content="开启左门锁" Background="LightGray" HorizontalAlignment="Left" VerticalAlignment="Center" Click="LeftDoor_Click" />
+
+            <!--<TextBlock x:Name="FrontDoor" Background="Transparent" Text="前门锁" HorizontalAlignment="Left" VerticalAlignment="Center" MouseLeftButtonUp="FrontDoor_MouseLeftButtonUp" />-->
+
+        </StatusBar>
+    </Grid>
+</Window>

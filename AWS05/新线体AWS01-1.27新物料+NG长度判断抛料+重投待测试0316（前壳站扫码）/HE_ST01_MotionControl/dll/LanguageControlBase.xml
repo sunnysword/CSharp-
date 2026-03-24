@@ -1,0 +1,278 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>LanguageControlBase</name>
+    </assembly>
+    <members>
+        <member name="T:LanguageControlBase.LanDictonaryExplainHelper">
+            <summary>
+            语言字典帮助类
+            </summary>
+        </member>
+        <member name="P:LanguageControlBase.LanDictonaryExplainHelper.IsNoContainAutoInsert">
+            <summary>
+            当检索的Key没有时，是否自动插入
+            默认为True
+            </summary>
+        </member>
+        <member name="F:LanguageControlBase.LanDictonaryExplainHelper.FilePath">
+            <summary>
+            具体的语言文件保存路径
+            </summary>
+        </member>
+        <member name="P:LanguageControlBase.LanDictonaryExplainHelper.IsCreateLanguage">
+            <summary>
+            是否创建了语言文件
+            </summary>
+        </member>
+        <member name="F:LanguageControlBase.LanDictonaryExplainHelper.LanguageExplain">
+            <summary>
+            语言缓存
+            </summary>
+        </member>
+        <member name="M:LanguageControlBase.LanDictonaryExplainHelper.ReselectLanguageFile(System.String)">
+            <summary>
+            重新设置语言文件
+            </summary>
+            <param name="inPath"></param>
+        </member>
+        <member name="T:LanguageControlBase.LanguageFileInfo">
+            <summary>
+            语言文件的信息
+            </summary>
+        </member>
+        <member name="P:LanguageControlBase.LanguageFileInfo.Name">
+            <summary>
+            语言文件的名字,具体的文件的上级目录名字
+            </summary>
+        </member>
+        <member name="P:LanguageControlBase.LanguageFileInfo.FullPath">
+            <summary>
+            当前文件的绝对路径
+            </summary>
+        </member>
+        <member name="T:LanguageControlBase.LanguageSwtichEventHandler">
+            <summary>
+            语言切换时所触发的事件
+            </summary>
+        </member>
+        <member name="T:LanguageControlBase.LanguageSearchHelper">
+            <summary>
+            语言搜索帮助类:管理器
+            </summary>
+        </member>
+        <member name="P:LanguageControlBase.LanguageSearchHelper.LanguageCfgInfo.FileName">
+            <summary>
+            具体的语言名字;
+            指定UI文件
+            </summary>
+        </member>
+        <member name="P:LanguageControlBase.LanguageSearchHelper.LanguageCfgInfo.FirDirBaseName">
+            <summary>
+            具体语言文件的上级目录的名字
+            </summary>
+        </member>
+        <member name="P:LanguageControlBase.LanguageSearchHelper.LanguageCfgInfo.IsCreateDefaultLanguageFileMode">
+            <summary>
+            第一次时，可以允许创建默认语言模板
+            </summary>
+        </member>
+        <member name="P:LanguageControlBase.LanguageSearchHelper.LanguageCfgInfo.IsCanLanguageSwitch">
+            <summary>
+            是否允许语言切换
+            </summary>
+        </member>
+        <member name="F:LanguageControlBase.LanguageSearchHelper.ExplainHelper">
+            <summary>
+            语言解释器
+            </summary>
+        </member>
+        <member name="P:LanguageControlBase.LanguageSearchHelper.LanguageCfg">
+            <summary>
+            当前加载的语言配置项：里面记录加载的具体文件
+            </summary>
+        </member>
+        <member name="F:LanguageControlBase.LanguageSearchHelper.LanguageFileDirBaseName">
+            <summary>
+            语言文件上级目录的名字
+            </summary>
+        </member>
+        <member name="P:LanguageControlBase.LanguageSearchHelper.SelectFileDir">
+            <summary>
+            具体的语言文件的上级目录
+            </summary>
+        </member>
+        <member name="P:LanguageControlBase.LanguageSearchHelper.SelectFile">
+            <summary>
+            具体的语言文件
+            </summary>
+        </member>
+        <member name="F:LanguageControlBase.LanguageSearchHelper.LanguageSwtich">
+            <summary>
+            语言切换所触发的事件
+            </summary>
+        </member>
+        <member name="P:LanguageControlBase.LanguageSearchHelper.IsLanguageFileExit">
+            <summary>
+            判断语言文件是否存在
+            </summary>
+        </member>
+        <member name="P:LanguageControlBase.LanguageSearchHelper.IsCreateDefaultLanguageFileMode">
+            <summary>
+            第一次时，可以允许创建默认语言模板
+            </summary>
+        </member>
+        <member name="P:LanguageControlBase.LanguageSearchHelper.IsCanLanguageSwitch">
+            <summary>
+            是否允许语言切换
+            </summary>
+        </member>
+        <member name="F:LanguageControlBase.LanguageSearchHelper.DefaultLanguageFileDirBaseName">
+            <summary>
+            默认的具体文件的上级目录名字
+            </summary>
+        </member>
+        <member name="M:LanguageControlBase.LanguageSearchHelper.CreateDefaultMode">
+            <summary>
+            创建默认的语言文件
+            </summary>
+        </member>
+        <member name="M:LanguageControlBase.LanguageSearchHelper.ReselectLanguageFile(LanguageControlBase.LanguageFileInfo)">
+            <summary>
+            重新设置语言文件
+            </summary>
+            <param name=""></param>
+        </member>
+        <member name="E:LanguageControlBase.Wpf.BindableObject.PropertyChanged">
+             <summary>
+            仅仅 用于 UI 界面刷新
+             </summary>
+        </member>
+        <member name="E:LanguageControlBase.Wpf.BindableObject.PropertyValueMustChanged">
+            <summary>
+            当属性值改变时，就会触发
+            </summary>
+        </member>
+        <member name="T:LanguageControlBase.Wpf.LanButton">
+            <summary>
+            Button 的子类
+             表示 Windows 按钮控件，该按钮对 System.Windows.Controls.Primitives.ButtonBase.Click 事件做出反应。
+            </summary>
+        </member>
+        <member name="P:LanguageControlBase.Wpf.LanButton.LanContent">
+            <summary>
+             获取或设置该控件进行标记的项。该值用于语言切换时的key值，语言切换不会影响LanContent的值
+             该值改变会影响Content的内容，界面展示的是Content的内容；由于Content是string类型，所有Content内容一定是string类型
+             程序使用时请使用LanContent
+            </summary>
+        </member>
+        <member name="P:LanguageControlBase.Wpf.LanButton.IsUseLanguageSwitch">
+            <summary>
+            是否使用语言功能
+            默认启用
+            </summary>
+        </member>
+        <member name="T:LanguageControlBase.Wpf.LanCheckBox">
+            <summary>
+            CheckBox 的子类，实现了语言切换
+            表示一个控件，用户可以选择和清除。
+            </summary>
+        </member>
+        <member name="P:LanguageControlBase.Wpf.LanCheckBox.LanContent">
+            <summary>
+             获取或设置该控件进行标记的项。该值用于语言切换时的key值，语言切换不会影响LanContent的值
+             该值改变会影响Content的内容，界面展示的是Content的内容；由于Content是string类型，所有Content内容一定是string类型
+             程序使用时请使用LanContent
+            </summary>
+        </member>
+        <member name="P:LanguageControlBase.Wpf.LanCheckBox.IsUseLanguageSwitch">
+            <summary>
+            是否使用语言功能
+            默认启用
+            </summary>
+        </member>
+        <member name="T:LanguageControlBase.Wpf.LanComboBox">
+            <summary>
+            表示带有下拉列表的选择控件，通过单击控件上的箭头可显示或隐藏下拉列表。
+            ComboBox 的子类
+            该类仅仅注册了语言选择变化的事件
+            </summary>
+        </member>
+        <member name="T:LanguageControlBase.Wpf.LanGroupBox">
+            <summary>
+            GroupBox 的子类，实现了语言切换
+             表示一个控件，该控件用于创建具有针对 用户界面 (UI) 内容的边框和标题的容器。
+            </summary>
+        </member>
+        <member name="P:LanguageControlBase.Wpf.LanGroupBox.LanHeader">
+            <summary>
+             获取或设置该控件进行标记的项。该值用于语言切换时的key值，语言切换不会影响LanHeader的值
+             该值改变会影响Header的内容，界面展示的是Header的内容；由于LanHeader是string类型，所有Header内容一定是string类型
+             程序使用时请使用LanHeader
+            </summary>
+        </member>
+        <member name="P:LanguageControlBase.Wpf.LanGroupBox.IsUseLanguageSwitch">
+            <summary>
+            是否使用语言功能
+            默认启用
+            </summary>
+        </member>
+        <member name="T:LanguageControlBase.Wpf.LanMenuItem">
+            <summary>
+            MenuItem 的子类，实现了语言切换
+             表示内的可选项 System.Windows.Controls.Menu。
+            </summary>
+        </member>
+        <member name="P:LanguageControlBase.Wpf.LanMenuItem.LanHeader">
+            <summary>
+             获取或设置该控件进行标记的项。该值用于语言切换时的key值，语言切换不会影响LanHeader的值
+             该值改变会影响Header的内容，界面展示的是Header的内容；由于LanHeader是string类型，所有Header内容一定是string类型
+             程序使用时请使用LanHeader
+            </summary>
+        </member>
+        <member name="P:LanguageControlBase.Wpf.LanMenuItem.IsUseLanguageSwitch">
+            <summary>
+            是否使用语言功能
+            默认启用
+            </summary>
+        </member>
+        <member name="T:LanguageControlBase.Wpf.LanTabItem">
+            <summary>
+             表示内的可选项 System.Windows.Controls.TabControl。
+             TabItem 的子类，实现了语言切换
+            </summary>
+        </member>
+        <member name="P:LanguageControlBase.Wpf.LanTabItem.LanHeader">
+            <summary>
+             获取或设置该控件进行标记的项。该值用于语言切换时的key值，语言切换不会影响LanHeader的值
+             该值改变会影响Header的内容，界面展示的是Header的内容；由于LanHeader是string类型，所有Header内容一定是string类型
+             程序使用时请使用LanHeader
+            </summary>
+        </member>
+        <member name="P:LanguageControlBase.Wpf.LanTabItem.IsUseLanguageSwitch">
+            <summary>
+            是否使用语言功能
+            默认启用
+            </summary>
+        </member>
+        <member name="T:LanguageControlBase.Wpf.LanTextBlock">
+            <summary>
+            TextBlock 的子类，实现了语言切换
+            提供一个轻型控件，用于显示少量流内容。
+            </summary>
+        </member>
+        <member name="P:LanguageControlBase.Wpf.LanTextBlock.LanText">
+            <summary>
+             获取或设置的文本内容 :该值用于语言切换时的key值，语言切换不会影响LanText的值
+             该值改变会影响Text的内容，界面展示的是Text的内容
+             程序使用时请使用LanText
+            </summary>
+        </member>
+        <member name="P:LanguageControlBase.Wpf.LanTextBlock.IsUseLanguageSwitch">
+            <summary>
+            是否使用语言功能
+            默认启用
+            </summary>
+        </member>
+    </members>
+</doc>

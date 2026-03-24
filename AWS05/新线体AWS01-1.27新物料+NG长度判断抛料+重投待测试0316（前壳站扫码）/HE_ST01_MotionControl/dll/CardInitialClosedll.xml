@@ -1,0 +1,118 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CardInitialClosedll</name>
+    </assembly>
+    <members>
+        <member name="T:CardInitialClosedll.InitialSucessedEventHandler">
+            <summary>
+            板卡初始化成功时，调用事件类型
+            </summary>
+        </member>
+        <member name="T:CardInitialClosedll.InitialFailedEventHandler">
+            <summary>
+            板卡初始化失败时，调用事件类型
+            </summary>
+        </member>
+        <member name="T:CardInitialClosedll.CardPreClosingEventHandler">
+            <summary>
+            板卡关闭前，调用事件类型
+            </summary>
+        </member>
+        <member name="T:CardInitialClosedll.CardScanErrMsgEventHandler">
+            <summary>
+            板卡扫描的错误事件，调用事件类型
+            </summary>
+            <returns>错误信息</returns>
+        </member>
+        <member name="T:CardInitialClosedll.ReportCardInitializeProcessEventHandler">
+            <summary>
+            板卡初始化过程跟踪
+            </summary>
+            <param name="msg"></param>
+        </member>
+        <member name="T:CardInitialClosedll.CardInitialCloseHelper">
+            <summary>
+            控制卡初始化的抽象类基础库
+            </summary>
+        </member>
+        <member name="F:CardInitialClosedll.CardInitialCloseHelper._isDisposed">
+            <summary>
+            是否已经释放过资源
+            </summary>
+        </member>
+        <member name="P:CardInitialClosedll.CardInitialCloseHelper.IsCardReady">
+            <summary>
+            控制卡是否初始化成功
+            </summary>
+        </member>
+        <member name="E:CardInitialClosedll.CardInitialCloseHelper.InitialSucessed">
+            <summary>
+            板卡初始化成功时触发的事件
+            </summary>
+        </member>
+        <member name="E:CardInitialClosedll.CardInitialCloseHelper.InitialFailed">
+            <summary>
+            板卡初始化失败时触发的事件
+            </summary>
+        </member>
+        <member name="E:CardInitialClosedll.CardInitialCloseHelper.CardPreClosing">
+            <summary>
+            关闭板卡前触发的事件
+            </summary>
+        </member>
+        <member name="E:CardInitialClosedll.CardInitialCloseHelper.ReportCardInitializeProcess">
+            <summary>
+            板卡初始化过程跟踪
+            </summary>
+        </member>
+        <member name="E:CardInitialClosedll.CardInitialCloseHelper.CardScanErrMsg">
+            <summary>
+            板卡扫描错误信息事件
+            </summary>
+        </member>
+        <member name="M:CardInitialClosedll.CardInitialCloseHelper.ImplementInitialCard">
+            <summary>
+            需要实现具体的板卡初始化方法
+            </summary>
+            <returns>True:初始化成功；False:初始化失败</returns>
+        </member>
+        <member name="M:CardInitialClosedll.CardInitialCloseHelper.ImplementCloseCard">
+            <summary>
+            需要实现具体的板卡关闭方法
+            </summary>
+        </member>
+        <member name="M:CardInitialClosedll.CardInitialCloseHelper.Initial">
+            <summary>
+            打开或初始化控制卡
+            </summary>
+        </member>
+        <member name="M:CardInitialClosedll.CardInitialCloseHelper.Close">
+             <summary>
+            关闭控制卡
+             </summary>
+        </member>
+        <member name="M:CardInitialClosedll.CardInitialCloseHelper.ReportInitialProcess(System.String)">
+            <summary>
+            跟踪初始化信息
+            </summary>
+            <param name="msg"></param>
+        </member>
+        <member name="M:CardInitialClosedll.CardInitialCloseHelper.ScanErrMsg">
+            <summary>
+            调用扫描方法，无错误时返回null，有错误信息时返回具体信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CardInitialClosedll.CardInitialCloseHelper.Dispose">
+            <summary>
+            释放资源
+            </summary>
+        </member>
+        <member name="T:CardInitialClosedll.ICardInitialClose">
+            <summary>
+            板卡初始化基础接口
+            </summary>
+        </member>
+    </members>
+</doc>

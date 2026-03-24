@@ -1,0 +1,80 @@
+﻿<UserControl x:Class="Handler.View.RFID.ViewRFID"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d" 
+             d:DesignHeight="550" d:DesignWidth="800">
+    <Grid Margin="20,20,0,20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="80"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="250"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Grid.ColumnSpan="3"
+                    Background="Beige"
+                    FontSize="22"
+                    FontWeight="Bold"
+                    HorizontalAlignment="Left" Width="382" VerticalAlignment="Center" Text="RFID 调试" TextAlignment="Center" Margin="180,0,0,0" Height="28"/>
+        <TextBox Grid.Row="3" Grid.Column="1"
+                    x:Name="txtRFIDNo"
+                    FontSize="18"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="0,24,0,24" />
+
+        <Button x:Name="btnReadUID" Grid.Row="2" Grid.Column="2"
+                    Click="btnReadUID_Click"
+                    Content="读  取" Width="112" FontSize="18"  HorizontalAlignment="Left" Margin="18,24,0,24" />
+
+        <Button x:Name="btnReadProductInfo" Grid.Row="4" Grid.Column="2"
+                    Click="btnReadProductInfo_Click"
+                    Content="读  取" Width="112" FontSize="18" HorizontalAlignment="Left" Margin="18,24,0,24" />
+
+        <Button x:Name="btnWriteProductInfo" Grid.Row="4" Grid.Column="2"
+                    Click="btnWriteProductInfo_Click"
+                    Content="写  入" Width="112" FontSize="18" HorizontalAlignment="Left" Margin="158,24,0,24" />
+
+        <Button x:Name="btnReadRFIDNo" Grid.Row="3" Grid.Column="2"
+                    Click="btnReadRFIDNo_Click"
+                    Content="读  取" Width="112" FontSize="18" HorizontalAlignment="Left" Margin="18,24,0,24"/>
+
+        <Button x:Name="btnWriteRFIDNo" Grid.Row="3" Grid.Column="2"
+                    Click="btnWriteRFIDNo_Click"
+                    Content="写  入" Width="112" FontSize="18" HorizontalAlignment="Left" Margin="158,24,0,24"/>
+
+        <ComboBox x:Name="cmbRFIDSel" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="199" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="18" Height="30">
+            <!--<ComboBoxItem Content="上料RFID"/>-->
+            <ComboBoxItem Content="外壳RFID"/>
+            <ComboBoxItem Content="PCBRFID"/>
+        </ComboBox>
+
+        <Label Content="选择RFID：" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left"  VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="18" Margin="95,0,0,0" Height="32" Width="104"/>
+
+        <Button x:Name="btnRFIDConn" Grid.Row="1" Grid.Column="2"
+            Click="btnRFIDConn_Click"
+            Content="连接RFID" Width="112" FontSize="18" HorizontalAlignment="Left" Margin="18,24,0,24" />
+
+        <Label Content="UID信息：" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Left"  VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="18" Margin="98,0,0,0" Height="32" Width="96"/>
+
+        <TextBox Grid.Row="2" Grid.Column="1"
+            x:Name="txtUIDInfo"
+            FontSize="18"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="0,24,0,24" />
+
+        <Label Content="治具编号：" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Left"  VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="18" Margin="98,0,0,0" Height="32" Width="99"/>
+        <TextBox Grid.Row="4" Grid.Column="1"
+            x:Name="txtProductInfo"
+            FontSize="18" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="0,24,0,24" />
+
+        <Label Content="产品信息：" Grid.Row="4" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="18" Margin="98,0,0,0" Height="32" Width="100"/>
+        <Label Content="所有信息：" Grid.Row="5" Grid.Column="0" HorizontalAlignment="Left"  VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="18" Margin="98,0,0,0" Height="32" Width="96"/>
+        <TextBox Grid.Row="5" Grid.Column="1" x:Name="txtAllRFID" FontSize="18"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="0,24,0,24" />
+        <Button x:Name="btnReadAllRFID" Grid.Row="5" Grid.Column="2" Click="btnReadAllRFID_Click"  Content="读  取" Width="112" FontSize="18"  HorizontalAlignment="Left" Margin="18,24,0,24" />
+        <Button x:Name="btnWriteAllRFID" Grid.Row="5" Grid.Column="2" Click="btnWriteAllRFID_Click"  Content="写  入" Width="112" FontSize="18" HorizontalAlignment="Left" Margin="158,24,0,24"/>
+    </Grid>
+</UserControl>

@@ -1,0 +1,34 @@
+﻿<Window
+    x:Class="Handler.View.MainUnits.Wnd_FunsSetting"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:Handler.View.MainUnits"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="Wnd_FunsSetting"
+    Width="800"
+    Height="550"
+    Closed="Window_Closed"
+    Loaded="Window_Loaded"
+    mc:Ignorable="d">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="150" />
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <ListBox
+            Name="lsb_Menu"
+            Grid.Column="0"
+            Margin="0"
+            HorizontalContentAlignment="Center"
+            FontSize="15" />
+        <ContentControl
+            Name="ccl_Content"
+            Grid.Column="2"
+            Width="Auto"
+            Margin="0"
+            HorizontalContentAlignment="Left"
+            Content="{Binding ElementName=lsb_Menu, Path=SelectedItem.UserControl}" />
+    </Grid>
+</Window>

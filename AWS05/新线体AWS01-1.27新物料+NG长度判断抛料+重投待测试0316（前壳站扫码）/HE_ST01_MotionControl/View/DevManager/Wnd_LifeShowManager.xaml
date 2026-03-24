@@ -1,0 +1,32 @@
+﻿<Window x:Class="Handler.View.DevManager.Wnd_LifeShowManager"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Handler.View.DevManager"
+        mc:Ignorable="d"
+         Title="使用寿命显示" Height="450" Width="600" MaxWidth="600" FontSize="20" Loaded="Window_Loaded">
+    <Grid Margin="20" x:Name="gd_Text_1">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"></RowDefinition>
+
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition Width="5"></ColumnDefinition>
+            <ColumnDefinition Width="120"></ColumnDefinition>
+            <ColumnDefinition Width="10"></ColumnDefinition>
+            <ColumnDefinition Width="120" ></ColumnDefinition>
+            <ColumnDefinition Width="5"></ColumnDefinition>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <TextBlock Text="当前累计" Grid.Row="0" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+        <TextBlock Text="最大值" Grid.Row="0" Grid.Column="5" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+
+
+
+    </Grid>
+</Window>

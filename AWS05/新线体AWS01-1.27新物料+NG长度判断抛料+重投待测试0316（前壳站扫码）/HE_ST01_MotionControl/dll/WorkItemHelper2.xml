@@ -1,0 +1,232 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>WorkItemHelper2</name>
+    </assembly>
+    <members>
+        <member name="T:WorkItemHelper2.App">
+            <summary>
+            App.xaml 的交互逻辑
+            </summary>
+            <summary>
+            App
+            </summary>
+        </member>
+        <member name="M:WorkItemHelper2.App.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="M:WorkItemHelper2.App.Main">
+            <summary>
+            Application Entry Point.
+            </summary>
+        </member>
+        <member name="T:WorkItemHelper2.MainWindow">
+            <summary>
+            MainWindow.xaml 的交互逻辑
+            </summary>
+            <summary>
+            MainWindow
+            </summary>
+        </member>
+        <member name="M:WorkItemHelper2.MainWindow.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="F:WorkItemHelper2.FileLoadState.UnLoad">
+            <summary>
+            未加载
+            </summary>
+        </member>
+        <member name="F:WorkItemHelper2.FileLoadState.Loading">
+            <summary>
+            加载中
+            </summary>
+        </member>
+        <member name="T:WorkItemHelper2.ItermMessage">
+            <summary>
+            每个项目信息
+            </summary>
+        </member>
+        <member name="P:WorkItemHelper2.ItermMessage.Name">
+            <summary>
+            文件名字
+            </summary>
+        </member>
+        <member name="P:WorkItemHelper2.ItermMessage.Path">
+            <summary>
+            文件路径
+            </summary>
+        </member>
+        <member name="P:WorkItemHelper2.ItermMessage.CreateTime">
+            <summary>
+            文件创建时间
+            </summary>
+        </member>
+        <member name="P:WorkItemHelper2.ItermMessage.LastWriteTime">
+            <summary>
+            文件最后一次更新时间
+            </summary>
+        </member>
+        <member name="P:WorkItemHelper2.ItermMessage.LoadState">
+            <summary>
+            文件加载状态
+            </summary>
+        </member>
+        <member name="T:WorkItemHelper2.ParamWorkIterm">
+            <summary>
+            工单项目管理类
+            </summary>
+        </member>
+        <member name="M:WorkItemHelper2.ParamWorkIterm.#ctor(System.String,System.Func{System.String},System.Action{System.String})">
+            <summary>
+            创建工单管理的类时，需要传入获取参数文件的名字方法、修改参数文件的名字方法
+            </summary>
+            <param name="GetSourcePath"></param>
+            <param name="ModifySourcePath"></param>
+        </member>
+        <member name="E:WorkItemHelper2.ParamWorkIterm.NotifyParamChangedEventHandler">
+            <summary>
+            用来为各个参数管理项注册，当主程序参数文件路径修改时，所触发的事件(参数加载事件)
+            </summary>
+        </member>
+        <member name="E:WorkItemHelper2.ParamWorkIterm.NotifyLoadedNameChangedEventHandler">
+            <summary>
+            当加载的文件名字变化时所触发的事件
+            </summary>
+        </member>
+        <member name="F:WorkItemHelper2.ParamWorkIterm.ReadSourceAction">
+            <summary>
+            读取原参数文件路径
+            </summary>
+        </member>
+        <member name="F:WorkItemHelper2.ParamWorkIterm.ModifySourceAction">
+            <summary>
+            修改源文件路径方法
+            </summary>
+        </member>
+        <member name="P:WorkItemHelper2.ParamWorkIterm.CurrentPath">
+            <summary>
+            当前加载地文件路径
+            </summary>
+        </member>
+        <member name="P:WorkItemHelper2.ParamWorkIterm.itermMessageLoaded">
+            <summary>
+            当前加载地参数项
+            </summary>
+        </member>
+        <member name="P:WorkItemHelper2.ParamWorkIterm.ItermMessageDictionary">
+            <summary>
+            建立对象字典，方便查找每个对象
+            </summary>
+        </member>
+        <member name="E:WorkItemHelper2.ParamWorkIterm.PreLoadWrokItemEventHandler">
+            <summary>
+            加载工单前所触发的事件
+            </summary>
+        </member>
+        <member name="E:WorkItemHelper2.ParamWorkIterm.LoadedWorkItemEventHandler">
+            <summary>
+            工单加载后所触发的事件
+            </summary>
+        </member>
+        <member name="M:WorkItemHelper2.ParamWorkIterm.ModifyCurrentPath(WorkItemHelper2.ItermMessage)">
+            <summary>
+            修改当前程序加载的路径
+            </summary>
+            <param name="itermMessage"></param>
+        </member>
+        <member name="M:WorkItemHelper2.ParamWorkIterm.DeleteIterm(WorkItemHelper2.ItermMessage)">
+            <summary>
+            删除一个对象，同时该对象相应的文件
+            </summary>
+            <param name="itermMessage"></param>
+        </member>
+        <member name="M:WorkItemHelper2.ParamWorkIterm.CopyDirectory(System.String,System.String)">
+            <summary>
+            拷贝文件夹
+            </summary>
+            <param name="sourceDirPath"></param>
+            <param name="SaveDirPath"></param>
+        </member>
+        <member name="M:WorkItemHelper2.ParamWorkIterm.CreateNewIterm(System.String)">
+            <summary>
+            创建新的文件
+            </summary>
+        </member>
+        <member name="M:WorkItemHelper2.ParamWorkIterm.GetItermMessages">
+            <summary>
+            获取当前加载Mode路径下的所有文件
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:WorkItemHelper2.Properties.Resources">
+            <summary>
+              一个强类型的资源类，用于查找本地化的字符串等。
+            </summary>
+        </member>
+        <member name="P:WorkItemHelper2.Properties.Resources.ResourceManager">
+            <summary>
+              返回此类使用的缓存的 ResourceManager 实例。
+            </summary>
+        </member>
+        <member name="P:WorkItemHelper2.Properties.Resources.Culture">
+            <summary>
+              重写当前线程的 CurrentUICulture 属性
+              重写当前线程的 CurrentUICulture 属性。
+            </summary>
+        </member>
+        <member name="P:WorkItemHelper2.Properties.Resources.configuration_settings">
+            <summary>
+              查找 System.Drawing.Bitmap 类型的本地化资源。
+            </summary>
+        </member>
+        <member name="P:WorkItemHelper2.Properties.Resources.default_document">
+            <summary>
+              查找 System.Drawing.Bitmap 类型的本地化资源。
+            </summary>
+        </member>
+        <member name="P:WorkItemHelper2.Properties.Resources.desktop">
+            <summary>
+              查找 System.Drawing.Bitmap 类型的本地化资源。
+            </summary>
+        </member>
+        <member name="P:WorkItemHelper2.Properties.Resources.help_and_support">
+            <summary>
+              查找 System.Drawing.Bitmap 类型的本地化资源。
+            </summary>
+        </member>
+        <member name="P:WorkItemHelper2.Properties.Resources.Icon1">
+            <summary>
+              查找类似于 (图标) 的 System.Drawing.Icon 类型的本地化资源。
+            </summary>
+        </member>
+        <member name="P:WorkItemHelper2.Properties.Resources.mn2">
+            <summary>
+              查找类似于 (图标) 的 System.Drawing.Icon 类型的本地化资源。
+            </summary>
+        </member>
+        <member name="P:WorkItemHelper2.Properties.Resources.my_download">
+            <summary>
+              查找 System.Drawing.Bitmap 类型的本地化资源。
+            </summary>
+        </member>
+        <member name="P:WorkItemHelper2.Properties.Resources.network_offline">
+            <summary>
+              查找 System.Drawing.Bitmap 类型的本地化资源。
+            </summary>
+        </member>
+        <member name="P:WorkItemHelper2.Properties.Resources.search">
+            <summary>
+              查找 System.Drawing.Bitmap 类型的本地化资源。
+            </summary>
+        </member>
+        <member name="P:WorkItemHelper2.Properties.Resources.title">
+            <summary>
+              查找 System.Drawing.Bitmap 类型的本地化资源。
+            </summary>
+        </member>
+    </members>
+</doc>

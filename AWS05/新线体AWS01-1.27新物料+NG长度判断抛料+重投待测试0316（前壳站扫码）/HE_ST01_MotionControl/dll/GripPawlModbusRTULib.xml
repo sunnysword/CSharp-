@@ -1,0 +1,416 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>GripPawlModbusRTULib</name>
+    </assembly>
+    <members>
+        <member name="T:DH_GripPawlModbusRTULib.DH_GripPawlModbusRTU">
+            <summary>
+            夹爪通讯类库
+            </summary>
+        </member>
+        <member name="M:DH_GripPawlModbusRTULib.DH_GripPawlModbusRTU.#ctor">
+            <summary>
+            构造方法
+            </summary>
+        </member>
+        <member name="F:DH_GripPawlModbusRTULib.DH_GripPawlModbusRTU.serialPort">
+            <summary>
+            串口通信对象
+            </summary>
+        </member>
+        <member name="P:DH_GripPawlModbusRTULib.DH_GripPawlModbusRTU.ReadTimeOut">
+            <summary>
+            读取超时时间
+            </summary>
+        </member>
+        <member name="P:DH_GripPawlModbusRTULib.DH_GripPawlModbusRTU.WriteTimeOut">
+            <summary>
+            写入超时时间
+            </summary>
+        </member>
+        <member name="P:DH_GripPawlModbusRTULib.DH_GripPawlModbusRTU.SleepTime">
+            <summary>
+            每次串口通信前的延时时间
+            </summary>
+        </member>
+        <member name="P:DH_GripPawlModbusRTULib.DH_GripPawlModbusRTU.ReceiveTimeOut">
+            <summary>
+            最大读取时间
+            </summary>
+        </member>
+        <member name="P:DH_GripPawlModbusRTULib.DH_GripPawlModbusRTU.DtrEnable">
+            <summary>
+            Dtr使能标志
+            </summary>
+        </member>
+        <member name="P:DH_GripPawlModbusRTULib.DH_GripPawlModbusRTU.RtsEnable">
+            <summary>
+            Rts使能标志
+            </summary>
+        </member>
+        <member name="F:DH_GripPawlModbusRTULib.DH_GripPawlModbusRTU.hybirdLock">
+            <summary>
+            锁对象
+            </summary>
+        </member>
+        <member name="M:DH_GripPawlModbusRTULib.DH_GripPawlModbusRTU.ReadOutputRegisters(System.Byte,System.UInt16,System.UInt16)">
+            <summary>
+            读取输出寄存器
+            </summary>
+            <param name="slaveId">站地址</param>
+            <param name="start">寄存器起始地址</param>
+            <param name="length">数量</param>
+            <returns>返回字节数组</returns>
+        </member>
+        <member name="M:DH_GripPawlModbusRTULib.DH_GripPawlModbusRTU.PreSetSingRegister(System.Byte,System.UInt16,System.Byte[])">
+            <summary>
+            预置单寄存器
+            </summary>
+            <param name="slaveId">站地址</param>
+            <param name="start">寄存器地址</param>
+            <param name="value">字节数组（2个字节）</param>
+            <returns>返回的结果</returns>
+        </member>
+        <member name="M:DH_GripPawlModbusRTULib.DH_GripPawlModbusRTU.PreSetSingRegister(System.Byte,System.UInt16,System.Int16)">
+            <summary>
+            预置单寄存器
+            </summary>
+            <param name="slaveId">站地址</param>
+            <param name="start">寄存器地址</param>
+            <param name="value">Short类型</param>
+            <returns>返回的结果</returns>
+        </member>
+        <member name="M:DH_GripPawlModbusRTULib.DH_GripPawlModbusRTU.PreSetSingRegister(System.Byte,System.UInt16,System.UInt16)">
+            <summary>
+            预置单寄存器
+            </summary>
+            <param name="slaveId">站地址</param>
+            <param name="start">寄存器地址</param>
+            <param name="value">UShort类型</param>
+            <returns>返回的结果</returns>
+        </member>
+        <member name="M:DH_GripPawlModbusRTULib.DH_GripPawlModbusRTU.PreSetMultiRegisters(System.Byte,System.UInt16,System.Byte[])">
+            <summary>
+            预置多寄存器
+            </summary>
+            <param name="slaveId"></param>
+            <param name="start"></param>
+            <param name="values"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DH_GripPawlModbusRTULib.DH_GripPawlModbusRTU.SetBitValue(System.Byte,System.Int32,System.Boolean)">
+            <summary>
+            将某个字节某个位——>置位或者复位
+            </summary>
+            <param name="src"></param>
+            <param name="bit"></param>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DH_GripPawlModbusRTULib.DH_GripPawlModbusRTU.SendAndReceive(System.Byte[],System.Byte[]@)">
+            <summary>
+            发送并接收的方法
+            </summary>
+            <param name="send">发送的字节数组</param>
+            <param name="receive">接收的字节数组</param>
+            <returns>判断是否成功</returns>
+        </member>
+        <member name="M:DH_GripPawlModbusRTULib.DH_GripPawlModbusRTU.Connect(System.String,System.Int32,System.IO.Ports.Parity,System.Int32,System.IO.Ports.StopBits)">
+            <summary>
+            建立连接
+            </summary>
+            <param name="portName">串口号</param>
+            <param name="baudRate">波特率</param>
+            <param name="parity">校验位</param>
+            <param name="dataBits">数据位</param>
+            <param name="stopBits">停止位</param>
+            <returns>返回布尔，表示是否连接成功</returns>
+        </member>
+        <member name="M:DH_GripPawlModbusRTULib.DH_GripPawlModbusRTU.DisConnect">
+            <summary>
+            断开链接
+            </summary>
+        </member>
+        <member name="M:DH_GripPawlModbusRTULib.DH_GripPawlModbusRTU.Enable(System.Byte,System.Boolean)">
+            <summary>
+            使能/失能
+            </summary>
+            <param name="slaveId">从站ID</param>
+            <param name="enOrDis">ture:使能；false:失能</param>
+            <returns></returns>
+        </member>
+        <member name="M:DH_GripPawlModbusRTULib.DH_GripPawlModbusRTU.Initialize(System.Byte,System.Int16)">
+            <summary>
+            初始化
+            </summary>
+            <param name="slaveId">从站ID</param>
+            <param name="initializeMode">初始化方式</param>
+            <returns>true：初始化指令发送成功；false：初始化指令发送失败</returns>
+        </member>
+        <member name="M:DH_GripPawlModbusRTULib.DH_GripPawlModbusRTU.Initialize(System.Byte,System.Int16,System.Byte)">
+            <summary>
+            初始化
+            </summary>
+            <param name="slaveId">从站ID</param>
+            <param name="initializeMode">初始化方式</param>
+            <param name="unitOfTime">规定时间内判断是否初始化成功</param>
+            <returns>true：初始化成功；false：初始化失败</returns>
+        </member>
+        <member name="M:DH_GripPawlModbusRTULib.DH_GripPawlModbusRTU.ClampForceValue(System.Byte,System.Byte)">
+            <summary>
+            设置夹持力值
+            </summary>
+            <param name="slaveId">从站ID</param>
+            <param name="forceValue">设置的力值；单位：百分比（20—100）</param>
+            <returns>true：设置力值成功；false：设置力值失败</returns>
+        </member>
+        <member name="M:DH_GripPawlModbusRTULib.DH_GripPawlModbusRTU.SpinForceValue(System.Byte,System.Byte)">
+            <summary>
+            设置旋转力值
+            </summary>
+            <param name="slaveId">从站ID</param>
+            <param name="forceValue">设置的力值；单位：百分比（20—100）</param>
+            <returns>true：设置力值成功；false：设置力值失败</returns>
+        </member>
+        <member name="M:DH_GripPawlModbusRTULib.DH_GripPawlModbusRTU.ClampPosition(System.Byte,System.UInt16)">
+            <summary>
+            夹持位置指令
+            </summary>
+            <param name="slaveId">从站ID</param>
+            <param name="positionValue">运动到指定位置；单位：千分比（0—1000）</param>
+            <returns>true：夹持位置指令发送成功；false：夹持位置指令发送失败</returns>
+        </member>
+        <member name="M:DH_GripPawlModbusRTULib.DH_GripPawlModbusRTU.AbsoluteSpinAngle_LowBit(System.Byte,System.Int16)">
+            <summary>
+            旋转角度低位（绝对）
+            </summary>
+            <param name="slaveId">从站ID</param>
+            <param name="spinAngleValue">绝对旋转角度值；单位：度（-32767 —32767）</param>
+            <returns>true：绝对旋转角度(低位）发送成功；false：绝对旋转角度(低位）发送失败</returns>
+        </member>
+        <member name="M:DH_GripPawlModbusRTULib.DH_GripPawlModbusRTU.AbsoluteSpinAngle_HighBit(System.Byte,System.Int16)">
+            <summary>
+            旋转角度高位（绝对）
+            </summary>
+            <param name="slaveId">从站ID</param>
+            <param name="spinAngleValue">单位：unit * 32768度（-160—160）</param>
+            <returns>true：绝对旋转角度(高位）发送成功；false：绝对旋转角度(高位）发送失败</returns>
+        </member>
+        <member name="M:DH_GripPawlModbusRTULib.DH_GripPawlModbusRTU.RelativeSpinAngle(System.Byte,System.Int16)">
+            <summary>
+            相对旋转角度
+            </summary>
+            <param name="slaveId">从站ID</param>
+            <param name="spinAngleValue">相对旋转角度值；单位：度（-32768—32767）</param>
+            <returns>true：相对旋转角度发送成功；false：相对旋转角度发送失败</returns>
+        </member>
+        <member name="M:DH_GripPawlModbusRTULib.DH_GripPawlModbusRTU.ClampVelocityValue(System.Byte,System.Byte)">
+            <summary>
+            设置夹持速度
+            </summary>
+            <param name="slaveId">从站ID</param>
+            <param name="velocityValue">设置的速度；单位：百分比（1—100）</param>
+            <returns>true：夹持速度设置成功；false：夹持速度设置失败</returns>
+        </member>
+        <member name="M:DH_GripPawlModbusRTULib.DH_GripPawlModbusRTU.SpinVelocityValue(System.Byte,System.Byte)">
+            <summary>
+            设置旋转速度
+            </summary>
+            <param name="slaveId">从站ID</param>
+            <param name="velocityValue">设置的速度；单位：百分比（1—100）</param>
+            <returns>true：旋转速度设置成功；false：旋转速度设置失败</returns>
+        </member>
+        <member name="M:DH_GripPawlModbusRTULib.DH_GripPawlModbusRTU.Save(System.Byte,System.Boolean)">
+            <summary>
+             写入保存
+            </summary>
+            <param name="slaveId">从站ID</param>
+            <param name="saveParamete">false：默认；true：将所有参数写入Flash</param>
+            <returns>true：写入成功；false：写入失败</returns>
+        </member>
+        <member name="M:DH_GripPawlModbusRTULib.DH_GripPawlModbusRTU.InitializeDirection(System.Byte,System.UInt16)">
+            <summary>
+            设置初始化方向（带保存）
+            </summary>
+            <param name="slaveId">从站ID</param>
+            <param name="Paramete">方向参数（具体查询手册）</param>
+            <returns>true：修改初始化方向成功；false：修改初始化方向失败</returns>
+        </member>
+        <member name="M:DH_GripPawlModbusRTULib.DH_GripPawlModbusRTU.DeviceId(System.Byte,System.UInt16)">
+            <summary>
+            设置设备ID（带保存）
+            </summary>
+            <param name="slaveId">从站ID</param>
+            <param name="deviceId">设置的设备ID</param>
+            <returns>true：修改成功；false：修改失败</returns>
+        </member>
+        <member name="M:DH_GripPawlModbusRTULib.DH_GripPawlModbusRTU.SpinStop(System.Byte,System.UInt16)">
+            <summary>
+            旋转停转
+            </summary>
+            <param name="slaveId">从站ID</param>
+            <param name="stopMode">停止方式</param>
+            <returns>true：设置成功；false：设置失败</returns>
+        </member>
+        <member name="M:DH_GripPawlModbusRTULib.DH_GripPawlModbusRTU.AutoInitialize(System.Byte,System.UInt16)">
+            <summary>
+            上电自动初始化（带保存）
+            </summary>
+            <param name="slaveId">从站ID</param>
+            <param name="initializeMode">初始化模式；0（默认)：上电不初始化；1：上电自动初始化</param>
+            <returns>true：设置成功；false：设置失败</returns>
+        </member>
+        <member name="M:DH_GripPawlModbusRTULib.DH_GripPawlModbusRTU.ClampInitializeState(System.Byte)">
+            <summary>
+            夹持的初始状态反馈
+            </summary>
+            <param name="slaveId">从站ID</param>
+            <returns>返回结果—0：未初始化；1：初始化成功；2：初始化中；255：读取失败</returns>
+        </member>
+        <member name="M:DH_GripPawlModbusRTULib.DH_GripPawlModbusRTU.SpinInitializeState(System.Byte)">
+            <summary>
+            旋转的初始状态反馈
+            </summary>
+            <param name="slaveId">从站ID</param>
+            <returns>返回结果—0：未初始化；1：初始化成功；2：初始化中；255：读取失败</returns>
+        </member>
+        <member name="M:DH_GripPawlModbusRTULib.DH_GripPawlModbusRTU.ClampState(System.Byte)">
+            <summary>
+            夹持状态
+            </summary>
+            <param name="slaveId">从站ID</param>
+            <returns>返回结果—0：运动中；1：到达位置；2：夹住物体；3：物体掉落；255：读取失败</returns>
+        </member>
+        <member name="M:DH_GripPawlModbusRTULib.DH_GripPawlModbusRTU.SpinState(System.Byte)">
+            <summary>
+            旋转状态
+            </summary>
+            <param name="slaveId">从站ID</param>
+            <returns>返回结果—0：运动中；1：到达位置；2：堵转；3：堵转停转；255：读取失败</returns>
+        </member>
+        <member name="M:DH_GripPawlModbusRTULib.DH_GripPawlModbusRTU.GetClampPositionFeedback(System.Byte,System.Int16@)">
+            <summary>
+            夹持位置反馈
+            </summary>
+            <param name="slaveId">从站ID</param>
+            <param name="clampPosition">反馈当前夹爪的夹持位置信息</param>
+            <returns>true：读取成功；false：读取失败</returns>
+        </member>
+        <member name="M:DH_GripPawlModbusRTULib.DH_GripPawlModbusRTU.GetSpinPositionFeedback_LowBit(System.Byte,System.Int16@)">
+            <summary>
+            旋转角度低位反馈
+            </summary>
+            <param name="slaveId">从站ID</param>
+            <param name="spinPosition_L">反馈当前夹爪旋转角度低位</param>
+            <returns>true：读取成功；false：读取失败</returns>
+        </member>
+        <member name="M:DH_GripPawlModbusRTULib.DH_GripPawlModbusRTU.GetSpinPositionFeedback_HighBit(System.Byte,System.Int16@)">
+            <summary>
+            旋转角度高位反馈
+            </summary>
+            <param name="slaveId">从站ID</param>
+            <param name="spinPosition_H">反馈当前夹爪旋转角度高位</param>
+            <returns>true：读取成功；false：读取失败</returns>
+        </member>
+        <member name="M:DH_GripPawlModbusRTULib.DH_GripPawlModbusRTU.GetSpinPositionFeedback(System.Byte,System.Int32@)">
+            <summary>
+            旋转角度反馈
+            </summary>
+            <param name="slaveId">从站ID</param>
+            <param name="spinPosition">反馈当前夹爪旋转角度</param>
+            <returns>true：读取成功；false：读取失败</returns>
+        </member>
+        <member name="M:DH_GripPawlModbusRTULib.DH_GripPawlModbusRTU.GetClampSpeedFeedback(System.Byte,System.Int16@)">
+            <summary>
+            夹持速度反馈
+            </summary>
+            <param name="slaveId">从站ID</param>
+            <param name="clampSpeed">反馈当前夹持电机速度</param>
+            <returns>true：读取成功；false：读取失败</returns>
+        </member>
+        <member name="M:DH_GripPawlModbusRTULib.DH_GripPawlModbusRTU.GetSpinSpeedFeedback(System.Byte,System.Int16@)">
+            <summary>
+            旋转速度反馈
+            </summary>
+            <param name="slaveId">从站ID</param>
+            <param name="spinSpeed">反馈当前旋转速度（单位：r/min）</param>
+            <returns>true：读取成功；false：读取失败</returns>
+        </member>
+        <member name="M:DH_GripPawlModbusRTULib.DH_GripPawlModbusRTU.GetClampCurrentFeedback(System.Byte,System.Int16@)">
+            <summary>
+            夹持电流反馈
+            </summary>
+            <param name="slaveId">从站ID</param>
+            <param name="clampCurrent">反馈当前夹持电机电流</param>
+            <returns>true：读取成功；false：读取失败</returns>
+        </member>
+        <member name="M:DH_GripPawlModbusRTULib.DH_GripPawlModbusRTU.GetSpinCurrentFeedback(System.Byte,System.Int16@)">
+            <summary>
+            旋转电流反馈
+            </summary>
+            <param name="slaveId">从站ID</param>
+            <param name="spinCurrent">反馈当前旋转电流</param>
+            <returns>true：读取成功；false：读取失败</returns>
+        </member>
+        <member name="M:DH_GripPawlModbusRTULib.DH_GripPawlModbusRTU.ErrorFeedback(System.Byte,System.Int16@)">
+            <summary>
+            错误/警告/信息反馈
+            </summary>
+            <param name="slaveId">从站ID</param>
+            <param name="error">返回结果-0：无错误；非0：错误码表查询</param>
+            <returns>true：读取成功；false：读取失败</returns>
+        </member>
+        <member name="M:DH_GripPawlModbusRTULib.DH_GripPawlModbusRTU.TemperatureFeedback(System.Byte,System.Int16@)">
+            <summary>
+            温度反馈
+            </summary>
+            <param name="slaveId">从站ID</param>
+            <param name="temperature">反馈当前夹爪的模块温度</param>
+            <returns>true：读取成功；false：读取失败</returns>
+        </member>
+        <member name="M:DH_GripPawlModbusRTULib.DH_GripPawlModbusRTU.EncoderStateFeedback(System.Byte,System.Int16@)">
+            <summary>
+            编码器状态反馈
+            </summary>
+            <param name="slaveId">从站ID</param>
+            <param name="encoderState">反馈夹持/旋转编码器错误码信息</param>
+            <returns>true：读取成功；false：读取失败</returns>
+        </member>
+        <member name="T:DH_GripPawlModbusRTULib.SimpleHybirdLock">
+            <summary>
+            一个简单的混合线程同步锁，采用了基元用户加基元内核同步构造实现
+            </summary>
+        </member>
+        <member name="M:DH_GripPawlModbusRTULib.SimpleHybirdLock.Dispose">
+            <summary>
+            释放资源
+            </summary>
+        </member>
+        <member name="F:DH_GripPawlModbusRTULib.SimpleHybirdLock.m_waiters">
+            <summary>
+            基元用户模式构造同步锁
+            </summary>
+        </member>
+        <member name="F:DH_GripPawlModbusRTULib.SimpleHybirdLock.m_waiterLock">
+            <summary>
+            基元内核模式构造同步锁
+            </summary>
+        </member>
+        <member name="M:DH_GripPawlModbusRTULib.SimpleHybirdLock.Enter">
+            <summary>
+            获取锁
+            </summary>
+        </member>
+        <member name="M:DH_GripPawlModbusRTULib.SimpleHybirdLock.Leave">
+            <summary>
+            离开锁
+            </summary>
+        </member>
+        <member name="P:DH_GripPawlModbusRTULib.SimpleHybirdLock.IsWaitting">
+            <summary>
+            获取当前锁是否在等待当中
+            </summary>
+        </member>
+    </members>
+</doc>

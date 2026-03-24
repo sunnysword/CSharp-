@@ -1,0 +1,448 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ZMotionHelper</name>
+    </assembly>
+    <members>
+        <member name="F:ZMotionHelper.ImplementPattern.ContinueLinePattern.radius_zsmooth">
+            <summary>
+            连续线自动倒角,默认值500
+            </summary>
+        </member>
+        <member name="M:ZMotionHelper.ImplementPattern.ContinueLinePattern.SetRadiusZSmooth(System.Int32)">
+            <summary>
+            设置连续线的倒角半径，最小值500个脉冲;
+            单位：脉冲
+            </summary>
+        </member>
+        <member name="M:ZMotionHelper.ImplementPattern.ContinueLinePattern.CheckAccDec(System.Double@,System.Double)">
+            <summary>
+            将加速时间转换为加速度
+            </summary>
+            <param name="acc"></param>
+            <param name="speed"></param>
+        </member>
+        <member name="T:ZMotionHelper.IO.EcatIoHelper">
+            <summary>
+            总线IO,采用总线IO设备IO,非节点号！
+            按连接顺序，第一个出现的Io模块设备号为0，依次往下排
+            </summary>
+        </member>
+        <member name="F:ZMotionHelper.IO.EcatIoHelper.EcatIosDicList">
+            <summary>
+            总线IO集合
+            </summary>
+        </member>
+        <member name="M:ZMotionHelper.IO.EcatIoHelper.#ctor(System.String,System.String,System.Int32,System.Int32,System.Int32,System.Int32,Iodll.IoControlContainer)">
+            <summary>
+            总线IO,采用总线IO设备IO,非节点号！
+            按连接顺序，第一个出现的Io模块设备号为0，依次往下排
+            </summary>
+            <param name="IP"></param>
+            <param name="name"></param>
+            <param name="DevNo">设备号</param>
+            <param name="InNums"></param>
+            <param name="OutNums"></param>
+            <param name="startAddress"></param>
+            <param name="ioMsg"></param>
+        </member>
+        <member name="P:ZMotionHelper.IO.EcatIoHelper.Dev">
+            <summary>
+            设备号
+            </summary>
+        </member>
+        <member name="T:ZMotionHelper.IO.IoControlBase">
+            <summary>
+            正运动Io控制通用方法
+            </summary>
+        </member>
+        <member name="P:ZMotionHelper.IO.IoControlBase.InTotalNums">
+            <summary>
+            输入点总个数
+            </summary>
+        </member>
+        <member name="P:ZMotionHelper.IO.IoControlBase.OutTotalNums">
+            <summary>
+            输出点总个数
+            </summary>
+        </member>
+        <member name="P:ZMotionHelper.IO.IoControlBase.StartAddress">
+            <summary>
+            起始地址
+            </summary>
+        </member>
+        <member name="T:ZMotionHelper.IO.OutAbsAddressInfoImplement">
+            <summary>
+            正运动输出点的绝对地址信息实现类
+            </summary>
+        </member>
+        <member name="T:ZMotionHelper.IO.ZIoHelper">
+             <summary>
+             正运动自身IO
+             
+            
+             </summary>
+        </member>
+        <member name="T:ZMotionHelper.LineAixs.LineHelper">
+            <summary>
+            插补创建对象
+            </summary>
+        </member>
+        <member name="P:ZMotionHelper.LineAixs.LineHelper.handle">
+            <summary>
+            控制器控制句柄
+            </summary>
+        </member>
+        <member name="F:ZMotionHelper.LineAixs.LineHelper.AixNo_1">
+            <summary>
+            轴1
+            </summary>
+        </member>
+        <member name="F:ZMotionHelper.LineAixs.LineHelper.AixNo_2">
+            <summary>
+            轴2
+            </summary>
+        </member>
+        <member name="M:ZMotionHelper.LineAixs.LineHelper.CheckAccDec(System.Double@,System.Double)">
+            <summary>
+            将加速时间转换为加速度
+            </summary>
+            <param name="acc"></param>
+            <param name="speed"></param>
+        </member>
+        <member name="M:ZMotionHelper.LineAixs.LineHelper.TempArcMovAngle(System.Double,System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            圆弧插补(绝对)，在当前位置，根据指定的圆心，走一定的角度  单位：(位置)mm,（速度）mm/s,(加速度)s(使用导程换算)
+            </summary>
+            <param name="centerPos1">当前插补轴1的的圆心位置(相对于原点)</param>
+            <param name="centerPos2">当前插补轴1的的圆心位置(相对于原点)</param>
+            <param name="angle">角度：0~360，其值为正时，逆时针；其值为负时，顺时针</param>      
+        </member>
+        <member name="M:ZMotionHelper.LineAixs.LineHelper.ArcMovAngle(System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Boolean)">
+            <summary>
+            圆弧插补(相对)，在当前位置，根据指定的圆心，走一定的角度  单位：(位置)mm,（速度）mm/s,(加速度)s(使用导程换算)
+            </summary>
+            <param name="centerPos1">当前插补轴1的的圆心位置(相对于原点)</param>
+            <param name="centerPos2">当前插补轴1的的圆心位置(相对于原点)</param>
+            <param name="angle">角度：0~360，其值为正时，逆时针；其值为负时，顺时针；超过360时，会减去360，直到小于360</param>
+            <param name="speed"></param>
+            <param name="AccTime"></param>
+            <param name="DecTime"></param>
+            <param name="checkdone"></param>
+        </member>
+        <member name="M:ZMotionHelper.LineAixs.LineHelper.RotatedXY(System.Double,System.Double,System.Double,System.Double,System.Double,System.Double@,System.Double@)">
+            <summary>
+            指定的坐标绕指定点旋转指定的角度，得到新的坐标
+            </summary>
+            <param name="centerPos1">旋转点</param>
+            <param name="centerPos2">旋转点</param>
+            <param name="pos1">要旋转的点</param>
+            <param name="pos2">要旋转的点</param>
+            <param name="Angle">要旋转的角度</param>
+            <param name="newPos1">旋转后的坐标</param>
+            <param name="newPos2">旋转后的坐标</param>
+        </member>
+        <member name="F:ZMotionHelper.LineAixs.LineHelper.timeOut_WaitDone">
+            <summary>
+            运动超时时间，单位ms
+            </summary>
+        </member>
+        <member name="M:ZMotionHelper.LineAixs.LineHelper.SetWaitDoneTimeOut(System.Int32)">
+            <summary>
+            设置等待运动完成超时时间，单位ms
+            默认超时时间3分钟
+            </summary>
+            <param name="timeOut"></param>
+        </member>
+        <member name="T:ZMotionHelper.LineAixs.LineZHelper">
+            <summary>
+            三轴直线插补实现
+            </summary>
+        </member>
+        <member name="P:ZMotionHelper.LineAixs.LineZHelper.handle">
+            <summary>
+            控制器控制句柄
+            </summary>
+        </member>
+        <member name="F:ZMotionHelper.LineAixs.LineZHelper.AixNo_1">
+            <summary>
+            轴1
+            </summary>
+        </member>
+        <member name="F:ZMotionHelper.LineAixs.LineZHelper.AixNo_2">
+            <summary>
+            轴2
+            </summary>
+        </member>
+        <member name="F:ZMotionHelper.LineAixs.LineZHelper.AixNo_3">
+            <summary>
+            轴3
+            </summary>
+        </member>
+        <member name="M:ZMotionHelper.LineAixs.LineZHelper.CheckAccDec(System.Double@,System.Double)">
+            <summary>
+            将加速时间转换为加速度
+            </summary>
+            <param name="acc"></param>
+            <param name="speed"></param>
+        </member>
+        <member name="F:ZMotionHelper.LineAixs.LineZHelper.timeOut_WaitDone">
+            <summary>
+            运动超时时间，单位ms
+            </summary>
+        </member>
+        <member name="M:ZMotionHelper.LineAixs.LineZHelper.SetWaitDoneTimeOut(System.Int32)">
+            <summary>
+            设置等待运动完成超时时间，单位ms
+            默认超时时间3分钟
+            </summary>
+            <param name="timeOut"></param>
+        </member>
+        <member name="T:ZMotionHelper.LineAixs.ZMotionLine3AixsFactory">
+            <summary>
+            插补三轴创建工厂
+            </summary>
+        </member>
+        <member name="T:ZMotionHelper.LineAixs.ZMotionLineAixsFactory">
+            <summary>
+            正运动 ，插补创建对象
+            </summary>
+        </member>
+        <member name="T:ZMotionHelper.SingleAix.SingleAixHelper">
+            <summary>
+            单轴运动帮助类
+            </summary>
+        </member>
+        <member name="P:ZMotionHelper.SingleAix.SingleAixHelper.IsCheckHasMovBuffer">
+            <summary>
+            在运动前是否检测还有运动缓存，默认false
+            </summary>
+        </member>
+        <member name="P:ZMotionHelper.SingleAix.SingleAixHelper.IsCheckOrgStateOnHoming">
+            <summary>
+            在回原点过程中是否检查，原点信号的变化。
+            默认为true
+            </summary>
+        </member>
+        <member name="M:ZMotionHelper.SingleAix.SingleAixHelper.#ctor(System.String,System.String,System.Int16,SingleAixdll.SvonLogic)">
+            <summary>
+            ZMotion 单轴对象构造函数
+            
+            </summary>
+            <param name="aixName">名字</param>
+            <param name="AixNo">轴号</param>
+            <param name="svonLogic">使能有效电平</param>
+        </member>
+        <member name="P:ZMotionHelper.SingleAix.SingleAixHelper.IsConnected">
+            <summary>
+            是否连接正常
+            </summary>
+        </member>
+        <member name="P:ZMotionHelper.SingleAix.SingleAixHelper.AType">
+            <summary>
+            轴类型，1-脉冲轴；65-总线轴
+            </summary>
+        </member>
+        <member name="P:ZMotionHelper.SingleAix.SingleAixHelper.AixNo">
+            <summary>
+            当前轴号
+            </summary>
+        </member>
+        <member name="F:ZMotionHelper.SingleAix.SingleAixHelper.Name">
+            <summary>
+            轴名字
+            </summary>
+        </member>
+        <member name="P:ZMotionHelper.SingleAix.SingleAixHelper.SvonLogic">
+            <summary>
+            电机使能的有效电平
+            </summary>
+        </member>
+        <member name="P:ZMotionHelper.SingleAix.SingleAixHelper.AccMax">
+             <summary>
+            最大 加速时间
+             </summary>
+        </member>
+        <member name="P:ZMotionHelper.SingleAix.SingleAixHelper.DecMax">
+            <summary>
+            最大 减速时间
+            </summary>
+        </member>
+        <member name="P:ZMotionHelper.SingleAix.SingleAixHelper.SpeedMax">
+            <summary>
+            最大速度  10M
+            </summary>
+        </member>
+        <member name="F:ZMotionHelper.SingleAix.SingleAixHelper.IsLeaveLimitOnHomeEL">
+            <summary>
+            当使用限位回零时是否，在回零后离开限位固定距离再执行清零动作,默认不启用
+            </summary>
+        </member>
+        <member name="F:ZMotionHelper.SingleAix.SingleAixHelper.plus_LeaveLimitOnHomeEL">
+            <summary>
+            回零后离开限位固定距离，默认1000 个脉冲
+            </summary>
+        </member>
+        <member name="M:ZMotionHelper.SingleAix.SingleAixHelper.Fun_SetLeaveLimitOnHomeELMode(System.Boolean,System.UInt32)">
+            <summary>
+            当使用限位回零模式时，设置是否离开限位固定距离！默认不启用
+            </summary>
+            <param name="isEnable">是否启用</param>
+            <param name="leavePlus">脉冲</param>
+        </member>
+        <member name="M:ZMotionHelper.SingleAix.SingleAixHelper.CheckActin(System.Func{System.Int32})">
+            <summary>
+            安全调用方法，当所执行的方法没有正确的返回值时，抛出异常
+            </summary>
+            <param name="func"></param>
+        </member>
+        <member name="M:ZMotionHelper.SingleAix.SingleAixHelper.CheckAccDec(System.Double@,System.Double)">
+            <summary>
+            将加速时间转换为加速度
+            </summary>
+            <param name="acc"></param>
+            <param name="speed"></param>
+        </member>
+        <member name="M:ZMotionHelper.SingleAix.SingleAixHelper.SetSovnBaseOutIO(System.Int32)">
+            <summary>
+            设置使能输出控制方式为，通用IO输出点
+            </summary>
+        </member>
+        <member name="M:ZMotionHelper.SingleAix.SingleAixHelper.ClearDPOS">
+            <summary>
+            清除命令位置
+            </summary>
+        </member>
+        <member name="M:ZMotionHelper.SingleAix.SingleAixHelper.ClearMPOS">
+            <summary>
+            清除编码器位置
+            </summary>
+        </member>
+        <member name="F:ZMotionHelper.SingleAix.SingleAixHelper.timeOut_WaitDone">
+            <summary>
+            运动超时时间，单位ms
+            </summary>
+        </member>
+        <member name="M:ZMotionHelper.SingleAix.SingleAixHelper.SetWaitDoneTimeOut(System.Int32)">
+            <summary>
+            设置等待运动完成超时时间，单位ms
+            默认超时时间3分钟
+            </summary>
+            <param name="timeOut"></param>
+        </member>
+        <member name="M:ZMotionHelper.SingleAix.SingleAixHelper.PreAction">
+            <summary>
+            进入方法后最先调用的方法
+            </summary>
+        </member>
+        <member name="M:ZMotionHelper.SingleAix.SingleAixHelper.SetFsLimit(System.Single)">
+            <summary>
+            设置软限位 ： 正向
+            </summary>
+            <param name="fvalue"></param>
+        </member>
+        <member name="M:ZMotionHelper.SingleAix.SingleAixHelper.SetRsLimit(System.Single)">
+            <summary>
+            设置软限位 ： 负向
+            </summary>
+            <param name="fvalue"></param>
+        </member>
+        <member name="M:ZMotionHelper.SingleAix.SingleAixHelper.Set_Vring(System.Byte,System.UInt32)">
+            <summary>
+            环装计数器
+            </summary>     
+            <param name="VringEnable">1:使能；0:取消使能</param>      
+            <param name="dVringValue">设定值,脉冲</param>
+        </member>
+        <member name="M:ZMotionHelper.SingleAix.SingleAixHelper.Fun_T_SetMovTriggerIO(System.Double,ZMotionHelper.IO.OutAbsAddressInfoImplement,System.Int32,System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            特殊运动，单轴相对移动！在移动中关闭触发的IO
+            </summary>
+            <param name="movDisTotal">移动的总距离</param>
+            <param name="ioOutAbsAddress">操作的IO</param>
+            <param name="preMovDelay">打开IO后，延时移动的时间</param>
+            <param name="offDis">需要关闭IO的位置</param>
+            <param name="speed">运行速度</param>
+            <param name="acc">加速度</param>
+            <param name="dec">减速度</param>
+        </member>
+        <member name="T:ZMotionHelper.InitFileFormat">
+            <summary>
+            控制器初始化下载文件扩展名格式
+            </summary>
+        </member>
+        <member name="F:ZMotionHelper.InitFileFormat.BAS">
+            <summary>
+            Bas文件
+            </summary>
+        </member>
+        <member name="F:ZMotionHelper.InitFileFormat.ZAR">
+            <summary>
+            Zar文件
+            </summary>
+        </member>
+        <member name="T:ZMotionHelper.ZMotionCard">
+            <summary>
+            正运动卡初始化,需要初始化文件
+            在主程序目录下建一个Bas文件夹，将初始化文件放进该文件夹；如果存在多个初始化文件，默认读取第一个
+            </summary>
+        </member>
+        <member name="P:ZMotionHelper.ZMotionCard.CardInitFileFormat">
+            <summary>
+            控制器初始化文件格式，会在第一次运行时读取配置文件格式来进行赋值
+            </summary>
+        </member>
+        <member name="F:ZMotionHelper.ZMotionCard.DicMotion">
+            <summary>
+            运动控制器集合
+            </summary>
+        </member>
+        <member name="F:ZMotionHelper.ZMotionCard.timer">
+            <summary>
+            检查定控制器连接状态
+            </summary>
+        </member>
+        <member name="P:ZMotionHelper.ZMotionCard.IsDebugRun">
+            <summary>
+            调试模式下
+            </summary>
+        </member>
+        <member name="P:ZMotionHelper.ZMotionCard.IsConnected">
+            <summary>
+            是否连接到控制器
+            </summary>
+        </member>
+        <member name="F:ZMotionHelper.ZMotionCard.AixInfos">
+            <summary>
+            总线轴信息管理器
+            </summary>
+        </member>
+        <member name="F:ZMotionHelper.ZMotionCard.EcatIOInfos">
+            <summary>
+            总线IO信息管理
+            </summary>
+        </member>
+        <member name="M:ZMotionHelper.ZMotionCard.InitFileDownload(System.IntPtr)">
+            <summary>
+            初始化文件下载进控制器
+            </summary>
+        </member>
+        <member name="M:ZMotionHelper.ZMotionCard.SetInitFileFormat(ZMotionHelper.InitFileFormat)">
+            <summary>
+            设置控制器初始化下载文件扩展名格式
+            </summary>
+            <param name="format">扩展名，目前分为.bas或者.zar</param>
+        </member>
+        <member name="M:ZMotionHelper.ZMotionCard.CheckInitFileExtensionName">
+            <summary>
+            检查初始化文件的扩展名，并根据文件扩展名确定控制器初始化文件格式类型
+            </summary>
+        </member>
+        <member name="M:ZMotionHelper.ZMotionCard.GetControllerHandle">
+            <summary>
+            获取控制器对应句柄
+            </summary>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

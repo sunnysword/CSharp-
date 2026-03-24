@@ -1,0 +1,528 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>AviewMotionUI.ProductionStatistics</name>
+    </assembly>
+    <members>
+        <member name="T:AviewMotionUI.MachineLife.ComponentCount">
+            <summary>
+            组件寿命统计类
+            </summary>
+        </member>
+        <member name="P:AviewMotionUI.MachineLife.ComponentCount.ComponentNameList">
+            <summary>
+            组件名称集合，用于存放当前类别下的组件名称统计
+            </summary>
+        </member>
+        <member name="P:AviewMotionUI.MachineLife.ComponentCount.Name">
+            <summary>
+            组件类别名称
+            </summary>
+        </member>
+        <member name="P:AviewMotionUI.MachineLife.ComponentCount.CurrentGroupName">
+            <summary>
+            当前组名称，不同机种对应的组名称不同
+            </summary>
+        </member>
+        <member name="F:AviewMotionUI.MachineLife.ComponentCount.Selector">
+            <summary>
+            组选择器对象，用于查找不同机种的对应组，从而实现对应组的统计
+            </summary>
+        </member>
+        <member name="F:AviewMotionUI.MachineLife.ComponentCount.ComponentCollection">
+            <summary>
+            组件寿命统计集合
+            </summary>
+        </member>
+        <member name="M:AviewMotionUI.MachineLife.ComponentCount.#ctor">
+            <summary>
+            构建一个默认的组件寿命统计类
+            </summary>
+        </member>
+        <member name="M:AviewMotionUI.MachineLife.ComponentCount.SearchIndex(System.Collections.Generic.IEnumerable{AviewMotionUI.ProductionStatistics.Percentage},System.String)">
+            <summary>
+            查找索引
+            </summary>
+            <param name="list">当前类实例中ComponentCollection集合对象</param>
+            <param name="searchName">想要查找的对应ComponentCollection集合对象中名称</param>
+            <returns></returns>
+        </member>
+        <member name="M:AviewMotionUI.MachineLife.ComponentCount.RegisterComponent(System.String,System.String[])">
+            <summary>
+            为当前对象添加ComponentCollection寿命统计集合对象
+            </summary>
+            <param name="modelName">当前运行机种名称</param>
+            <param name="componentNames">组件名称</param>
+        </member>
+        <member name="M:AviewMotionUI.MachineLife.ComponentCount.CheckCount(System.String,System.String)">
+            <summary>
+            检查指定组件名称的组件是否超出最大使用次数
+            </summary>
+            <param name="modelName">当前运行机种名称</param>
+            <param name="name">想要检查的组件名称</param>
+            <returns></returns>
+            <exception cref="T:System.ArgumentNullException">若检查组件名称为空，将抛出ArgumentNullException异常</exception>
+        </member>
+        <member name="M:AviewMotionUI.MachineLife.ComponentCount.AddCountOnce(System.String,System.String)">
+            <summary>
+            增加指定组件名称的组件计数一次
+            </summary>
+            <param name="modelName">当前运行机种名称</param>
+            <param name="name">想要增加使用次数的组件名称</param>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:AviewMotionUI.MachineLife.ComponentCount.SetCustomComponentMaxCount(System.String,System.String,System.Int32)">
+            <summary>
+            设定指定名称的组件的最大使用次数
+            </summary>
+            <param name="modelName">当前运行机种名称</param>
+            <param name="name">想要设置最大使用次数的组件名称</param>
+            <param name="value">设置的最大值</param>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:AviewMotionUI.MachineLife.ComponentCount.ChangeCollection(System.String)">
+            <summary>
+            根据机种名改变当前需要检查的ComponentCollection组件寿命统计集合
+            </summary>
+            <param name="modelName">当前运行机种</param>
+        </member>
+        <member name="M:AviewMotionUI.MachineLife.ComponentCount.CheckGroupNameChanged(System.String,System.String@)">
+            <summary>
+            检查当前组名是否应该发生变化，当运行机种改变时，用于检查是否当前运行机种的组名也发生了改变
+            </summary>
+            <param name="modelName">当前运行机种</param>
+            <param name="groupName">当前应该运行的组名</param>
+            <returns>是否应该变更组名</returns>
+            <exception cref="T:System.ArgumentNullException"></exception>
+            <exception cref="T:System.ArgumentException"></exception>
+        </member>
+        <member name="M:AviewMotionUI.MachineLife.ComponentCount.GetCustomComponentCollection(System.String)">
+            <summary>
+            根据组名更新当前寿命统计集合
+            </summary>
+            <param name="groupName">当前运行组名</param>
+            <returns>更新后的当前组名下的寿命统计集合</returns>
+            <exception cref="T:System.Exception"></exception>
+        </member>
+        <member name="M:AviewMotionUI.MachineLife.ComponentCount.SaveCollection(System.String)">
+            <summary>
+            保存当前寿命统计集合到当前组名指向的文件路径，发生异常暂时不会被抛出
+            </summary>
+            <param name="modelName">当前运行机种，根据该机种名找到对应的组名进行保存</param>
+        </member>
+        <member name="T:AviewMotionUI.MachineLife.GroupSelector">
+            <summary>
+            组选择器对象，用于配置机种和组的对应关系
+            </summary>
+        </member>
+        <member name="P:AviewMotionUI.MachineLife.GroupSelector.GroupNameCollection">
+            <summary>
+            指定组件类别集合下的组名称集合
+            </summary>
+        </member>
+        <member name="P:AviewMotionUI.MachineLife.GroupSelector.GroupNameKeyValuePairs">
+            <summary>
+            机种和组对应关系表
+            </summary>
+        </member>
+        <member name="T:AviewMotionUI.MachineLife.MachineLifeImmutableManger">
+            <summary>
+            寿命统计管理器，用于不跟随机种产生变化的组件寿命统计，目前未实现
+            </summary>
+        </member>
+        <member name="F:AviewMotionUI.MachineLife.MachineLifeImmutableManger.ComponentLifeCollection">
+            <summary>
+            损耗集合
+            </summary>
+        </member>
+        <member name="T:AviewMotionUI.MachineLife.MachineLifeShared">
+            <summary>
+            寿命统计共享类，用于存放一些公共方法
+            </summary>
+        </member>
+        <member name="T:AviewMotionUI.MachineLife.MachineLifeVariableManger">
+            <summary>
+            寿命统计管理器，用于跟随机种产生变化的组件寿命统计
+            </summary>
+        </member>
+        <member name="F:AviewMotionUI.MachineLife.MachineLifeVariableManger.Current">
+            <summary>
+            返回当前管理器实例
+            </summary>
+        </member>
+        <member name="P:AviewMotionUI.MachineLife.MachineLifeVariableManger.FileSavePath">
+            <summary>
+            当前管理器配置文件保存路径
+            </summary>
+        </member>
+        <member name="F:AviewMotionUI.MachineLife.MachineLifeVariableManger.ComponentTypeCollection">
+            <summary>
+            组件类型集合
+            </summary>
+        </member>
+        <member name="M:AviewMotionUI.MachineLife.MachineLifeVariableManger.SetGetModelNameFunc(System.Func{System.String})">
+            <summary>
+            设置获取当前运行机种委托
+            </summary>
+            <param name="func">一个返回当前运行机种Model名称的委托</param>
+        </member>
+        <member name="M:AviewMotionUI.MachineLife.MachineLifeVariableManger.GetCurrentModelName">
+            <summary>
+            通过调用获取当前机种委托来获取当前运行机种
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:AviewMotionUI.MachineLife.MachineLifeVariableManger.RegisterComponentType(System.String,System.String[])">
+            <summary>
+            注册组件类别集合
+            </summary>
+            <param name="typeName">组件类别</param>
+            <param name="componentNames">组件名称集合</param>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:AviewMotionUI.MachineLife.MachineLifeVariableManger.CheckComponentCount(System.String,System.String)">
+            <summary>
+            检查指定组件使用次数是否超过最大使用次数
+            </summary>
+            <param name="typeName">组件类别</param>
+            <param name="name">组件名称</param>
+            <returns>true:超过最大使用次数，此时应该报警。反之则返回false</returns>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:AviewMotionUI.MachineLife.MachineLifeVariableManger.AddCountOnce(System.String,System.String)">
+            <summary>
+            增加指定组件使用次数一次
+            </summary>
+            <param name="typeName">组件类别</param>
+            <param name="name">组件名称</param>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:AviewMotionUI.MachineLife.MachineLifeVariableManger.SetCustomComponentTypeMaxCount(System.String,System.String,System.Int32)">
+            <summary>
+            设置指定组件最大使用次数
+            </summary>
+            <param name="typeName">组件类别</param>
+            <param name="name">组件名称</param>
+            <param name="value">设置的最大使用次数</param>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:AviewMotionUI.MachineLife.MachineLifeVariableManger.ChangeModel(System.String)">
+            <summary>
+            更换机种，当外部运行机种更换时，可调用此方法主动更新组件寿命统计集合
+            </summary>
+            <param name="modelName"></param>
+        </member>
+        <member name="M:AviewMotionUI.MachineLife.MachineLifeVariableManger.Save">
+            <summary>
+            保存当前管理器配置到默认文件路径
+            </summary>
+        </member>
+        <member name="T:AviewMotionUI.MachineLife.MachineLifeVariableMangerParams">
+            <summary>
+            设备寿命统计管理器相关配置参数，后续考虑开放给外部修改
+            </summary>
+        </member>
+        <member name="F:AviewMotionUI.MachineLife.MachineLifeVariableMangerParams.MachineLifeBaseDirectory">
+            <summary>
+            保存路径Base路径
+            </summary>
+        </member>
+        <member name="F:AviewMotionUI.MachineLife.MachineLifeVariableMangerParams.MachineLifeVariableMangerFilePath">
+            <summary>
+            MachineLifeVariableManger管理器类配置文件保存路径
+            </summary>
+        </member>
+        <member name="F:AviewMotionUI.MachineLife.MachineLifeVariableMangerParams.ComponentTypeDirectory">
+            <summary>
+            MachineLifeVariableManger管理器类组件类别集合保存目录路径，非文件路径
+            </summary>
+        </member>
+        <member name="F:AviewMotionUI.MachineLife.MachineLifeVariableMangerParams.ComponentCountFile">
+            <summary>
+            MachineLifeVariableManger管理器类组件类别集合中对应组件寿命集合保存的文件名称，非文件路径
+            </summary>
+        </member>
+        <member name="T:AviewMotionUI.ProductionStatistics.Percentage">
+            <summary>
+            百分比统计类
+            </summary>
+        </member>
+        <member name="P:AviewMotionUI.ProductionStatistics.Percentage.Name">
+            <summary>
+            名称，统计具体某处的百分比
+            </summary>
+        </member>
+        <member name="P:AviewMotionUI.ProductionStatistics.Percentage.KeyCount">
+            <summary>
+            关键量
+            </summary>
+        </member>
+        <member name="P:AviewMotionUI.ProductionStatistics.Percentage.SpareCount">
+            <summary>
+            剩余量
+            </summary>
+        </member>
+        <member name="P:AviewMotionUI.ProductionStatistics.Percentage.TotalCount">
+            <summary>
+            总数统计
+            </summary>
+        </member>
+        <member name="P:AviewMotionUI.ProductionStatistics.Percentage.Yield">
+            <summary>
+            百分比占比：关键量/总数
+            </summary>
+        </member>
+        <member name="M:AviewMotionUI.ProductionStatistics.Percentage.Clear">
+            <summary>
+            清空计数
+            </summary>
+        </member>
+        <member name="T:AviewMotionUI.ProductionStatistics.ProductionStatisticsManger">
+            <summary>
+            生产相关统计:良率，生产统计，各治具良率统计等
+            </summary>
+        </member>
+        <member name="F:AviewMotionUI.ProductionStatistics.ProductionStatisticsManger.Current">
+            <summary>
+            当前单例
+            </summary>
+        </member>
+        <member name="M:AviewMotionUI.ProductionStatistics.ProductionStatisticsManger.CreateInstance">
+            <summary>
+            获取当前对象单例
+            </summary>
+            <returns>当前对象单例</returns>
+        </member>
+        <member name="P:AviewMotionUI.ProductionStatistics.ProductionStatisticsManger.NgBoxNums">
+            <summary>
+            NG盒计数
+            </summary>
+        </member>
+        <member name="F:AviewMotionUI.ProductionStatistics.ProductionStatisticsManger.TotalYieldArray">
+            <summary>
+            整体良率统计
+            </summary>
+        </member>
+        <member name="F:AviewMotionUI.ProductionStatistics.ProductionStatisticsManger.SocketYieldArray">
+            <summary>
+            治具良率统计
+            </summary>
+        </member>
+        <member name="F:AviewMotionUI.ProductionStatistics.ProductionStatisticsManger.StationYieldArray">
+            <summary>
+            工位良率统计
+            </summary>
+        </member>
+        <member name="M:AviewMotionUI.ProductionStatistics.ProductionStatisticsManger.AddCountOnce(AviewMotionUI.ProductionStatistics.ProductResult,System.String,AviewMotionUI.ProductionStatistics.StationResultInfo[])">
+            <summary>
+            生产统计添加一次计数
+            </summary>
+            <param name="productResult">产品结果</param>
+            <param name="socketName">治具名称</param>
+            <param name="stationResults">各站结果和相关信息</param>
+        </member>
+        <member name="M:AviewMotionUI.ProductionStatistics.ProductionStatisticsManger.AddOKProductOnce(System.String,System.String[])">
+            <summary>
+            添加一次产量，产品OK
+            </summary>
+            <param name="socketName"></param>
+        </member>
+        <member name="M:AviewMotionUI.ProductionStatistics.ProductionStatisticsManger.Clear">
+            <summary>
+            生产统计清零一次
+            </summary>
+        </member>
+        <member name="M:AviewMotionUI.ProductionStatistics.ProductionStatisticsManger.Save">
+            <summary>
+            保存当前实例到默认文件路径
+            </summary>
+        </member>
+        <member name="T:AviewMotionUI.ProductionStatistics.StationResultInfo">
+            <summary>
+            各站产品结果信息类
+            </summary>
+        </member>
+        <member name="P:AviewMotionUI.ProductionStatistics.StationResultInfo.Name">
+            <summary>
+            站名称
+            </summary>
+        </member>
+        <member name="P:AviewMotionUI.ProductionStatistics.StationResultInfo.Result">
+            <summary>
+            产品在该站测试的结果
+            </summary>
+        </member>
+        <member name="P:AviewMotionUI.ProductionStatistics.StationResultInfo.NGItems">
+            <summary>
+            若产品在该站NG，则此属性统计在该站的NG项
+            </summary>
+        </member>
+        <member name="T:AviewMotionUI.ProductionStatistics.ProductResult">
+            <summary>
+            产品总结果
+            </summary>
+        </member>
+        <member name="F:AviewMotionUI.ProductionStatistics.ProductResult.OK">
+            <summary>
+            产品总结果OK
+            </summary>
+        </member>
+        <member name="F:AviewMotionUI.ProductionStatistics.ProductResult.NG">
+            <summary>
+            产品总结果NG
+            </summary>
+        </member>
+        <member name="T:AviewMotionUI.ProductionStatistics.StationResult">
+            <summary>
+            产品单站结果
+            </summary>
+        </member>
+        <member name="F:AviewMotionUI.ProductionStatistics.StationResult.OK">
+            <summary>
+            产品在此站OK
+            </summary>
+        </member>
+        <member name="F:AviewMotionUI.ProductionStatistics.StationResult.NG">
+            <summary>
+            产品在此站NG
+            </summary>
+        </member>
+        <member name="F:AviewMotionUI.ProductionStatistics.StationResult.NoTest">
+            <summary>
+            产品在此站未进行任何动作
+            </summary>
+        </member>
+        <member name="F:AviewMotionUI.ProductionStatistics.StationResult.Limited">
+            <summary>
+            此站屏蔽，产品在此站直接跳过该站
+            </summary>
+        </member>
+        <member name="T:AviewMotionUI.ProductionStatistics.Yield">
+            <summary>
+            良率统计类
+            </summary>
+        </member>
+        <member name="M:AviewMotionUI.ProductionStatistics.Yield.#ctor">
+            <summary>
+            构建默认良率统计类
+            </summary>
+        </member>
+        <member name="P:AviewMotionUI.ProductionStatistics.Yield.Name">
+            <summary>
+            名称，用于识别具体某处的良率
+            </summary>
+        </member>
+        <member name="P:AviewMotionUI.ProductionStatistics.Yield.YieldPercent">
+            <summary>
+            良率
+            </summary>
+        </member>
+        <member name="P:AviewMotionUI.ProductionStatistics.Yield.NGTypeInfoItems">
+            <summary>
+            NG信息集合
+            </summary>
+        </member>
+        <member name="F:AviewMotionUI.ProductionStatistics.Yield.CountChangedEventHandler">
+            <summary>
+            统计变更事件，当前统计数量变化时触发
+            </summary>
+        </member>
+        <member name="M:AviewMotionUI.ProductionStatistics.Yield.Clear">
+            <summary>
+            清空当前良率
+            </summary>
+        </member>
+        <member name="M:AviewMotionUI.ProductionStatistics.Yield.AddOKProductOnce">
+            <summary>
+            增加产品OK一次
+            </summary>
+        </member>
+        <member name="M:AviewMotionUI.ProductionStatistics.Yield.AddNGProductOnce(System.String[])">
+            <summary>
+            增加产品NG一次
+            </summary>
+            <param name="ngTypeNameItems"></param>
+        </member>
+        <member name="T:AviewMotionUI.Properties.Resources">
+            <summary>
+              一个强类型的资源类，用于查找本地化的字符串等。
+            </summary>
+        </member>
+        <member name="P:AviewMotionUI.Properties.Resources.ResourceManager">
+            <summary>
+              返回此类使用的缓存的 ResourceManager 实例。
+            </summary>
+        </member>
+        <member name="P:AviewMotionUI.Properties.Resources.Culture">
+            <summary>
+              重写当前线程的 CurrentUICulture 属性，对
+              使用此强类型资源类的所有资源查找执行重写。
+            </summary>
+        </member>
+        <member name="T:AviewMotionUI.Views.MachineLife.GroupSelectorView">
+            <summary>
+            GroupSelectorView.xaml 的交互逻辑
+            </summary>
+            <summary>
+            GroupSelectorView
+            </summary>
+        </member>
+        <member name="M:AviewMotionUI.Views.MachineLife.GroupSelectorView.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:AviewMotionUI.Views.MachineLife.UCComponentCountView">
+            <summary>
+            UCStationProbeLifeView.xaml 的交互逻辑
+            </summary>
+            <summary>
+            UCComponentCountView
+            </summary>
+        </member>
+        <member name="M:AviewMotionUI.Views.MachineLife.UCComponentCountView.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:AviewMotionUI.Views.MachineLife.UCMachineLifeSelectorView">
+            <summary>
+            UCMachineLifeSelectorView.xaml 的交互逻辑
+            </summary>
+            <summary>
+            UCMachineLifeSelectorView
+            </summary>
+        </member>
+        <member name="M:AviewMotionUI.Views.MachineLife.UCMachineLifeSelectorView.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:AviewMotionUI.Views.ProductionStatistics.UCProductionStatistics">
+            <summary>
+            UCProductionStatistics.xaml 的交互逻辑
+            </summary>
+            <summary>
+            UCProductionStatistics
+            </summary>
+        </member>
+        <member name="M:AviewMotionUI.Views.ProductionStatistics.UCProductionStatistics.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:AviewMotionUI.Views.ProductionStatistics.UCProductionView">
+            <summary>
+            UCProductionView.xaml 的交互逻辑
+            </summary>
+            <summary>
+            UCProductionView
+            </summary>
+        </member>
+        <member name="M:AviewMotionUI.Views.ProductionStatistics.UCProductionView.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,16 @@
+﻿<UserControl x:Class="Handler.View.MainUnits.Unit_MainTopPart"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Handler.View.MainUnits"
+             xmlns:locals="clr-namespace:Handler.View.NGNum"
+             xmlns:devicelife="clr-namespace:Handler.View.DeviceLife"
+             mc:Ignorable="d" 
+             d:DesignHeight="200" d:DesignWidth="700">
+    <StackPanel Orientation="Horizontal">
+        <local:Unit_TypeNameAndMode MaxWidth="160" x:Name="uc_typeName" VerticalAlignment="Top" Height="110" Margin="5,5,0,0"  />
+        <local:Unit_ProductInfo    MaxWidth="220" x:Name="uc_Product"   VerticalAlignment="Top" Height="110" Margin="5,5,0,0"/>
+        <locals:Unit_NGTop  MaxWidth="300" Margin="5,5,0,0" x:Name="uc_ngTop" VerticalAlignment="Top" Height="110" />
+    </StackPanel>
+</UserControl>

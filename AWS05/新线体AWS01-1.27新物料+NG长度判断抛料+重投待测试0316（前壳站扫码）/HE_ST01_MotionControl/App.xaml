@@ -1,0 +1,11 @@
+﻿<Application x:Class="Handler.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:Handler"
+             xmlns:converter="clr-namespace:Handler.Core.Converter"
+             StartupUri="MainWindow.xaml" ShutdownMode="OnExplicitShutdown">
+    <Application.Resources>
+        <converter:ProductResultToColorConverter x:Key="Resource_ProductResultToColor"/>
+        <converter:ProductResultToStringConverter x:Key="Resource_ProductResultToString"/>
+    </Application.Resources>
+</Application>

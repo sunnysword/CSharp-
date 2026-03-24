@@ -1,0 +1,294 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ElevatingPlatform</name>
+    </assembly>
+    <members>
+        <member name="P:Platform.AskCommandMsg.Message">
+            <summary>
+            备注说明
+            </summary>
+        </member>
+        <member name="T:Platform.CommunicationMsg">
+            <summary>
+            通讯消息类
+            </summary>
+        </member>
+        <member name="M:Platform.BackStationConnect.Ask(System.String)">
+            <summary>
+            问询（传递问询）
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Platform.BackStationConnect.SendAskCommand(Platform.AskCommandMsg)">
+            <summary>
+            问询（传递问询）
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Platform.BackStationConnect.AskNext">
+            <summary>
+            问询（问下一站）
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Platform.BackStationConnect.SetProductInfo(System.String)">
+            <summary>
+            发送产品信息给后一站
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="F:Platform.ElevatingPlatform.GetMachineIsRunningEventHandler">
+            <summary>
+            获取设备是否处于正常运行状态（如报警暂停，停止则设备处于未运行状态)
+            </summary>
+        </member>
+        <member name="F:Platform.ElevatingPlatform.IsSkip">
+            <summary>
+            是否跳过本站
+            </summary>
+        </member>
+        <member name="P:Platform.ElevatingPlatform.IsLimit">
+            <summary>
+            本站是否屏蔽
+            </summary>
+        </member>
+        <member name="P:Platform.ElevatingPlatform.IsProcessStation">
+            <summary>
+            是否是产品工艺站
+            </summary>
+        </member>
+        <member name="F:Platform.ElevatingPlatform.IsCheckNext">
+            <summary>
+            是否检查后站状态,用于类似三目产品，产品必须一站一站做，那就需要置为false
+            </summary>
+        </member>
+        <member name="F:Platform.ElevatingPlatform.IsRunning">
+            <summary>
+            本站是否运行中（即上方是否有治具）
+            </summary>
+        </member>
+        <member name="P:Platform.ElevatingPlatform.IsFirstStation">
+            <summary>
+            第一站
+            </summary>
+        </member>
+        <member name="P:Platform.ElevatingPlatform.IsLastStation">
+            <summary>
+            最后一站
+            </summary>
+        </member>
+        <member name="P:Platform.ElevatingPlatform.ProductIsLoad">
+            <summary>
+            前站产品流入
+            </summary>
+        </member>
+        <member name="P:Platform.ElevatingPlatform.State">
+            <summary>
+            当前状态
+            </summary>
+        </member>
+        <member name="M:Platform.ElevatingPlatform.Lock">
+            <summary>
+            加锁，状态置为disable
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Platform.ElevatingPlatform.UnLock">
+            <summary>
+            解锁，状态置为able
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Platform.FrontStationConnect.GetFrontStationStopState">
+            <summary>
+            获取前站停止状态
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Platform.FrontStationConnect.GetProductInfo">
+            <summary>
+            获取前站产品信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Platform.FrontStationConnect.SendMessage(System.String)">
+            <summary>
+            向前站传递消息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="F:Platform.FrontStationConnect.AskEventHandle">
+            <summary>
+            收到ask时，触发的事件
+            </summary>
+        </member>
+        <member name="F:Platform.FrontStationConnect.AskNextEventHandle">
+            <summary>
+            AskNext 事件
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "T:Platform.CommunicationProductInfo" -->
+        <member name="F:Platform.CommunicationProductInfo.MainComponentInfo">
+            <summary>
+            主组件信息，一般指壳体
+            </summary>
+        </member>
+        <member name="F:Platform.CommunicationProductInfo.ComponentCollection">
+            <summary>
+            组件信息 集合
+            </summary>
+        </member>
+        <member name="F:Platform.CommunicationProductInfo.IsDone">
+            <summary>
+            是否做过
+            </summary>
+        </member>
+        <member name="P:Platform.CommunicationProductInfo.NGReason">
+            <summary>
+            NG原因
+            </summary>
+        </member>
+        <member name="P:Platform.CommunicationProductInfo.Mode">
+            <summary>
+            运行模式,默认正常运行
+            </summary>
+        </member>
+        <member name="T:Platform.RunMode">
+            <summary>
+            运行模式
+            </summary>
+        </member>
+        <member name="F:Platform.RunMode.NormalRun">
+            <summary>
+            正常运行模式
+            </summary>
+        </member>
+        <member name="F:Platform.RunMode.TestRun">
+            <summary>
+            空跑模式
+            </summary>
+        </member>
+        <member name="F:Platform.RunMode.ClearMode">
+            <summary>
+            清料模式
+            </summary>
+        </member>
+        <member name="F:Platform.RunMode.DayCheck_1">
+            <summary>
+            点检模式1
+            </summary>
+        </member>
+        <member name="F:Platform.RunMode.DayCheck_2">
+            <summary>
+            点检模式2
+            </summary>
+        </member>
+        <member name="F:Platform.RunMode.DayCheck_3">
+            <summary>
+            点检模式3
+            </summary>
+        </member>
+        <member name="F:Platform.RunMode.DayCheck_4">
+            <summary>
+            点检模式4
+            </summary>
+        </member>
+        <member name="F:Platform.RunMode.DayCheck_5">
+            <summary>
+            点检模式5
+            </summary>
+        </member>
+        <member name="P:Platform.SampleProductInfo.IsVerifySuccess">
+            <summary>
+            是否是校验合格的数据
+            </summary>
+        </member>
+        <member name="P:Platform.SampleProductInfo.IsLastStationNGProduct">
+            <summary>
+            若产品NG，此属性指示是否是从上一站传入的NG产品
+            </summary>
+        </member>
+        <member name="P:Platform.SampleProductInfo.SN">
+            <summary>
+            产品SN
+            </summary>
+        </member>
+        <member name="P:Platform.SampleProductInfo.Result">
+            <summary>
+            产品结果
+            </summary>
+        </member>
+        <member name="P:Platform.SampleProductInfo.LastProcess">
+            <summary>
+            上一段工序代号
+            </summary>
+        </member>
+        <member name="P:Platform.SampleProductInfo.IsDone">
+            <summary>
+            产品是否在重复工艺做过
+            </summary>
+        </member>
+        <member name="P:Platform.StationInfo.MachineIsRunning">
+            <summary>
+            设备是否处于正常运行中
+            </summary>
+        </member>
+        <member name="P:Platform.StationInfo.MachineStatus">
+            <summary>
+            设备当前状态
+            </summary>
+        </member>
+        <member name="T:Platform.View.NextStationStatusView">
+            <summary>
+            NextStationStatusView.xaml 的交互逻辑
+            </summary>
+            <summary>
+            NextStationStatusView
+            </summary>
+        </member>
+        <member name="M:Platform.View.NextStationStatusView.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:Platform.View.StationInfoView">
+            <summary>
+            StationInfoView.xaml 的交互逻辑
+            </summary>
+            <summary>
+            StationInfoView
+            </summary>
+        </member>
+        <member name="M:Platform.View.StationInfoView.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:Platform.View.StationListInfoView">
+            <summary>
+            StationListInfoView.xaml 的交互逻辑
+            </summary>
+            <summary>
+            StationListInfoView
+            </summary>
+        </member>
+        <member name="M:Platform.View.StationListInfoView.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:ILog_dll.LogFrontBack">
+            <summary>
+            流程类 Log记录
+            记录的路径默认为：当前运行程序\\Log\\ProcessLog\\...
+            </summary>
+        </member>
+        <member name="M:ILog_dll.LogFrontBack.#ctor(System.String)">
+            <summary>
+            文件的名字
+            </summary>
+            <param name="processName"></param>
+        </member>
+    </members>
+</doc>
